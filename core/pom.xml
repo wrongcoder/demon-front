@@ -83,6 +83,13 @@
 			<plugin>
 				<groupId>com.github.wvengen</groupId>
 				<artifactId>proguard-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<attach>true</attach>
 					<attachArtifactClassifier>min</attachArtifactClassifier>
