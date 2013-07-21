@@ -20,7 +20,6 @@
 		<dependency>
 			<groupId>com.vdxp.demon_front</groupId>
 			<artifactId>demon_front-core</artifactId>
-			<classifier>min</classifier>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
