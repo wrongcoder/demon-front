@@ -1,0 +1,36 @@
+com.vdxp.demon_front.core.DemoScreen -> a:
+    com.badlogic.gdx.graphics.Texture texture -> a
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batch -> a
+    19:21:void show() -> show
+    25:30:void render(float) -> render
+com.vdxp.demon_front.core.Game -> com.vdxp.demon_front.core.Game:
+    com.vdxp.demon_front.core.Game instance -> a
+    java.lang.Runnable postInit -> a
+    int WIDTH -> WIDTH
+    int HEIGHT -> HEIGHT
+    com.badlogic.gdx.assets.AssetManager assetManager -> a
+    26:31:void create() -> create
+    34:34:com.vdxp.demon_front.core.Game instance() -> instance
+    38:38:com.badlogic.gdx.assets.AssetManager assetManager() -> a
+    57:82:java.lang.String loadVersion() -> a
+com.vdxp.demon_front.core.Game$EmptyRunnable -> b:
+    52:52:void run() -> run
+com.vdxp.demon_front.core.LoadingScreen -> c:
+    com.badlogic.gdx.graphics.g2d.SpriteBatch batch -> a
+    com.badlogic.gdx.graphics.g2d.Sprite loadingText -> a
+    com.badlogic.gdx.graphics.g2d.Sprite loadingBorder -> b
+    com.badlogic.gdx.graphics.glutils.ShapeRenderer loadingBarRenderer -> a
+    float fadeTimeLeft -> a
+    com.vdxp.demon_front.core.Screen nextScreen -> a
+    29:30:com.vdxp.demon_front.core.Screen setNextScreen(com.vdxp.demon_front.core.Screen) -> a
+    35:45:void show() -> show
+    49:72:void render(float) -> render
+    106:107:void nextScreen() -> a
+com.vdxp.demon_front.core.Screen -> d:
+    com.vdxp.demon_front.core.Game game -> a
+    23:23:void resize(int,int) -> resize
+    27:27:void show() -> show
+    31:31:void hide() -> hide
+    35:35:void pause() -> pause
+    39:39:void resume() -> resume
+    43:43:void dispose() -> dispose
