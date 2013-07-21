@@ -34,15 +34,6 @@ public class DesktopLauncher {
 			);
 			processBuilder.directory(home);
 
-			try {
-				Class.forName("java.lang.ProcessBuilder$Redirect");
-				processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
-				processBuilder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-				processBuilder.redirectError(ProcessBuilder.Redirect.INHERIT);
-			} catch (ClassNotFoundException e) {
-				// JDK 6
-			}
-
 			final Process process = processBuilder.start();
 			System.exit(process.waitFor());
 		}
