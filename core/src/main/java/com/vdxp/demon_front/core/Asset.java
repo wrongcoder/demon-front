@@ -15,6 +15,8 @@ public class Asset {
 
 	public static final String libgdxLogo = "libgdx-logo.png";
 
+	public static final String invader1 = "sprites/invader1.png";
+
 	public static void queueAssets(final AssetManager assetManager) {
 		// Assets for LoadingScreen should be loaded first
 		assetManager.load(loadingAtlas, TextureAtlas.class);
@@ -22,6 +24,7 @@ public class Asset {
 		// Remaining assets
 		assetManager.load(libgdxLogo, Texture.class);
 		assetManager.load(mono16Font, BitmapFont.class);
+		assetManager.load(invader1, Texture.class);
 	}
 
 }
