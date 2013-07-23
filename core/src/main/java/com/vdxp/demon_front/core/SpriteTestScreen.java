@@ -14,7 +14,7 @@ public class SpriteTestScreen extends Screen {
 
 	private BitmapFont font;
 	private SpriteBatch batch;
-	private Texture invader1;
+	private Texture invaders;
 
 	private static final float physicsTimerRate = 0.1f;
 	private float physicsTimerBucket = 0;
@@ -27,7 +27,7 @@ public class SpriteTestScreen extends Screen {
 	@Override
 	public void show() {
 		font = assetManager().get(Asset.mono16Font);
-		invader1 = assetManager().get(Asset.invader1);
+		invaders = assetManager().get(Asset.invaders);
 		batch = new SpriteBatch();
 
 		Gdx.input.setInputProcessor(new SpriteTextInputHandler());
@@ -44,7 +44,7 @@ public class SpriteTestScreen extends Screen {
 		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(invader1, toon.x, toon.y, 0, 0, 60, 44);
+		batch.draw(invaders, toon.x, toon.y, 0, 0, 50, 44);
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		batch.end();
 	}
