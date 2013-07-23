@@ -71,6 +71,22 @@
                             <includePluginDependencies>true</includePluginDependencies>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>pack-sprites-textures</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.badlogic.gdx.tools.imagepacker.TexturePacker2</mainClass>
+                            <arguments>
+                                <argument>${project.basedir}/src/main/textures/sprites</argument>
+                                <argument>${project.build.directory}/gdx/assets/textures</argument>
+                                <argument>sprites</argument>
+                            </arguments>
+                            <includePluginDependencies>true</includePluginDependencies>
+                        </configuration>
+                    </execution>
                 </executions>
                 <dependencies>
 	                <dependency>
