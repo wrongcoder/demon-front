@@ -19,6 +19,8 @@ public class SpriteTestScreen extends Screen {
 	private static final float physicsTimerRate = 0.1f;
 	private float physicsTimerBucket = 0;
 
+	public static final float toonSpeed = 80; // pixels per second
+
 	public SpriteTestScreen(final Game game) {
 		super(game);
 		toon = new Toon();
@@ -59,22 +61,21 @@ public class SpriteTestScreen extends Screen {
 	}
 
 	private class SpriteTextInputHandler extends InputAdapter {
-		private static final float V = 200; // pixels per second
 
 		@Override
 		public boolean keyDown(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					toon.setDx(toon.getDx() - V);
+					toon.setDx(toon.getDx() - toonSpeed);
 					return true;
 				case Input.Keys.RIGHT:
-					toon.setDx(toon.getDx() + V);
+					toon.setDx(toon.getDx() + toonSpeed);
 					return true;
 				case Input.Keys.UP:
-					toon.setDy(toon.getDy() + V);
+					toon.setDy(toon.getDy() + toonSpeed);
 					return true;
 				case Input.Keys.DOWN:
-					toon.setDy(toon.getDy() - V);
+					toon.setDy(toon.getDy() - toonSpeed);
 					return true;
 			}
 			return false;
@@ -84,16 +85,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyUp(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					toon.setDx(toon.getDx() + V);
+					toon.setDx(toon.getDx() + toonSpeed);
 					return true;
 				case Input.Keys.RIGHT:
-					toon.setDx(toon.getDx() - V);
+					toon.setDx(toon.getDx() - toonSpeed);
 					return true;
 				case Input.Keys.UP:
-					toon.setDy(toon.getDy() - V);
+					toon.setDy(toon.getDy() - toonSpeed);
 					return true;
 				case Input.Keys.DOWN:
-					toon.setDy(toon.getDy() + V);
+					toon.setDy(toon.getDy() + toonSpeed);
 					return true;
 			}
 			return false;
