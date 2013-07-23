@@ -10,10 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class SpriteTestScreen extends Screen {
 
-	private float toonX = 400;
-	private float toonY = 300;
-	private float toonDX = 0;
-	private float toonDY = 0;
+	private Toon toon;
 
 	private BitmapFont font;
 	private SpriteBatch batch;
@@ -24,6 +21,7 @@ public class SpriteTestScreen extends Screen {
 
 	public SpriteTestScreen(final Game game) {
 		super(game);
+		toon = new Toon();
 	}
 
 	@Override
@@ -46,14 +44,14 @@ public class SpriteTestScreen extends Screen {
 		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(invader1, toonX, toonY, 0, 0, 60, 44);
+		batch.draw(invader1, toon.x, toon.y, 0, 0, 60, 44);
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		batch.end();
 	}
 
 	private void physics(final float delta) {
-		toonX += toonDX * delta;
-		toonY += toonDY * delta;
+		toon.x += toon.dx * delta;
+		toon.y += toon.dy * delta;
 	}
 
 	private class SpriteTextInputHandler extends InputAdapter {
@@ -63,16 +61,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyDown(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					toonDX -= V;
+					toon.dx -= V;
 					return true;
 				case Input.Keys.RIGHT:
-					toonDX += V;
+					toon.dx += V;
 					return true;
 				case Input.Keys.UP:
-					toonDY += V;
+					toon.dy += V;
 					return true;
 				case Input.Keys.DOWN:
-					toonDY -= V;
+					toon.dy -= V;
 					return true;
 			}
 			return false;
@@ -82,16 +80,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyUp(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					toonDX += V;
+					toon.dx += V;
 					return true;
 				case Input.Keys.RIGHT:
-					toonDX -= V;
+					toon.dx -= V;
 					return true;
 				case Input.Keys.UP:
-					toonDY -= V;
+					toon.dy -= V;
 					return true;
 				case Input.Keys.DOWN:
-					toonDY += V;
+					toon.dy += V;
 					return true;
 			}
 			return false;
