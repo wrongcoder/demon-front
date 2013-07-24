@@ -34,7 +34,7 @@ public class SpriteTestScreen extends Screen {
 		toon = new Toon(assetManager().<TextureAtlas> get(Asset.spritesAtlas));
 		batch = new SpriteBatch();
 		music.play();
-		Gdx.input.setInputProcessor(new SpriteTextInputHandler());
+		Gdx.input.setInputProcessor(new SpriteTestInputHandler());
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class SpriteTestScreen extends Screen {
 		toon.setY(toon.getY() + toon.getDy() * delta);
 	}
 
-	private class SpriteTextInputHandler extends InputAdapter {
+	private class SpriteTestInputHandler extends InputAdapter {
 
 		@Override
 		public boolean keyDown(final int keycode) {
