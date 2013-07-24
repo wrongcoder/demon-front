@@ -11,14 +11,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class SpriteTestScreen extends Screen {
 
-	private Viewport viewport = new Viewport();
-
 	private Hero hero;
 
 	private BitmapFont font;
-	private SpriteBatch batch;
 
+	private SpriteBatch batch;
 	private Music music;
+
+	private Viewport viewport;
 
 	private static final float physicsTimerRate = 0.1f;
 	private float physicsTimerBucket = 0;
@@ -38,6 +38,7 @@ public class SpriteTestScreen extends Screen {
 		music = assetManager().get(Asset.exoticDrums0);
 		hero = new Hero(assetManager().<TextureAtlas> get(Asset.spritesAtlas));
 		batch = new SpriteBatch();
+		viewport = new Viewport(hero);
 		music.play();
 		Gdx.input.setInputProcessor(new SpriteTestInputHandler());
 	}
@@ -60,6 +61,7 @@ public class SpriteTestScreen extends Screen {
 		final float alpha = physicsTimerBucket / physicsTimerRate;
 
 		graphics(delta, alpha);
+		viewport.setPosition(hero);
 	}
 
 	private void graphics(final float delta, final float alpha) {
@@ -68,7 +70,8 @@ public class SpriteTestScreen extends Screen {
 		batch.begin();
 		hero.draw(batch, viewport.viewportX, viewport.viewportY, delta, alpha);
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
-		font.draw(batch, "delta " + delta, 2, 52);
+		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
+		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
 		batch.end();
 	}
 

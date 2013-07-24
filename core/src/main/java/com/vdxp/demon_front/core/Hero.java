@@ -17,12 +17,12 @@ public class Hero implements Drawable {
 	// drawX/drawY: visible position during previous frame, map-relative
 	// dx/dy: current velocity, map-relative
 
-	private float x = 400;
-	private float y = 300;
-	private float prevX = 400;
-	private float prevY = 400;
-	private float drawX = 400;
-	private float drawY = 300;
+	private float x = 1000;
+	private float y = 1000;
+	private float prevX = 1000;
+	private float prevY = 1000;
+	private float drawX = 1000;
+	private float drawY = 1000;
 
 	private float dx = 0;
 	private float dy = 0;
