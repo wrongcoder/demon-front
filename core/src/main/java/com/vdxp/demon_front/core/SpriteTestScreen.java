@@ -3,6 +3,7 @@ package com.vdxp.demon_front.core;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +15,8 @@ public class SpriteTestScreen extends Screen {
 
 	private BitmapFont font;
 	private SpriteBatch batch;
+
+	private Music music;
 
 	private static final float physicsTimerRate = 0.1f;
 	private float physicsTimerBucket = 0;
@@ -27,8 +30,10 @@ public class SpriteTestScreen extends Screen {
 	@Override
 	public void show() {
 		font = assetManager().get(Asset.mono16Font);
+		music = assetManager().get(Asset.exoticDrums0);
 		toon = new Toon(assetManager().<TextureAtlas> get(Asset.spritesAtlas));
 		batch = new SpriteBatch();
+		music.play();
 		Gdx.input.setInputProcessor(new SpriteTextInputHandler());
 	}
 
