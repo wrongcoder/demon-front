@@ -21,6 +21,9 @@ public class SpriteTestScreen extends Screen {
 	private static final float physicsTimerRate = 0.1f;
 	private float physicsTimerBucket = 0;
 
+	private static final float controlTimerRate = 1.0f;
+	private float controlTimerBucket = 0;
+
 	public static final float toonSpeed = 80; // pixels per second
 
 	public SpriteTestScreen(final Game game) {
@@ -45,6 +48,16 @@ public class SpriteTestScreen extends Screen {
 			physicsTimerBucket -= physicsTimerRate;
 		}
 
+		controlTimerBucket += delta;
+		while (controlTimerBucket > controlTimerRate) {
+			control(controlTimerRate);
+			controlTimerBucket -= controlTimerRate;
+		}
+
+		graphics(delta);
+	}
+
+	private void graphics(final float delta) {
 		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.begin();
@@ -57,6 +70,9 @@ public class SpriteTestScreen extends Screen {
 	private void physics(final float delta) {
 		toon.setX(toon.getX() + toon.getDx() * delta);
 		toon.setY(toon.getY() + toon.getDy() * delta);
+	}
+
+	private void control(final float delta) {
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {
