@@ -11,7 +11,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class SpriteTestScreen extends Screen {
 
-	private Toon toon;
+	private Viewport viewport = new Viewport();
+
+	private Hero hero;
 
 	private BitmapFont font;
 	private SpriteBatch batch;
@@ -34,7 +36,7 @@ public class SpriteTestScreen extends Screen {
 	public void show() {
 		font = assetManager().get(Asset.mono16Font);
 		music = assetManager().get(Asset.exoticDrums0);
-		toon = new Toon(assetManager().<TextureAtlas> get(Asset.spritesAtlas));
+		hero = new Hero(assetManager().<TextureAtlas> get(Asset.spritesAtlas));
 		batch = new SpriteBatch();
 		music.play();
 		Gdx.input.setInputProcessor(new SpriteTestInputHandler());
@@ -54,22 +56,25 @@ public class SpriteTestScreen extends Screen {
 			controlTimerBucket -= controlTimerRate;
 		}
 
-		graphics(delta);
+		// This will be wrong if we had to call physics multiple times
+		final float alpha = physicsTimerBucket / physicsTimerRate;
+
+		graphics(delta, alpha);
 	}
 
-	private void graphics(final float delta) {
+	private void graphics(final float delta, final float alpha) {
 		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		toon.draw(delta, (physicsTimerBucket / physicsTimerRate), batch);
+		hero.draw(batch, viewport.viewportX, viewport.viewportY, delta, alpha);
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		font.draw(batch, "delta " + delta, 2, 52);
 		batch.end();
 	}
 
 	private void physics(final float delta) {
-		toon.setX(toon.getX() + toon.getDx() * delta);
-		toon.setY(toon.getY() + toon.getDy() * delta);
+		hero.setX(hero.getX() + hero.getDx() * delta);
+		hero.setY(hero.getY() + hero.getDy() * delta);
 	}
 
 	private void control(final float delta) {
@@ -81,16 +86,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyDown(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					toon.setDx(toon.getDx() - toonSpeed);
+					hero.setDx(hero.getDx() - toonSpeed);
 					return true;
 				case Input.Keys.RIGHT:
-					toon.setDx(toon.getDx() + toonSpeed);
+					hero.setDx(hero.getDx() + toonSpeed);
 					return true;
 				case Input.Keys.UP:
-					toon.setDy(toon.getDy() + toonSpeed);
+					hero.setDy(hero.getDy() + toonSpeed);
 					return true;
 				case Input.Keys.DOWN:
-					toon.setDy(toon.getDy() - toonSpeed);
+					hero.setDy(hero.getDy() - toonSpeed);
 					return true;
 			}
 			return false;
@@ -100,20 +105,21 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyUp(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					toon.setDx(toon.getDx() + toonSpeed);
+					hero.setDx(hero.getDx() + toonSpeed);
 					return true;
 				case Input.Keys.RIGHT:
-					toon.setDx(toon.getDx() - toonSpeed);
+					hero.setDx(hero.getDx() - toonSpeed);
 					return true;
 				case Input.Keys.UP:
-					toon.setDy(toon.getDy() - toonSpeed);
+					hero.setDy(hero.getDy() - toonSpeed);
 					return true;
 				case Input.Keys.DOWN:
-					toon.setDy(toon.getDy() + toonSpeed);
+					hero.setDy(hero.getDy() + toonSpeed);
 					return true;
 			}
 			return false;
 		}
 
 	}
+
 }
