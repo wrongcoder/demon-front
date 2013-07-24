@@ -1,0 +1,77 @@
+Attribution
+
+Music
+
+Theme_of_Agrual -> climax 1 in the game -> CC-By, but use this text:
+Front-end credits:
+Music by Matthew Pablo
+www.matthewpablo.com
+
+Main title screen (if you wish to put any credits there you should also include mine as well, if you aren’t putting any credits, then you don’t need to)
+Music by Matthew Pablo
+www.matthewpablo.com
+
+Ending credits:
+Music by Matthew Pablo
+www.matthewpablo.com
+
+Things on magnatunes:
+Ehren Stark - Tunnel Systems
+Ehren Stark - No Silence Please
+Daughters - LamentoDiTristano
+Daughters - Galdrbok
+
+Bleeding Out -> BattleEnd - bad end in game -> CC-By Brandon Morris
+Evil Temple -> Cliffhanger 1 in game -> CC-By Brandon Morris
+
+Battle March (short) -> BattleEnd - good end in game -> CC-By PlayOnLoop.com
+
+Radakan Inferno
+Radakan Moldan Chase
+-> CC-By-SA attribute as "Janne Hanhisuanto for Radakan"
+
+India Rhythm (north indian beat) -> CC-By SouljahdeShiva
+
+Durante - Vergine Tutto Amore -> CC-By-SA remaxim on
+OpenGameArt (unless otherwise specified most things on
+this list are from OGA)
+
+Brave Soldiers -> CC-By Alexandr Zhelanov, https://soundcloud.com/alexandr-zhelanov
+
+Boss Theme.ogg (Hold The Line) -> impasse 1 in game ->
+CC-By-SA Bart on OGA
+
+Regular Battle.mp3 -> Conflict 4 in game ->
+CC-By Telaron, written for OSARE
+
+OSN2U.mp3 (The Battle) -> Conflict 3 in game ->
+CC-By Marcus Rasseli, written for Wesnoth
+
+Battle.mp3 (Battle Theme) -> Conflict 1 in game ->
+CC-By Zehydra on OGA
+
+Exotic drums.mp3 -> Agitation 2 -> 
+
+Battle Theme.flac -> Agitation 1 -> 
+CC-By-SA by Remaxim on OGA
+
+Swarm.mp3 -> Calm 3 in game ->
+CC-By Elerya on OGA
+
+Old_city_theme.ogg -> Calm 1 in game ->
+CC-By-SA remaxim on OGA
+
+Sfx:
+
+Sprites:
+
+Invaders and Wall tiles:
+Common Public License Version 1.0.
+Copyright 1996-2011 by Ari Feldman
+http://www.widgetworx.com
+
+Human and Ork sprites (our side):
+CC-By Matt Hackett/richtaur
+"Original Bomb Party sprite sheet by Matt Hackett of Lost Decade Games, expanded by Cem Kalyoncu and /usr/share."
+
+Voice: N/A
