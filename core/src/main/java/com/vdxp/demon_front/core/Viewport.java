@@ -1,5 +1,7 @@
 package com.vdxp.demon_front.core;
 
+import com.vdxp.demon_front.core.units.Hero;
+
 public class Viewport {
 	public float viewportX = 0;
 	public float viewportY = 0;
@@ -11,8 +13,8 @@ public class Viewport {
 	public static final float viewportWidth = Game.WIDTH;
 	public static final float viewportHeight = Game.HEIGHT;
 
-	public static final float viewportSlopX = viewportWidth / 6f;
-	public static final float viewportSlopY = viewportHeight / 6f;
+	public static final float viewportSlopX = viewportWidth / 4f;
+	public static final float viewportSlopY = viewportHeight / 4f;
 
 	public static final float maxViewportX = mapHeight - viewportHeight;
 	public static final float maxViewportY = mapWidth - viewportWidth;
