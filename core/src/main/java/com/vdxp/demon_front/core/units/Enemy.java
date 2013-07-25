@@ -10,7 +10,7 @@ public class Enemy extends Unit {
 
 		final TextureAtlas.AtlasRegion frame1 = spritesAtlas.findRegion("invader2_1of2");
 		final TextureAtlas.AtlasRegion frame2 = spritesAtlas.findRegion("invader2_2of2");
-		animation = new Animation(0.60f, frame1, frame2);
+		animation = new Animation(0.8f, frame1, frame2);
 		animation.setPlayMode(Animation.LOOP);
 
 		drawOffsetX = frame1.getRegionWidth() / 2f;

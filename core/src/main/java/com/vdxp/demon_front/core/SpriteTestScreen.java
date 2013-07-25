@@ -32,7 +32,7 @@ public class SpriteTestScreen extends Screen {
 	private float controlTimerBucket = 0;
 
 	public static final float heroSpeed = 80; // pixels per second
-	public static final float enemySpeed = 40; // TODO move these into the unit classes
+	public static final float enemySpeed = 20; // TODO move these into the unit classes
 
 	public SpriteTestScreen(final Game game) {
 		super(game);
