@@ -1,0 +1,61 @@
+
+sprites.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+invader1_1of2
+  rotate: false
+  xy: 369, 8
+  size: 49, 34
+  orig: 49, 34
+  offset: 0, 0
+  index: -1
+invader1_2of2
+  rotate: false
+  xy: 259, 6
+  size: 53, 36
+  orig: 53, 36
+  offset: 0, 0
+  index: -1
+invader2_1of2
+  rotate: false
+  xy: 200, 4
+  size: 57, 38
+  orig: 57, 38
+  offset: 0, 0
+  index: -1
+invader2_2of2
+  rotate: false
+  xy: 69, 5
+  size: 63, 37
+  orig: 63, 37
+  offset: 0, 0
+  index: -1
+invader3_1of2
+  rotate: false
+  xy: 1, 1
+  size: 66, 41
+  orig: 66, 41
+  offset: 0, 0
+  index: -1
+invader3_2of2
+  rotate: false
+  xy: 134, 7
+  size: 64, 35
+  orig: 64, 35
+  offset: 0, 0
+  index: -1
+invader4_1of2
+  rotate: false
+  xy: 314, 9
+  size: 53, 33
+  orig: 53, 33
+  offset: 0, 0
+  index: -1
+invader4_2of2
+  rotate: false
+  xy: 420, 6
+  size: 49, 36
+  orig: 49, 36
+  offset: 0, 0
+  index: -1
