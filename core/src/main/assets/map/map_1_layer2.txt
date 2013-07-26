@@ -1,0 +1,60 @@
+MMMMMMMMMMMMMMt         tttttt                                 tMMMMMMMMMMMMMMMM
+tttttMMMMMMMMMt        tTTTTTtt d     ttttttttt                tMMMMMMMMMMMMMMMM
+    tttMMMMMMMt        tTTTTTTTt   tttTTTTTTTTtt               tMMMMMMMMMMMMMMMM
+  d   ttMMMMMMt        tTTTTTTTt   tTTTTTTTTTTTtt              tMMMMMMMMMMMMMMMM
+        tMMMMMt       tTTTTTTTtt  tTTTTTTTTTTTTTt              tMMMMMMMMMMMMMMMM
+         ttMMMt       tTTTTTTTt   tTTTTTTTTTTTTTt              tMMMMMMMMMMMMMMMM
+tt         ttMt       tTTTTTTt    ttTTTTTTTTTTTTt              tMMMMMMMMMMMMMMMM
+Mtttt        tt       tTTTTTTt     tttTTTTTTTTTTt              tMMMMMMMMMMMMMMMM
+MMMMtt                tTTTTTTt       ttTTTTTTTttt              tMMMMMMMMMMMMMMMM
+MMMMMt                ttTTTTt         ttTTTTtt                 tMMMMMMMMMMMMMMMM
+MMMMMt                 tTTTt           ttttt    tttt           tMMMMMMMMMMMMMMMM
+MMMMMt                 tTTt                     tTTtt          tMMMMMMMMMMMMMMMM
+MMMMMt                 ttTt                     tTTTtt         ttMMMMMMMMMMMMMMM
+MMMMMttt                tt                      tTTTTtt         tMMMMMMMMMMMMMMM
+MMMMMMMttt                 tttt        tt       tTTTTTt         tMMMMMMMMMMMMMMM
+MMMMMMMMMtt              ttTTTtt     ttTt       ttTTTTt         tttMMMMMMMMMMMMM
+MMMMMMMMMMMtt            tTTTTTtt  ttTTTTt       tTTTTTt          ttMMMMMMMMMMMM
+MMMMMMMMMMMMt           ttTTTTTTTtttTTTTTTtt     tttttTt           ttMMMMMMMMMMM
+MMMMMMMMMMMMt           tTTTTTTTTTTTTTTTTTTTtt       tt             ttMMMMMMMMMM
+MMMMMMMMMMMMt           tTTTTTTTTTTTTTTTTTTTTTt                      ttMMMMMMMMM
+MMMMMMMMMMMMt           tTTTTTTTTTTTTTTTTTTTTTTt                      tttttMMMMM
+MMMMMMMMMMMMt          tTTTTTTTTTTTTTTTTTTTTTTTt                          tttttt
+MMMMMMMMMMMtt          tTTTTTTTTTTTTTTTTTTTTTTTTt                               
+MMMMMMMMMMMt           ttTTTTTTTTTTTTTTTTTTTTTTTt                               
+MMMMMMMMMMMt            ttTTTTTTTTTTTTTTTTTTTTTTt                               
+MMMMMMMMMMt              ttTTTTTTTTTTTTTTTTTTTTtt                               
+MMMMMMMMMMt               tttTTTTTTTTTTTTTTttttt                                
+MMMMMMMMMtt                  tttttttttttttt                                  d  
+tttttttttt                                                                      
+                                                                                
+                                                                                
+                                                                                
+     d                                                             tttttttttt   
+                                                                  tMMMMMMMMMMttt
+tttttttttttttttt             ttt                ttttttttt        tMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTt            ttTTttt       tttttttTTTTTTTTt      ttMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTt           tTTTTTTtt ttttTTTTTTTTTTTTTTTt      tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTt          tTTTTTTTt  ttTTTTTTTTTTTTTTTTTt      tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTt         ttTTTTTTt  ttTTTTTTTTTTTTTTTTTTt      tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTt         tTTTTTTTt  tTTTTTTTTTTTTTTTTTTTt      tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTtt       tTTTTTTTt  tTTTTTTTTTTTTTTTTTTTTt      tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTTt       tTTTTTTTt  tTTTTTTTTTTTTTTTTTTTTt      tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTTt      tTTTTTTTt  ttTTTTTTTTTTTTTTTTTTTt       tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTTTt       tTTTTTTTt  tTTTTTTTTTTTTTTTTTTTTt       tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTTTtt       ttTTTTTTt   tTTTTTTTTTTTTTTTTTTTtt       tMMMMMMMMMMMMMMM
+TTTTTTTTTTTTtt         tTTTTTTt    tTTTTTTTTTTTTTTTTTTtt        tMMMMMMMMMMMMMMM
+TTTTTTTTTTTt           tTTTTTTt    tTTTTTTTTTTTTTTTTTtt         tMMMMMMMMMMMMMMM
+TTTTTTTTTTtt           tTTTTTt     tTTttttTTTTTTTTTTtt           tMMMMMMMMMMMMMM
+TTTTTTTTTt              tTTTTt     ttt    ttTTTTTTttt            tMMMMMMMMMMMMMM
+TTTTTTTtt               ttTTt      t       tttTTtt               tMMMMMMMMMMMMMM
+TTTTTtt                  tttt                 tt                 tMMMMMMMMMMMMMM
+TTTTTTt                                                          tMMMMMMMMMMMMMM
+TTTTTTtt                                                         ttMMMMMMMMMMMMM
+TTTTTTTt                                                          tMMMMMMMMMMMMM
+TTTTTTtt                                                           tMMMMMMMMMMMM
+TTTTTTt                                                            tMMMMMMMMMMMM
+tTTTtt                                                             ttttMMMMMMMMM
+tttt                        ww   ww   ww   ww                         tMMMMMMMMM   
+      www       www       wwwwwwwwwwwwwwwwwwwwwww       www       www  ttMMMMMMM 
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwttMMMMM
