@@ -44,7 +44,7 @@ public abstract class Unit implements Drawable {
 		batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
 	}
 
-	public void setDimensions(final float x, final float y, final float height, final float width) {
+	public void setDimensions(final float x, final float y, final float width, final float height) {
 		this.x = x;
 		this.prevX = x;
 		this.drawX = x;
