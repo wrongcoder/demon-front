@@ -3,59 +3,388 @@ sprites.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+claw-slash
+  rotate: false
+  xy: 347, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 invader1_1of2
   rotate: false
-  xy: 369, 8
+  xy: 245, 90
   size: 49, 34
   orig: 49, 34
   offset: 0, 0
   index: -1
 invader1_2of2
   rotate: false
-  xy: 259, 6
+  xy: 135, 88
   size: 53, 36
   orig: 53, 36
   offset: 0, 0
   index: -1
 invader2_1of2
   rotate: false
-  xy: 200, 4
+  xy: 1, 4
   size: 57, 38
   orig: 57, 38
   offset: 0, 0
   index: -1
 invader2_2of2
   rotate: false
-  xy: 69, 5
+  xy: 1, 44
   size: 63, 37
   orig: 63, 37
   offset: 0, 0
   index: -1
 invader3_1of2
   rotate: false
-  xy: 1, 1
+  xy: 1, 83
   size: 66, 41
   orig: 66, 41
   offset: 0, 0
   index: -1
 invader3_2of2
   rotate: false
-  xy: 134, 7
+  xy: 69, 89
   size: 64, 35
   orig: 64, 35
   offset: 0, 0
   index: -1
 invader4_1of2
   rotate: false
-  xy: 314, 9
+  xy: 190, 91
   size: 53, 33
   orig: 53, 33
   offset: 0, 0
   index: -1
 invader4_2of2
   rotate: false
-  xy: 420, 6
+  xy: 296, 88
   size: 49, 36
   orig: 49, 36
+  offset: 0, 0
+  index: -1
+sword-slash
+  rotate: false
+  xy: 381, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+walltiles_30x16_fromInvader
+  rotate: false
+  xy: 993, 108
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: 1
+walltiles_30x16_fromInvader
+  rotate: false
+  xy: 993, 90
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: 2
+walltiles_30x16_fromInvader
+  rotate: false
+  xy: 103, 71
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: 3
+walltiles_30x16_fromInvader
+  rotate: false
+  xy: 103, 53
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: 4
+walltiles_30x16_fromInvader
+  rotate: false
+  xy: 94, 1
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: 5
+yourside_richtaur_32x32_1_10of10
+  rotate: false
+  xy: 415, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_1of10
+  rotate: false
+  xy: 449, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_2of10
+  rotate: false
+  xy: 483, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_3of10
+  rotate: false
+  xy: 517, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_4of10
+  rotate: false
+  xy: 551, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_5of10
+  rotate: false
+  xy: 585, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_6of10
+  rotate: false
+  xy: 619, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_7of10
+  rotate: false
+  xy: 653, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_8of10
+  rotate: false
+  xy: 687, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_9of10
+  rotate: false
+  xy: 721, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_10of10
+  rotate: false
+  xy: 755, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_1of10
+  rotate: false
+  xy: 789, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_2of10
+  rotate: false
+  xy: 823, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_3of10
+  rotate: false
+  xy: 857, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_4of10
+  rotate: false
+  xy: 891, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_5of10
+  rotate: false
+  xy: 925, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_6of10
+  rotate: false
+  xy: 959, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_7of10
+  rotate: false
+  xy: 60, 10
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_8of10
+  rotate: false
+  xy: 69, 55
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_2_9of10
+  rotate: false
+  xy: 135, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_10of10
+  rotate: false
+  xy: 169, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_1of10
+  rotate: false
+  xy: 203, 57
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_2of10
+  rotate: false
+  xy: 237, 56
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_3of10
+  rotate: false
+  xy: 94, 19
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_4of10
+  rotate: false
+  xy: 271, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_5of10
+  rotate: false
+  xy: 305, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_6of10
+  rotate: false
+  xy: 339, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_7of10
+  rotate: false
+  xy: 373, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_8of10
+  rotate: false
+  xy: 407, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_3_9of10
+  rotate: false
+  xy: 441, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_10of10
+  rotate: false
+  xy: 475, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_1of10
+  rotate: false
+  xy: 509, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_2of10
+  rotate: false
+  xy: 543, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_3of10
+  rotate: false
+  xy: 577, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_4of10
+  rotate: false
+  xy: 611, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_5of10
+  rotate: false
+  xy: 645, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_6of10
+  rotate: false
+  xy: 679, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_7of10
+  rotate: false
+  xy: 713, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_8of10
+  rotate: false
+  xy: 747, 58
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_4_9of10
+  rotate: false
+  xy: 781, 58
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
