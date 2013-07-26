@@ -63,6 +63,14 @@ CC-By-SA remaxim on OGA
 
 Sfx:
 
+growl1-6.wav -> CC-By-SA by Bart and http://www.freesound.org/usersViewSingle.php?id=384275
+(IFartInYourGeneralDirection)
+
+animal_melee_sound, sword_sound -> qubodup/Iwan Gabovitch - qubodup.net - qubodup@gmail.com
+CC0 (public domain)
+
+explode1.ogg -> CC-By-SA pOss on OGA
+
 Sprites:
 
 Invaders and Wall tiles:
