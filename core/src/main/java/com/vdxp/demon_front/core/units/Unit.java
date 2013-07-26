@@ -3,8 +3,12 @@ package com.vdxp.demon_front.core.units;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.vdxp.demon_front.core.Drawable;
 import com.vdxp.demon_front.core.Viewport;
+import com.vdxp.demon_front.core.map.MapTile;
+
+import java.util.Set;
 
 import static com.vdxp.demon_front.core.Util.interpolate;
 
@@ -27,17 +31,8 @@ public abstract class Unit implements Drawable {
 	protected float drawX = 0;
 	protected float drawY = 0;
 
-	protected float dx = 0;
-	protected float dy = 0;
-
-	public Unit(final float x, final float y) {
-		this.x = x;
-		this.prevX = x;
-		this.drawX = x;
-		this.y = y;
-		this.prevY = y;
-		this.drawY = y;
-	}
+	protected float width = 32;
+	protected float height = 32;
 
 	@Override
 	public void draw(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
@@ -49,38 +44,63 @@ public abstract class Unit implements Drawable {
 		batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
 	}
 
-	public float getX() {
-		return x;
+	public void setDimensions(final float x, final float y, final float height, final float width) {
+		this.x = x;
+		this.prevX = x;
+		this.drawX = x;
+		this.y = y;
+		this.prevY = y;
+		this.drawY = y;
+		this.height = height;
+		this.drawOffsetX = height / 2f;
+		this.width = width;
+		this.drawOffsetY = width / 2f;
 	}
 
-	public void setX(final float x) {
+	protected boolean tryMove(final float targetX, final float targetY, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
 		this.prevX = this.x;
-		this.x = x;
+		this.prevY = this.y;
+
+		Rectangle.tmp.set(targetX, targetY, this.width, this.height);
+
+		for (final Unit other : activeCollidables) {
+			if (other == this) {
+				continue;
+			}
+			Rectangle.tmp2.set(other.x, other.y, other.width, other.height);
+			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+				return false;
+			}
+		}
+		for (final MapTile other : inactiveCollidables) {
+			Rectangle.tmp2.set(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+				return false;
+			}
+		}
+
+		this.x = targetX;
+		this.y = targetY;
+		return true;
+	}
+
+	public float getSpeed() {
+		return 60; // pixels per second
+	}
+
+	public float getX() {
+		return x;
 	}
 
 	public float getY() {
 		return y;
 	}
 
-	public void setY(final float y) {
-		this.prevY = this.y;
-		this.y = y;
-	}
-
-	public float getDx() {
-		return dx;
-	}
-
-	public void setDx(final float dx) {
-		this.dx = dx;
-	}
-
-	public float getDy() {
-		return dy;
-	}
-
-	public void setDy(final float dy) {
-		this.dy = dy;
+	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+		final float angle = (float) (Math.PI * 2 * Math.random());
+		final float deltaX = (float) (getSpeed() * Math.sin(angle)) * delta;
+		final float deltaY = (float) (getSpeed() * Math.cos(angle)) * delta;
+		tryMove(x + deltaX, y + deltaY, activeCollidables, inactiveCollidables);
 	}
 
 }

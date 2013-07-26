@@ -8,15 +8,17 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.Enemy;
 import com.vdxp.demon_front.core.units.Hero;
+import com.vdxp.demon_front.core.units.Unit;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SpriteTestScreen extends Screen {
 
 	private Hero hero;
-	private Enemy enemy1;
-	private Enemy enemy2;
-	private Enemy enemy3;
 
 	private BitmapFont font;
 
@@ -31,8 +33,10 @@ public class SpriteTestScreen extends Screen {
 	private static final float controlTimerRate = 1.0f;
 	private float controlTimerBucket = 0;
 
-	public static final float heroSpeed = 80; // pixels per second
-	public static final float enemySpeed = 20; // TODO move these into the unit classes
+	// These things are painted in this order, one list after another
+	private Set<Drawable> backgroundDrawables = new HashSet<Drawable>();
+	private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
+	private Set<Unit> activeCollidables = new HashSet<Unit>();
 
 	public SpriteTestScreen(final Game game) {
 		super(game);
@@ -43,10 +47,14 @@ public class SpriteTestScreen extends Screen {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		font = assetManager().get(Asset.mono16Font);
 		music = assetManager().get(Asset.exoticDrums0);
+
 		hero = new Hero(spritesAtlas);
-		enemy1 = new Enemy(spritesAtlas, 1200, 800);
-		enemy2 = new Enemy(spritesAtlas, 800, 800);
-		enemy3 = new Enemy(spritesAtlas, 500, 1000);
+		activeCollidables.add(hero);
+
+		activeCollidables.add(new Enemy(spritesAtlas, 1200, 800));
+		activeCollidables.add(new Enemy(spritesAtlas, 800, 800));
+		activeCollidables.add(new Enemy(spritesAtlas, 500, 1000));
+
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
 		music.play();
@@ -79,35 +87,30 @@ public class SpriteTestScreen extends Screen {
 		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		hero.draw(batch, viewport, delta, alpha);
-		enemy1.draw(batch, viewport, delta, alpha);
-		enemy2.draw(batch, viewport, delta, alpha);
-		enemy3.draw(batch, viewport, delta, alpha);
+
+		for (final Drawable drawable : backgroundDrawables) {
+			drawable.draw(batch, viewport, delta, alpha);
+		}
+		for (final Drawable drawable : inactiveCollidables) {
+			drawable.draw(batch, viewport, delta, alpha);
+		}
+		for (final Drawable drawable : activeCollidables) {
+			drawable.draw(batch, viewport, delta, alpha);
+		}
+
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
-		font.draw(batch, "enemy1: " + enemy1.getX() + ", " + enemy1.getY(), 2, 78);
-		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 104);
+		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
 		batch.end();
 	}
 
 	private void physics(final float delta) {
-		hero.setX(hero.getX() + hero.getDx() * delta);
-		hero.setY(hero.getY() + hero.getDy() * delta);
-
-		makeRandomStep(enemy1, delta);
-		makeRandomStep(enemy2, delta);
-		makeRandomStep(enemy3, delta);
+		for (final Unit unit : activeCollidables) {
+			unit.physics(delta, activeCollidables, inactiveCollidables);
+		}
 	}
 
 	private void control(final float delta) {
-	}
-
-	private static void makeRandomStep(final Enemy enemy, final float delta) {
-		final float angle = (float) (Math.PI * 2 * Math.random());
-		final float deltaX = (float) (enemySpeed * Math.sin(angle)) * delta;
-		final float deltaY = (float) (enemySpeed * Math.cos(angle)) * delta;
-		enemy.setX(enemy.getX() + deltaX);
-		enemy.setY(enemy.getY() + deltaY);
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {
@@ -116,16 +119,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyDown(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					hero.setDx(hero.getDx() - heroSpeed);
+					hero.setDx(hero.getDx() - hero.getSpeed());
 					return true;
 				case Input.Keys.RIGHT:
-					hero.setDx(hero.getDx() + heroSpeed);
+					hero.setDx(hero.getDx() + hero.getSpeed());
 					return true;
 				case Input.Keys.UP:
-					hero.setDy(hero.getDy() + heroSpeed);
+					hero.setDy(hero.getDy() + hero.getSpeed());
 					return true;
 				case Input.Keys.DOWN:
-					hero.setDy(hero.getDy() - heroSpeed);
+					hero.setDy(hero.getDy() - hero.getSpeed());
 					return true;
 			}
 			return false;
@@ -135,16 +138,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyUp(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					hero.setDx(hero.getDx() + heroSpeed);
+					hero.setDx(hero.getDx() + hero.getSpeed());
 					return true;
 				case Input.Keys.RIGHT:
-					hero.setDx(hero.getDx() - heroSpeed);
+					hero.setDx(hero.getDx() - hero.getSpeed());
 					return true;
 				case Input.Keys.UP:
-					hero.setDy(hero.getDy() - heroSpeed);
+					hero.setDy(hero.getDy() - hero.getSpeed());
 					return true;
 				case Input.Keys.DOWN:
-					hero.setDy(hero.getDy() + heroSpeed);
+					hero.setDy(hero.getDy() + hero.getSpeed());
 					return true;
 			}
 			return false;
