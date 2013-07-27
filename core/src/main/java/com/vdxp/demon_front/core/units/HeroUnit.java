@@ -6,12 +6,12 @@ import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
 
-public class Hero extends Unit {
+public class HeroUnit extends Unit {
 
 	protected float dx = 0;
 	protected float dy = 0;
 
-	public Hero(final TextureAtlas spritesAtlas) {
+	public HeroUnit(final TextureAtlas spritesAtlas) {
 		final TextureAtlas.AtlasRegion frame1 = spritesAtlas.findRegion("invader1_1of2");
 		final TextureAtlas.AtlasRegion frame2 = spritesAtlas.findRegion("invader1_2of2");
 		animation = new Animation(0.25f, frame1, frame2);

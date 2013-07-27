@@ -1,6 +1,6 @@
 package com.vdxp.demon_front.core;
 
-import com.vdxp.demon_front.core.units.Hero;
+import com.vdxp.demon_front.core.units.HeroUnit;
 
 public class Viewport {
 	public float viewportX = 0;
@@ -19,12 +19,12 @@ public class Viewport {
 	public static final float maxViewportX = mapHeight - viewportHeight;
 	public static final float maxViewportY = mapWidth - viewportWidth;
 
-	public Viewport(final Hero hero) {
+	public Viewport(final HeroUnit hero) {
 		viewportX = hero.getX() - viewportHeight / 2f;
 		viewportY = hero.getY() - viewportWidth / 2f;
 	}
 
-	public void setPosition(final Hero hero) {
+	public void setPosition(final HeroUnit hero) {
 		final float viewportRelativeHeroX = hero.getDrawX() - (viewportX + viewportWidth / 2f);
 		final float viewportRelativeHeroY = hero.getDrawY() - (viewportY + viewportHeight / 2f);
 

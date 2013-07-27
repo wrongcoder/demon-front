@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.vdxp.demon_front.core.map.MapTile;
-import com.vdxp.demon_front.core.units.Enemy;
-import com.vdxp.demon_front.core.units.Hero;
+import com.vdxp.demon_front.core.units.EnemyUnit;
+import com.vdxp.demon_front.core.units.HeroUnit;
 import com.vdxp.demon_front.core.units.Unit;
 
 import java.util.HashSet;
@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class SpriteTestScreen extends Screen {
 
-	private Hero hero;
+	private HeroUnit hero;
 
 	private BitmapFont font;
 
@@ -46,12 +46,12 @@ public class SpriteTestScreen extends Screen {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		font = assetManager().get(Asset.mono16Font);
 
-		hero = new Hero(spritesAtlas);
+		hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
-		activeCollidables.add(new Enemy(spritesAtlas, 1200, 800));
-		activeCollidables.add(new Enemy(spritesAtlas, 800, 800));
-		activeCollidables.add(new Enemy(spritesAtlas, 500, 1000));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 1200, 800));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 800, 800));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 500, 1000));
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
