@@ -18,8 +18,8 @@ public class Game extends com.badlogic.gdx.Game {
 
     private AssetManager assetManager;
 
-    private static Sounds soundMan = new Sounds();
-    private static MusicMan musicMan = new MusicMan();
+    private Sounds soundMan = new Sounds();
+    private MusicMan musicMan = new MusicMan();
 
 	private Game() {
 	}
