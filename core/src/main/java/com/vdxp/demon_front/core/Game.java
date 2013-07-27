@@ -18,8 +18,8 @@ public class Game extends com.badlogic.gdx.Game {
 
     private AssetManager assetManager;
 
-    private Sounds soundMan = new Sounds();
-    private MusicMan musicMan = new MusicMan();
+    private Sounds soundMan = null;
+    private MusicMan musicMan = null;
 
 	private Game() {
 	}
@@ -31,10 +31,14 @@ public class Game extends com.badlogic.gdx.Game {
 		version = loadVersion();
 		setScreen(new LoadingScreen(this).setNextScreen(new SplashScreen(this)));
 		postInit.run();
+
+        // init sound and music
+        soundMan = new Sounds();
+        musicMan = new MusicMan();
 	}
 
 	public static Game instance() {
-		return instance;
+        return instance;
 	}
 
 	public AssetManager assetManager() {
