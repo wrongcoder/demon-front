@@ -83,4 +83,13 @@ Human and Ork sprites (our side):
 CC-By Matt Hackett/richtaur
 "Original Bomb Party sprite sheet by Matt Hackett of Lost Decade Games, expanded by Cem Kalyoncu and /usr/share."
 
+All demongate sprite: CC-By Daniel Cook (Lostgarden.com)
+
+Tree1
+CC-By Matt Hackett/richtaur
+"Original Bomb Party sprite sheet by Matt Hackett of Lost Decade Games, expanded by Cem Kalyoncu and /usr/share."
+
+grass1 and 2 -> from the OGA community tile set -> various authors
+CC-By-SA from the OpenGameArt.org Community Tileset. http://opengameart.org
+
 Voice: N/A
