@@ -9,12 +9,12 @@ public class MusicMan {
     private com.badlogic.gdx.audio.Music playing;
     private AssetManager mAssetManager = null;
 
-    private String UI_TitleScreen = "music/00_UI/00_TitleScreen_ehren-stark_noSilencePlease_magnatune.mp3";
-    private String UI_StageIntro = "music/00_UI/01_StageIntro(whichisalsothetutorial)_ehren-stark_TunnelSystems_magnatune.mp3";
+    private String UI_TitleScreen = "music/00_UI/06-No Silence Please-Ehren Starks.mp3";
+    private String UI_StageIntro = "music/00_UI/10-Tunnel Systems-Ehren Starks.mp3";
 
     private String[] Calm = {
             "music/01_Calm/00_old_city_theme_3_96.mp3",
-            "music/01_Calm/01_daughters_LamentoDiTristano_magnatune.mp3",
+            "music/01_Calm/10-Lamento Di Tristano_Rotta-Daughters of Elvin.mp3",
             "music/01_Calm/02_swarm_96.mp3"
     };
 
@@ -25,7 +25,7 @@ public class MusicMan {
 
     private String[] Conflict = {
             "music/03_Conflict/Battle_96.mp3",
-            "music/03_Conflict/daughters_galdrbok_magnatune.mp3",
+            "music/03_Conflict/12-Galdrbok-Daughters of Elvin.mp3",
             "music/03_Conflict/osn2u_96.mp3",
             "music/03_Conflict/regular_battle_96.mp3"
     };
