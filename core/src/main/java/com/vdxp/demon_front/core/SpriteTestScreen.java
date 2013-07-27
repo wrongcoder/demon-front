@@ -23,7 +23,6 @@ public class SpriteTestScreen extends Screen {
 	private BitmapFont font;
 
 	private SpriteBatch batch;
-	private Music music;
 
 	private Viewport viewport;
 
@@ -46,7 +45,6 @@ public class SpriteTestScreen extends Screen {
 	public void show() {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		font = assetManager().get(Asset.mono16Font);
-		music = assetManager().get(Asset.exoticDrums0);
 
 		hero = new Hero(spritesAtlas);
 		activeCollidables.add(hero);
@@ -57,7 +55,6 @@ public class SpriteTestScreen extends Screen {
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
-		music.play();
 		Gdx.input.setInputProcessor(new SpriteTestInputHandler());
 	}
 

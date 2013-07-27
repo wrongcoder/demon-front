@@ -21,8 +21,6 @@ public class Asset {
 
 	public static final String spritesAtlas = "textures/sprites.atlas";
 
-	public static final String exoticDrums0 = "music/02_Agitation/exotic drums_0.mp3";
-
 	public static void queueAssets(final AssetManager assetManager) {
 		// Assets for LoadingScreen should be loaded first
 		assetManager.load(loadingAtlas, TextureAtlas.class);
@@ -34,7 +32,6 @@ public class Asset {
 		assetManager.load(sans24Font, BitmapFont.class);
 		assetManager.load(sans48Font, BitmapFont.class);
 		assetManager.load(spritesAtlas, TextureAtlas.class);
-		assetManager.load(exoticDrums0, Music.class);
 	}
 
 }
