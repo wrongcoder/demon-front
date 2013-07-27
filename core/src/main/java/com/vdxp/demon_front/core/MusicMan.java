@@ -47,7 +47,7 @@ public class MusicMan {
     };
 
     private String BattleEnd_Bad = "music/07_BattleEnd/BadEnd_bleeding_out2_2_96.mp3";
-    private String BattleEnd_Good = "music/07_BattleEnd/NeutralEnd_POL-battle-march-short.wav";
+    private String BattleEnd_Good = "music/07_BattleEnd/NeutralEnd_POL-battle-march-short_96.mp3";
 
     public MusicMan(){
        this.Init(Game.instance().assetManager());
