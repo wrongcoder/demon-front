@@ -13,41 +13,40 @@ public class MusicMan {
     private String UI_StageIntro = "music/00_UI/01_StageIntro(whichisalsothetutorial)_ehren-stark_TunnelSystems_magnatune.mp3";
 
     private String[] Calm = {
-            "music/01_Calm/00_old_city_theme_3.mp3",
+            "music/01_Calm/00_old_city_theme_3_96.mp3",
             "music/01_Calm/01_daughters_LamentoDiTristano_magnatune.mp3",
-            "music/01_Calm/02_swarm.mp3"
+            "music/01_Calm/02_swarm_96.mp3"
     };
 
     private String[] Agitation = {
-            "music/02_Agitation/battle theme.mp3",
-            "music/02_Agitation/exotic drums_0.mp3",
-            "music/02_Agitation/radakan - moldan chase.mp3"
+            "music/02_Agitation/exotic_drums_0_96.mp3",
+            "music/02_Agitation/radakan_moldan_chase_96.mp3"
     };
 
     private String[] Conflict = {
-            "music/03_Conflict/Battle.mp3",
+            "music/03_Conflict/Battle_96.mp3",
             "music/03_Conflict/daughters_galdrbok_magnatune.mp3",
-            "music/03_Conflict/osn2u.mp3",
-            "music/03_Conflict/regular battle.mp3"
+            "music/03_Conflict/osn2u_96.mp3",
+            "music/03_Conflict/regular_battle_96.mp3"
     };
 
     private String[] Impasse = {
-            "music/04_Impasse/boss theme.mp3",
-            "music/04_Impasse/Brave Solders.mp3",
-            "music/04_Impasse/durante - vergine tutto amore.mp3",
-            "music/04_Impasse/northindianbeat.mp3",
-            "music/04_Impasse/radakan - inferno_0.mp3"
+            "music/04_Impasse/boss_theme_96.mp3",
+            "music/04_Impasse/Brave_Solders_96.mp3",
+            "music/04_Impasse/durante_vergine_tutto_amore_96.mp3",
+            "music/04_Impasse/northindianbeat_96.mp3",
+            "music/04_Impasse/radakan_inferno_0_96.mp3"
     };
 
     private String[] CliffHanger = {
-            "music/05_CliffHanger/evil_temple.mp3"
+            "music/05_CliffHanger/evil_temple_96.mp3"
     };
 
     private String[] Climax = {
-            "music/06_Climax/Theme of Agrual_0.mp3"
+            "music/06_Climax/Theme_of_Agrual_0_96.mp3"
     };
 
-    private String BattleEnd_Bad = "music/07_BattleEnd/NeutralEnd_POL-battle-march-short.wav";
+    private String BattleEnd_Bad = "music/07_BattleEnd/BadEnd_bleeding_out2_2_96.mp3";
     private String BattleEnd_Good = "music/07_BattleEnd/NeutralEnd_POL-battle-march-short.wav";
 
     public MusicMan(){
