@@ -20,7 +20,7 @@ public class Sounds {
             "sfx/sword_sound.wav"
     };
 
-    private String sealingSound = "sfx/explode1.ogg";
+    private String sealingSound = "sfx/explode1.wav";
 
     public Sounds() {
         this.Init(Game.instance().assetManager());
