@@ -96,6 +96,7 @@ public class SpriteTestScreen extends Screen {
 
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
+		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
 		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
 		batch.end();
 	}
@@ -115,16 +116,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyDown(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					hero.setDx(hero.getDx() - hero.getSpeed());
+					hero.setMovingLeft(true);
 					return true;
 				case Input.Keys.RIGHT:
-					hero.setDx(hero.getDx() + hero.getSpeed());
+					hero.setMovingRight(true);
 					return true;
 				case Input.Keys.UP:
-					hero.setDy(hero.getDy() + hero.getSpeed());
+					hero.setMovingUp(true);
 					return true;
 				case Input.Keys.DOWN:
-					hero.setDy(hero.getDy() - hero.getSpeed());
+					hero.setMovingDown(true);
 					return true;
 			}
 			return false;
@@ -134,16 +135,16 @@ public class SpriteTestScreen extends Screen {
 		public boolean keyUp(final int keycode) {
 			switch (keycode) {
 				case Input.Keys.LEFT:
-					hero.setDx(hero.getDx() + hero.getSpeed());
+					hero.setMovingLeft(false);
 					return true;
 				case Input.Keys.RIGHT:
-					hero.setDx(hero.getDx() - hero.getSpeed());
+					hero.setMovingRight(false);
 					return true;
 				case Input.Keys.UP:
-					hero.setDy(hero.getDy() - hero.getSpeed());
+					hero.setMovingUp(false);
 					return true;
 				case Input.Keys.DOWN:
-					hero.setDy(hero.getDy() + hero.getSpeed());
+					hero.setMovingDown(false);
 					return true;
 			}
 			return false;
