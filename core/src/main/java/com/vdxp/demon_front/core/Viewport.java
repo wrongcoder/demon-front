@@ -16,8 +16,10 @@ public class Viewport {
 	public static final float viewportSlopX = viewportWidth / 6f;
 	public static final float viewportSlopY = viewportHeight / 6f;
 
-	public static final float maxViewportX = mapWidth - viewportWidth;
-	public static final float maxViewportY = mapHeight - viewportHeight;
+	public static final float minViewportX = 16;
+	public static final float minViewportY = -16;
+	public static final float maxViewportX = mapWidth - viewportWidth - 16;
+	public static final float maxViewportY = mapHeight - viewportHeight - 16;
 
 	public Viewport(final HeroUnit hero) {
 		viewportX = hero.getX() - viewportHeight / 2f;
@@ -47,15 +49,15 @@ public class Viewport {
 			viewportY += (viewportRelativeHeroY + viewportSlopY);
 		}
 
-		if (viewportX < 0) {
-			viewportX = 0;
+		if (viewportX < minViewportX) {
+			viewportX = minViewportX;
 		}
 		if (viewportX > maxViewportX) {
 			viewportX = maxViewportX;
 		}
 
-		if (viewportY < 0) {
-			viewportY = 0;
+		if (viewportY < minViewportY) {
+			viewportY = minViewportY;
 		}
 		if (viewportY > maxViewportY) {
 			viewportY = maxViewportY;

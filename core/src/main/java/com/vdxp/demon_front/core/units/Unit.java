@@ -100,7 +100,7 @@ public abstract class Unit extends Drawable {
 		final float targetX = this.x + (float) (getSpeed() * Math.cos(angle)) * delta;
 		final float targetY = this.y + (float) (getSpeed() * Math.sin(angle)) * delta;
 
-		Rectangle.tmp.set(targetX, targetY, this.width, this.height);
+		Rectangle.tmp.set(targetX + 2, targetY + 2, this.width - 4, this.height - 4);
 
 		for (final Unit other : activeCollidables) {
 			if (other == this) {
@@ -116,6 +116,13 @@ public abstract class Unit extends Drawable {
 			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 				return false;
 			}
+		}
+
+		// N.B. Rectangle.tmp is not draw-offset
+		// FIXME viewport should not contain the map size
+		Rectangle.tmp2.set(width * 2, height, Viewport.mapWidth - width * 3, Viewport.mapHeight - height * 2);
+		if (!Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+			return false;
 		}
 
 		this.x = targetX;
