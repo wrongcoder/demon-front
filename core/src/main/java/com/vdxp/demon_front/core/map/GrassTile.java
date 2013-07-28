@@ -25,9 +25,8 @@ public class GrassTile extends MapTile {
                      final float delta,
                      final float alpha) {
 
-        batch.draw(grass,
-                this.getX()  - viewport.viewportX,
-                this.getY() - viewport.viewportY);
+        setSpriteToDraw(grass);
+        super.draw(batch, viewport, delta, alpha);
     }
 
 }

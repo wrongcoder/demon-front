@@ -25,14 +25,8 @@ public class GrassWLeaveTile extends MapTile {
                      final float delta,
                      final float alpha) {
 
-        batch.draw(grass_w_leave,
-                this.getX()  - viewport.viewportX,
-                this.getY() - viewport.viewportY);
-
-        /*
-
-
-         */
+        setSpriteToDraw(grass_w_leave);
+        super.draw(batch, viewport, delta, alpha);
     }
 
 }

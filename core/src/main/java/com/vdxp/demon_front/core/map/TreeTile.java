@@ -25,9 +25,8 @@ public class TreeTile extends MapTile {
                      final float delta,
                      final float alpha) {
 
-        batch.draw(treeSprite,
-                this.getX()  - viewport.viewportX,
-                this.getY() - viewport.viewportY);
+        setSpriteToDraw(treeSprite);
+        super.draw(batch, viewport, delta, alpha);
     }
 
 }

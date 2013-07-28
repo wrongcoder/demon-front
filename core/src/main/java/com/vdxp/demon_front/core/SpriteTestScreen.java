@@ -39,7 +39,6 @@ public class SpriteTestScreen extends Screen {
     private Set<MapTile> background = new HashSet<MapTile>();
     private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
     private Set<Unit> activeCollidables = new HashSet<Unit>();
-    private Set<Drawable> inactiveNonCollidables_effects = new HashSet<Drawable>();
 
 	public SpriteTestScreen(final Game game) {
 		super(game);
@@ -64,8 +63,8 @@ public class SpriteTestScreen extends Screen {
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
-		activeCollidables.add(new EnemyUnit(spritesAtlas, Map.getGameXinPixel(11), Map.getGameYinPixel(9)));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, Map.getGameXinPixel(13), Map.getGameYinPixel(9)));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 11, 9));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 13, 9));
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
