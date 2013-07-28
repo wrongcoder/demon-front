@@ -7,8 +7,8 @@ public class Viewport {
 	public float viewportY = 0;
 
 	// placeholder values
-	public static final float mapWidth = 4000;
-	public static final float mapHeight = 3000;
+	public static final float mapWidth = 2560;
+	public static final float mapHeight = 1920;
 
 	public static final float viewportWidth = Game.WIDTH;
 	public static final float viewportHeight = Game.HEIGHT;
