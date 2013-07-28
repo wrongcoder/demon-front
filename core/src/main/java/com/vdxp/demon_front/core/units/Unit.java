@@ -2,8 +2,10 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Drawable;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.MapTile;
@@ -19,24 +21,32 @@ public abstract class Unit implements Drawable {
 	// drawX/drawY: visible position during previous frame, map-relative
 	// dx/dy: current velocity, map-relative
 
-	protected Animation animation;
-	protected float stateTime = 0;
-	protected float drawOffsetX = 16;
-	protected float drawOffsetY = 16;
+	private Animation animation;
+	private boolean animated = true;
+	private float stateTime = 0;
+	private float drawOffsetX = 16;
+	private float drawOffsetY = 16;
 
-	protected float x = 0;
-	protected float y = 0;
-	protected float prevX = 0;
-	protected float prevY = 0;
-	protected float drawX = 0;
-	protected float drawY = 0;
+	private float x = 0;
+	private float y = 0;
+	private float prevX = 0;
+	private float prevY = 0;
+	private float drawX = 0;
+	private float drawY = 0;
 
-	protected float width = 32;
-	protected float height = 32;
+	private float width = 32;
+	private float height = 32;
+
+	public Unit() {
+		this.animated = true;
+	}
 
 	@Override
 	public void draw(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
-		stateTime += delta;
+		if (animated) {
+			stateTime += delta;
+		}
+
 		drawX = interpolate(prevX, x, alpha);
 		drawY = interpolate(prevY, y, alpha);
 
@@ -55,6 +65,21 @@ public abstract class Unit implements Drawable {
 		this.drawOffsetX = height / 2f;
 		this.width = width;
 		this.drawOffsetY = width / 2f;
+	}
+
+	public void setAnimation(final Animation animation) {
+		setAnimation(animation, false);
+	}
+
+	public void setAnimation(final Animation animation, final boolean resetTimer) {
+		this.animation = animation;
+		if (resetTimer) {
+			stateTime = 0;
+		}
+	}
+
+	public void setAnimated(final boolean animated) {
+		this.animated = animated;
 	}
 
 	protected boolean tryMove(final float targetX, final float targetY, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
@@ -96,11 +121,33 @@ public abstract class Unit implements Drawable {
 		return y;
 	}
 
+	public float getDrawX() {
+		return drawX;
+	}
+
+	public float getDrawY() {
+		return drawY;
+	}
+
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
 		final float angle = (float) (Math.PI * 2 * Math.random());
 		final float deltaX = (float) (getSpeed() * Math.sin(angle)) * delta;
 		final float deltaY = (float) (getSpeed() * Math.cos(angle)) * delta;
 		tryMove(x + deltaX, y + deltaY, activeCollidables, inactiveCollidables);
+	}
+
+	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final String... spriteNames) {
+		return buildAnimation(frameDuration, spritesAtlas, playType, false, spriteNames);
+	}
+
+	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final boolean flipX, final String... spriteNames) {
+		final Array<TextureRegion> sprites = new Array<TextureRegion>(spriteNames.length);
+		for (final String spriteName : spriteNames) {
+			final TextureAtlas.AtlasRegion sprite = spritesAtlas.findRegion(spriteName);
+			sprite.flip(flipX, false);
+			sprites.add(sprite);
+		}
+		return new Animation(frameDuration, sprites, playType);
 	}
 
 }

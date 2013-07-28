@@ -13,13 +13,31 @@ public class HeroUnit extends Unit {
 	private boolean movingLeft;
 	private boolean movingRight;
 
-	public HeroUnit(final TextureAtlas spritesAtlas) {
-		final TextureAtlas.AtlasRegion frame1 = spritesAtlas.findRegion("invader1_1of2");
-		final TextureAtlas.AtlasRegion frame2 = spritesAtlas.findRegion("invader1_2of2");
-		animation = new Animation(0.25f, frame1, frame2);
-		animation.setPlayMode(Animation.LOOP);
+	private Animation stoppedAnimation;
 
-		setDimensions(1000, 1000, frame1.getRegionWidth(), frame1.getRegionHeight());
+	private final Animation downStoppedAnimation;
+	private final Animation downMovingAnimation;
+	private final Animation upStoppedAnimation;
+	private final Animation upMovingAnimation;
+	private final Animation rightStoppedAnimation;
+	private final Animation rightMovingAnimation;
+	private final Animation leftStoppedAnimation;
+	private final Animation leftMovingAnimation;
+
+	public HeroUnit(final TextureAtlas spritesAtlas) {
+		final float animationSpeed = 0.25f;
+		downStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_2of10");
+		upStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_1of10");
+		rightStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_5of10");
+		leftStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, true, "yourside_richtaur_32x32_4_5aof10");
+		downMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, "yourside_richtaur_32x32_4_3of10", "yourside_richtaur_32x32_4_4of10");
+		upMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, "yourside_richtaur_32x32_4_9of10", "yourside_richtaur_32x32_4_10of10");
+		rightMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, "yourside_richtaur_32x32_4_6of10", "yourside_richtaur_32x32_4_7of10", "yourside_richtaur_32x32_4_8of10", "yourside_richtaur_32x32_4_7of10");
+		leftMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, true, "yourside_richtaur_32x32_4_6aof10", "yourside_richtaur_32x32_4_7aof10", "yourside_richtaur_32x32_4_8aof10", "yourside_richtaur_32x32_4_7bof10");
+
+		setDimensions(1000, 1000, 32, 32);
+		setAnimation(downStoppedAnimation, true);
+		stoppedAnimation = downStoppedAnimation;
 	}
 
 	@Override
@@ -32,19 +50,28 @@ public class HeroUnit extends Unit {
 		} else {
 			tryMove(getX(), getY(), activeCollidables, inactiveCollidables);
 		}
+
+		// FIXME doesn't belong here
+		if (movingLeft && !movingRight) {
+			setAnimation(leftMovingAnimation);
+			stoppedAnimation = leftStoppedAnimation;
+		} else if (movingRight && !movingLeft) {
+			setAnimation(rightMovingAnimation);
+			stoppedAnimation = rightStoppedAnimation;
+		} else if (movingUp && !movingDown) {
+			setAnimation(upMovingAnimation);
+			stoppedAnimation = upStoppedAnimation;
+		} else if (movingDown && !movingUp) {
+			setAnimation(downMovingAnimation);
+			stoppedAnimation = downStoppedAnimation;
+		} else {
+			setAnimation(stoppedAnimation);
+		}
 	}
 
 	@Override
 	public float getSpeed() {
 		return 80; // pixels per second
-	}
-
-	public float getDrawX() {
-		return drawX;
-	}
-
-	public float getDrawY() {
-		return drawY;
 	}
 
 	public Float computeMovementAngle() {
