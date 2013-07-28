@@ -43,7 +43,7 @@ public abstract class Unit extends Drawable {
 	}
 
 	@Override
-	public void draw(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
+	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 		if (animated) {
 			stateTime += delta;
 		}

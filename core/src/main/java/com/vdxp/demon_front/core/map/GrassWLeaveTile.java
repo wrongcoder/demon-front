@@ -20,7 +20,7 @@ public class GrassWLeaveTile extends MapTile {
         setY(mapY * getHeight());
     }
 
-    public void draw(final SpriteBatch batch,
+    public void drawSprite(final SpriteBatch batch,
                      final Viewport viewport,
                      final float delta,
                      final float alpha) {

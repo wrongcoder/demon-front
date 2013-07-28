@@ -24,7 +24,7 @@ public class DemonGate extends Unit {
     }
 
     @Override
-    public void draw(final SpriteBatch batch,
+    public void drawSprite(final SpriteBatch batch,
                      final Viewport viewport,
                      final float delta,
                      final float alpha) {

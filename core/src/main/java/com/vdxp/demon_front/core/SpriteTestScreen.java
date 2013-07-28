@@ -39,6 +39,7 @@ public class SpriteTestScreen extends Screen {
     private Set<MapTile> background = new HashSet<MapTile>();
     private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
     private Set<Unit> activeCollidables = new HashSet<Unit>();
+    private Set<Drawable> inactiveNonCollidables_effects = new HashSet<Drawable>();
 
 	public SpriteTestScreen(final Game game) {
 		super(game);
@@ -63,8 +64,10 @@ public class SpriteTestScreen extends Screen {
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 11, 9));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 13, 9));
+		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 11));
+		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 8));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 6));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 4));
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
@@ -99,13 +102,13 @@ public class SpriteTestScreen extends Screen {
 		batch.begin();
 
 		for (final Drawable drawable : background) {
-			drawable.draw(batch, viewport, delta, alpha);
+			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
 		for (final Drawable drawable : inactiveCollidables) {
-			drawable.draw(batch, viewport, delta, alpha);
+			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
 		for (final Drawable drawable : activeCollidables) {
-			drawable.draw(batch, viewport, delta, alpha);
+			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
 
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
