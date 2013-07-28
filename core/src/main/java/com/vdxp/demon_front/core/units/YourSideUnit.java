@@ -6,8 +6,8 @@ import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
 
-/** This is any Unit that uses a Your Side sprite */
-public abstract class YourSideUnit extends Unit {
+/** This is any FriendlyUnit that uses a Your Side sprite */
+public abstract class YourSideUnit extends FriendlyUnit {
 
 	private Animation stoppedAnimation;
 
