@@ -51,21 +51,27 @@ public class HeroUnit extends Unit {
 			tryMove(getX(), getY(), activeCollidables, inactiveCollidables);
 		}
 
-		// FIXME doesn't belong here
-		if (movingLeft && !movingRight) {
-			setAnimation(leftMovingAnimation);
-			stoppedAnimation = leftStoppedAnimation;
-		} else if (movingRight && !movingLeft) {
+		setNextAnimation(angle);
+	}
+
+	public void setNextAnimation(final Float angle) {
+		if (angle == null) {
+			setAnimation(stoppedAnimation);
+		} else if (angle < (3f / 8f) * Math.PI) {
 			setAnimation(rightMovingAnimation);
 			stoppedAnimation = rightStoppedAnimation;
-		} else if (movingUp && !movingDown) {
+		} else if (angle < (5f / 8f) * Math.PI) {
 			setAnimation(upMovingAnimation);
 			stoppedAnimation = upStoppedAnimation;
-		} else if (movingDown && !movingUp) {
+		} else if (angle < (11f / 8f) * Math.PI) {
+			setAnimation(leftMovingAnimation);
+			stoppedAnimation = leftStoppedAnimation;
+		} else if (angle < (13f / 8f) * Math.PI) {
 			setAnimation(downMovingAnimation);
 			stoppedAnimation = downStoppedAnimation;
 		} else {
-			setAnimation(stoppedAnimation);
+			setAnimation(rightMovingAnimation);
+			stoppedAnimation = rightStoppedAnimation;
 		}
 	}
 
