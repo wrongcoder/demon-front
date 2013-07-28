@@ -17,17 +17,6 @@ import static com.vdxp.demon_front.core.Util.interpolate;
 
 public abstract class Unit implements Drawable {
 
-	protected Animation stoppedAnimation;
-
-	protected Animation downStoppedAnimation;
-	protected Animation downMovingAnimation;
-	protected Animation upStoppedAnimation;
-	protected Animation upMovingAnimation;
-	protected Animation rightStoppedAnimation;
-	protected Animation rightMovingAnimation;
-	protected Animation leftStoppedAnimation;
-	protected Animation leftMovingAnimation;
-
 	// x/y: model position, map-relative
 	// prevX/prevY: model position during previous physics tick, map-relative
 	// drawX/drawY: visible position during previous frame, map-relative
@@ -38,6 +27,8 @@ public abstract class Unit implements Drawable {
 	private float stateTime = 0;
 	private float drawOffsetX = 16;
 	private float drawOffsetY = 16;
+
+	private Float angle = null;
 
 	private float x = 0;
 	private float y = 0;
@@ -94,9 +85,17 @@ public abstract class Unit implements Drawable {
 		this.animated = animated;
 	}
 
-	protected boolean tryMove(final float targetX, final float targetY, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+	protected boolean tryMove(final Float angle, final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
 		this.prevX = this.x;
 		this.prevY = this.y;
+		this.angle = null;
+
+		if (angle == null) {
+			return true;
+		}
+
+		final float targetX = this.x + (float) (getSpeed() * Math.cos(angle)) * delta;
+		final float targetY = this.y + (float) (getSpeed() * Math.sin(angle)) * delta;
 
 		Rectangle.tmp.set(targetX, targetY, this.width, this.height);
 
@@ -118,6 +117,7 @@ public abstract class Unit implements Drawable {
 
 		this.x = targetX;
 		this.y = targetY;
+		this.angle = angle;
 		return true;
 	}
 
@@ -142,12 +142,13 @@ public abstract class Unit implements Drawable {
 		return drawY;
 	}
 
+	public Float getAngle() {
+		return angle;
+	}
+
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		final float angle = (float) (Math.PI * 2 * Math.random());
-		final float deltaX = (float) (getSpeed() * Math.sin(angle)) * delta;
-		final float deltaY = (float) (getSpeed() * Math.cos(angle)) * delta;
-		tryMove(x + deltaX, y + deltaY, activeCollidables, inactiveCollidables);
-		setNextAnimation(angle);
+		final float tryAngle = (float) (Math.PI * 2 * Math.random());
+		tryMove(tryAngle, delta, activeCollidables, inactiveCollidables);
 	}
 
 	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final String... spriteNames) {
@@ -165,24 +166,4 @@ public abstract class Unit implements Drawable {
 		return new Animation(frameDuration, sprites, playType);
 	}
 
-	protected void setNextAnimation(final Float angle) {
-		if (angle == null) {
-			setAnimation(stoppedAnimation);
-		} else if (angle < (3f / 8f) * Math.PI) {
-			setAnimation(rightMovingAnimation);
-			stoppedAnimation = rightStoppedAnimation;
-		} else if (angle < (5f / 8f) * Math.PI) {
-			setAnimation(upMovingAnimation);
-			stoppedAnimation = upStoppedAnimation;
-		} else if (angle < (11f / 8f) * Math.PI) {
-			setAnimation(leftMovingAnimation);
-			stoppedAnimation = leftStoppedAnimation;
-		} else if (angle < (13f / 8f) * Math.PI) {
-			setAnimation(downMovingAnimation);
-			stoppedAnimation = downStoppedAnimation;
-		} else {
-			setAnimation(rightMovingAnimation);
-			stoppedAnimation = rightStoppedAnimation;
-		}
-	}
 }

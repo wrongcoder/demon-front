@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.EnemyUnit;
 import com.vdxp.demon_front.core.units.HeroUnit;
+import com.vdxp.demon_front.core.units.LeatherUnit;
 import com.vdxp.demon_front.core.units.Unit;
 
 import java.util.HashSet;
@@ -51,6 +52,7 @@ public class SpriteTestScreen extends Screen {
 		activeCollidables.add(new EnemyUnit(spritesAtlas, 1200, 800));
 		activeCollidables.add(new EnemyUnit(spritesAtlas, 800, 800));
 		activeCollidables.add(new EnemyUnit(spritesAtlas, 500, 1000));
+		activeCollidables.add(new LeatherUnit(spritesAtlas, 1100, 1000));
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);

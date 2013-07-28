@@ -1,12 +1,11 @@
 package com.vdxp.demon_front.core.units;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
 
-public class HeroUnit extends Unit {
+public class HeroUnit extends YourSideUnit {
 
 	private boolean movingUp;
 	private boolean movingDown;
@@ -14,32 +13,13 @@ public class HeroUnit extends Unit {
 	private boolean movingRight;
 
 	public HeroUnit(final TextureAtlas spritesAtlas) {
-		final float animationSpeed = 0.25f;
-		downStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_2of10");
-		upStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_1of10");
-		rightStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_5of10");
-		leftStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, true, "yourside_richtaur_32x32_4_5aof10");
-		downMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, "yourside_richtaur_32x32_4_3of10", "yourside_richtaur_32x32_4_4of10");
-		upMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, "yourside_richtaur_32x32_4_9of10", "yourside_richtaur_32x32_4_10of10");
-		rightMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, "yourside_richtaur_32x32_4_6of10", "yourside_richtaur_32x32_4_7of10", "yourside_richtaur_32x32_4_8of10", "yourside_richtaur_32x32_4_7of10");
-		leftMovingAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.LOOP, true, "yourside_richtaur_32x32_4_6aof10", "yourside_richtaur_32x32_4_7aof10", "yourside_richtaur_32x32_4_8aof10", "yourside_richtaur_32x32_4_7bof10");
-
-		setDimensions(1000, 1000, 32, 32);
-		setAnimation(downStoppedAnimation, true);
-		stoppedAnimation = downStoppedAnimation;
+		super(spritesAtlas, 4, 0.25f, 1000, 1000);
 	}
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
 		final Float angle = computeMovementAngle();
-		if (angle != null) {
-			final float dx = getSpeed() * (float) Math.cos(angle) * delta;
-			final float dy = getSpeed() * (float) Math.sin(angle) * delta;
-			tryMove(getX() + dx, getY() + dy, activeCollidables, inactiveCollidables);
-		} else {
-			tryMove(getX(), getY(), activeCollidables, inactiveCollidables);
-		}
-
+		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 		setNextAnimation(angle);
 	}
 
