@@ -23,11 +23,6 @@ public class HeroUnit extends YourSideUnit {
 		setNextAnimation(angle);
 	}
 
-	@Override
-	public float getSpeed() {
-		return 80; // pixels per second
-	}
-
 	public Float computeMovementAngle() {
 		final float pi = (float) Math.PI;
 

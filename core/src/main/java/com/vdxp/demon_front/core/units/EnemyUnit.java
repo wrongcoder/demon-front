@@ -17,4 +17,9 @@ public class EnemyUnit extends Unit {
 		setAnimation(defaultAnimation, true);
 	}
 
+	@Override
+	public float getSpeed() {
+		return 50;
+	}
+
 }

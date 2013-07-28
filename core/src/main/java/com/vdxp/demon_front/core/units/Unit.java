@@ -122,9 +122,7 @@ public abstract class Unit implements Drawable {
 	}
 
 	/** @return pixels per second */
-	public float getSpeed() {
-		return 60;
-	}
+	public abstract float getSpeed();
 
 	public float getX() {
 		return x;
