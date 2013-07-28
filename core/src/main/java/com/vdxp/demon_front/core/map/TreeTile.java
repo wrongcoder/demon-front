@@ -2,6 +2,7 @@ package com.vdxp.demon_front.core.map;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.vdxp.demon_front.core.Viewport;
 
 public class TreeTile extends MapTile {

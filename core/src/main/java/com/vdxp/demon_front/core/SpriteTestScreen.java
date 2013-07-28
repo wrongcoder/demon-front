@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.vdxp.demon_front.core.map.Map;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.EnemyUnit;
 import com.vdxp.demon_front.core.units.HeroUnit;
@@ -24,6 +25,7 @@ public class SpriteTestScreen extends Screen {
 	private BitmapFont font;
 
 	private SpriteBatch batch;
+	private ShapeRenderer shape;
 
 	private Viewport viewport;
 
@@ -70,6 +72,7 @@ public class SpriteTestScreen extends Screen {
 		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 4));
 
 		batch = new SpriteBatch();
+		shape = new ShapeRenderer();
 		viewport = new Viewport(hero);
 		Gdx.input.setInputProcessor(new SpriteTestInputHandler());
 	}
@@ -99,8 +102,8 @@ public class SpriteTestScreen extends Screen {
 	private void graphics(final float delta, final float alpha) {
 		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		batch.begin();
 
+		batch.begin();
 		for (final Drawable drawable : background) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
@@ -110,12 +113,21 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : activeCollidables) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
-
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
 		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
 		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
 		batch.end();
+
+		for (final Drawable drawable : background) {
+			drawable.drawOverlay(shape, viewport, delta, alpha);
+		}
+		for (final Drawable drawable : inactiveCollidables) {
+			drawable.drawOverlay(shape, viewport, delta, alpha);
+		}
+		for (final Drawable drawable : activeCollidables) {
+			drawable.drawOverlay(shape, viewport, delta, alpha);
+		}
 	}
 
 	private void physics(final float delta) {

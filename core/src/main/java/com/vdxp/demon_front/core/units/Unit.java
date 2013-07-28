@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Drawable;
@@ -55,6 +56,10 @@ public abstract class Unit implements Drawable {
 
 		final TextureRegion frame = animation.getKeyFrame(stateTime);
 		batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
+	}
+
+	@Override
+	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
 	}
 
 	public void setDimensions(final float x, final float y, final float width, final float height) {
@@ -153,6 +158,9 @@ public abstract class Unit implements Drawable {
 	}
 
 	public abstract void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables);
+
+	/** @return Ratio of hit points remaining in range [0, 1] */
+	public abstract float getHitPointsFraction();
 
 	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final String... spriteNames) {
 		return buildAnimation(frameDuration, spritesAtlas, playType, false, spriteNames);

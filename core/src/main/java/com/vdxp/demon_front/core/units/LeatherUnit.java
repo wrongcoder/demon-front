@@ -8,4 +8,9 @@ public class LeatherUnit extends YourSideUnit {
 		super(spritesAtlas, 1, 0.25f, xTile, yTile);
 	}
 
+	@Override
+	public float getHitPointsFraction() {
+		return 0.95f;
+	}
+
 }

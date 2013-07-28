@@ -1,6 +1,8 @@
 package com.vdxp.demon_front.core.map;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.vdxp.demon_front.core.Drawable;
+import com.vdxp.demon_front.core.Viewport;
 
 public abstract class MapTile implements Drawable {
 	private float x;
@@ -39,4 +41,8 @@ public abstract class MapTile implements Drawable {
     public void setHeight(float height) {
         this.height = height;
     }
+
+	@Override
+	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
+	}
 }

@@ -43,4 +43,9 @@ public class WallSection extends Unit {
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
         // other things interacts with the wall but the wall does not move
     }
+
+	@Override
+	public float getHitPointsFraction() {
+		return 0.80f;
+	}
 }

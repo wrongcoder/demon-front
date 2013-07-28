@@ -40,6 +40,11 @@ public class DemonGate extends Unit {
     }
 
 	@Override
+	public float getHitPointsFraction() {
+		return 0.75f;
+	}
+
+	@Override
 	public float getSpeed() {
 		return 0;
 	}

@@ -23,6 +23,11 @@ public class HeroUnit extends YourSideUnit {
 		setNextAnimation(angle);
 	}
 
+	@Override
+	public float getHitPointsFraction() {
+		return 0.75f;
+	}
+
 	public Float computeMovementAngle() {
 		final float pi = (float) Math.PI;
 
