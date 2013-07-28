@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static com.vdxp.demon_front.core.Util.interpolate;
 
-public abstract class Unit implements Drawable {
+public abstract class Unit extends Drawable {
 
 	// x/y: model position, map-relative
 	// prevX/prevY: model position during previous physics tick, map-relative
@@ -26,10 +26,8 @@ public abstract class Unit implements Drawable {
 	private Animation animation;
 	private boolean animated = true;
 	private float stateTime = 0;
-	private float drawOffsetX = 16;
-	private float drawOffsetY = 16;
 
-	private Float angle = null;
+    private Float angle = null;
 
 	private float x = 0;
 	private float y = 0;
