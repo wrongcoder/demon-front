@@ -14,38 +14,36 @@ t:map/map_1_layer1.txt:4918:text/plain
 t:map/map_1_layer2.txt:4922:text/plain
 d:music:0:application/unknown
 d:music/00_UI:0:application/unknown
-b:music/00_UI/00_TitleScreen_ehren-stark_noSilencePlease_magnatune.m3u:74:application/unknown
-b:music/00_UI/01_StageIntro(whichisalsothetutorial)_ehren-stark_TunnelSystems_magnatune.m3u:69:application/unknown
-a:music/00_UI/02_townManagementIfWeEverGetToThat_rpg_opengamearts.ogg:9436066:application/unknown
+a:music/00_UI/06-No Silence Please-Ehren Starks.mp3:2755008:application/unknown
+a:music/00_UI/10-Tunnel Systems-Ehren Starks.mp3:5116893:application/unknown
 d:music/01_Calm:0:application/unknown
-a:music/01_Calm/00_old city theme_3.ogg:1979826:application/unknown
-b:music/01_Calm/01_daughters_LamentoDiTristano_magnatune.m3u:90:application/unknown
-a:music/01_Calm/02_swarm.mp3:975980:application/unknown
+a:music/01_Calm/00_old_city_theme_3_96.mp3:2236464:application/unknown
+a:music/01_Calm/02_swarm_96.mp3:589680:application/unknown
+a:music/01_Calm/10-Lamento Di Tristano_Rotta-Daughters of Elvin.mp3:8155067:application/unknown
 d:music/02_Agitation:0:application/unknown
-b:music/02_Agitation/battle theme.flac:12748979:application/unknown
-a:music/02_Agitation/exotic drums_0.mp3:1637899:application/unknown
-a:music/02_Agitation/radakan - moldan chase.ogg:2451157:application/unknown
+a:music/02_Agitation/exotic_drums_0_96.mp3:817344:application/unknown
+a:music/02_Agitation/radakan_moldan_chase_96.mp3:1295568:application/unknown
 d:music/03_Conflict:0:application/unknown
-a:music/03_Conflict/Battle.mp3:4646747:application/unknown
-b:music/03_Conflict/daughters_galdrbok_magnatune.m3u:69:application/unknown
-a:music/03_Conflict/osn2u.mp3:6865108:application/unknown
-a:music/03_Conflict/regular battle.mp3:1915214:application/unknown
+a:music/03_Conflict/12-Galdrbok-Daughters of Elvin.mp3:5683156:application/unknown
+a:music/03_Conflict/Battle_96.mp3:1393632:application/unknown
+a:music/03_Conflict/osn2u_96.mp3:3432672:application/unknown
+a:music/03_Conflict/regular_battle_96.mp3:1146960:application/unknown
 d:music/04_Impasse:0:application/unknown
-a:music/04_Impasse/boss theme.ogg:2386278:application/unknown
-a:music/04_Impasse/Brave Solders.mp3:2119320:application/unknown
-a:music/04_Impasse/durante - vergine tutto amore.ogg:2157936:application/unknown
-a:music/04_Impasse/northindianbeat.mp3:2151330:application/unknown
-a:music/04_Impasse/radakan - inferno_0.ogg:2474330:application/unknown
+a:music/04_Impasse/boss_theme_96.mp3:2271888:application/unknown
+a:music/04_Impasse/Brave_Solders_96.mp3:1273104:application/unknown
+a:music/04_Impasse/durante_vergine_tutto_amore_96.mp3:1884384:application/unknown
+a:music/04_Impasse/northindianbeat_96.mp3:1070928:application/unknown
+a:music/04_Impasse/radakan_inferno_0_96.mp3:1829520:application/unknown
 d:music/05_CliffHanger:0:application/unknown
-a:music/05_CliffHanger/evil_temple.ogg:5300810:application/unknown
+a:music/05_CliffHanger/evil_temple_96.mp3:1008288:application/unknown
 d:music/06_Climax:0:application/unknown
-a:music/06_Climax/Theme of Agrual_0.mp3:18377291:application/unknown
+a:music/06_Climax/Theme_of_Agrual_0_96.mp3:5391792:application/unknown
 d:music/07_BattleEnd:0:application/unknown
-a:music/07_BattleEnd/BadEnd_bleeding_out2_2.ogg:1931664:application/unknown
-a:music/07_BattleEnd/NeutralEnd_POL-battle-march-short.wav:498148:audio/x-wav
+a:music/07_BattleEnd/BadEnd_bleeding_out2_2_96.mp3:1912464:application/unknown
+a:music/07_BattleEnd/NeutralEnd_POL-battle-march-short_96.mp3:135648:application/unknown
 d:sfx:0:application/unknown
 a:sfx/animal_melee_sound.wav:111346:audio/x-wav
-a:sfx/explode1.ogg:907308:application/unknown
+a:sfx/explode1.wav:907308:audio/x-wav
 a:sfx/growl1.wav:367604:audio/x-wav
 a:sfx/growl2.wav:220348:audio/x-wav
 a:sfx/growl3.wav:766408:audio/x-wav
@@ -56,9 +54,9 @@ a:sfx/sword_sound.wav:95214:audio/x-wav
 d:textures:0:application/unknown
 t:textures/loading.atlas:254:application/unknown
 i:textures/loading.png:2989:image/png
-t:textures/sprites.atlas:6394:application/unknown
-i:textures/sprites.png:14254:image/png
-t:version.json:128:application/unknown
+t:textures/sprites.atlas:7963:application/unknown
+i:textures/sprites.png:88744:image/png
+t:version.json:129:application/unknown
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:2837:application/unknown
 t:com/badlogic/gdx/graphics/g3d/shaders/default.vertex.glsl:7603:application/unknown
 t:com/badlogic/gdx/utils/arial-15.fnt:21743:application/unknown
