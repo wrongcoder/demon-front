@@ -13,17 +13,6 @@ public class HeroUnit extends Unit {
 	private boolean movingLeft;
 	private boolean movingRight;
 
-	private Animation stoppedAnimation;
-
-	private final Animation downStoppedAnimation;
-	private final Animation downMovingAnimation;
-	private final Animation upStoppedAnimation;
-	private final Animation upMovingAnimation;
-	private final Animation rightStoppedAnimation;
-	private final Animation rightMovingAnimation;
-	private final Animation leftStoppedAnimation;
-	private final Animation leftMovingAnimation;
-
 	public HeroUnit(final TextureAtlas spritesAtlas) {
 		final float animationSpeed = 0.25f;
 		downStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_4_2of10");
@@ -52,27 +41,6 @@ public class HeroUnit extends Unit {
 		}
 
 		setNextAnimation(angle);
-	}
-
-	public void setNextAnimation(final Float angle) {
-		if (angle == null) {
-			setAnimation(stoppedAnimation);
-		} else if (angle < (3f / 8f) * Math.PI) {
-			setAnimation(rightMovingAnimation);
-			stoppedAnimation = rightStoppedAnimation;
-		} else if (angle < (5f / 8f) * Math.PI) {
-			setAnimation(upMovingAnimation);
-			stoppedAnimation = upStoppedAnimation;
-		} else if (angle < (11f / 8f) * Math.PI) {
-			setAnimation(leftMovingAnimation);
-			stoppedAnimation = leftStoppedAnimation;
-		} else if (angle < (13f / 8f) * Math.PI) {
-			setAnimation(downMovingAnimation);
-			stoppedAnimation = downStoppedAnimation;
-		} else {
-			setAnimation(rightMovingAnimation);
-			stoppedAnimation = rightStoppedAnimation;
-		}
 	}
 
 	@Override
@@ -110,32 +78,16 @@ public class HeroUnit extends Unit {
 		return null;
 	}
 
-	public boolean isMovingUp() {
-		return movingUp;
-	}
-
 	public void setMovingUp(final boolean movingUp) {
 		this.movingUp = movingUp;
-	}
-
-	public boolean isMovingDown() {
-		return movingDown;
 	}
 
 	public void setMovingDown(final boolean movingDown) {
 		this.movingDown = movingDown;
 	}
 
-	public boolean isMovingLeft() {
-		return movingLeft;
-	}
-
 	public void setMovingLeft(final boolean movingLeft) {
 		this.movingLeft = movingLeft;
-	}
-
-	public boolean isMovingRight() {
-		return movingRight;
 	}
 
 	public void setMovingRight(final boolean movingRight) {

@@ -16,6 +16,17 @@ import static com.vdxp.demon_front.core.Util.interpolate;
 
 public abstract class Unit implements Drawable {
 
+	protected Animation stoppedAnimation;
+
+	protected Animation downStoppedAnimation;
+	protected Animation downMovingAnimation;
+	protected Animation upStoppedAnimation;
+	protected Animation upMovingAnimation;
+	protected Animation rightStoppedAnimation;
+	protected Animation rightMovingAnimation;
+	protected Animation leftStoppedAnimation;
+	protected Animation leftMovingAnimation;
+
 	// x/y: model position, map-relative
 	// prevX/prevY: model position during previous physics tick, map-relative
 	// drawX/drawY: visible position during previous frame, map-relative
@@ -67,18 +78,18 @@ public abstract class Unit implements Drawable {
 		this.drawOffsetY = width / 2f;
 	}
 
-	public void setAnimation(final Animation animation) {
+	protected void setAnimation(final Animation animation) {
 		setAnimation(animation, false);
 	}
 
-	public void setAnimation(final Animation animation, final boolean resetTimer) {
+	protected void setAnimation(final Animation animation, final boolean resetTimer) {
 		this.animation = animation;
 		if (resetTimer) {
 			stateTime = 0;
 		}
 	}
 
-	public void setAnimated(final boolean animated) {
+	protected void setAnimated(final boolean animated) {
 		this.animated = animated;
 	}
 
@@ -109,8 +120,9 @@ public abstract class Unit implements Drawable {
 		return true;
 	}
 
+	/** @return pixels per second */
 	public float getSpeed() {
-		return 60; // pixels per second
+		return 60;
 	}
 
 	public float getX() {
@@ -134,6 +146,7 @@ public abstract class Unit implements Drawable {
 		final float deltaX = (float) (getSpeed() * Math.sin(angle)) * delta;
 		final float deltaY = (float) (getSpeed() * Math.cos(angle)) * delta;
 		tryMove(x + deltaX, y + deltaY, activeCollidables, inactiveCollidables);
+		setNextAnimation(angle);
 	}
 
 	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final String... spriteNames) {
@@ -150,4 +163,24 @@ public abstract class Unit implements Drawable {
 		return new Animation(frameDuration, sprites, playType);
 	}
 
+	protected void setNextAnimation(final Float angle) {
+		if (angle == null) {
+			setAnimation(stoppedAnimation);
+		} else if (angle < (3f / 8f) * Math.PI) {
+			setAnimation(rightMovingAnimation);
+			stoppedAnimation = rightStoppedAnimation;
+		} else if (angle < (5f / 8f) * Math.PI) {
+			setAnimation(upMovingAnimation);
+			stoppedAnimation = upStoppedAnimation;
+		} else if (angle < (11f / 8f) * Math.PI) {
+			setAnimation(leftMovingAnimation);
+			stoppedAnimation = leftStoppedAnimation;
+		} else if (angle < (13f / 8f) * Math.PI) {
+			setAnimation(downMovingAnimation);
+			stoppedAnimation = downStoppedAnimation;
+		} else {
+			setAnimation(rightMovingAnimation);
+			stoppedAnimation = rightStoppedAnimation;
+		}
+	}
 }
