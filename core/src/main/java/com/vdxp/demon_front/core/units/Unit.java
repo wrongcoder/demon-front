@@ -1,6 +1,7 @@
 package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -154,9 +155,10 @@ public abstract class Unit implements Drawable {
 	}
 
 	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final boolean flipX, final String... spriteNames) {
-		final Array<TextureRegion> sprites = new Array<TextureRegion>(spriteNames.length);
+		final Array<Sprite> sprites = new Array<Sprite>(spriteNames.length);
 		for (final String spriteName : spriteNames) {
-			final TextureAtlas.AtlasRegion sprite = spritesAtlas.findRegion(spriteName);
+			final TextureAtlas.AtlasRegion region = spritesAtlas.findRegion(spriteName);
+			final Sprite sprite = new Sprite(region);
 			sprite.flip(flipX, false);
 			sprites.add(sprite);
 		}
