@@ -23,4 +23,20 @@ public abstract class MapTile implements Drawable {
 	public float getHeight() {
 		return height;
 	}
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
 }

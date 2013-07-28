@@ -13,7 +13,7 @@ public class HeroUnit extends YourSideUnit {
 	private boolean movingRight;
 
 	public HeroUnit(final TextureAtlas spritesAtlas) {
-		super(spritesAtlas, 4, 0.25f, 1000, 1000);
+		super(spritesAtlas, 4, 0.25f, 16, 14);
 	}
 
 	@Override

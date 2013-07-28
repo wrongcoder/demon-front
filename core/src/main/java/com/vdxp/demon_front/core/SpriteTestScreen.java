@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.EnemyUnit;
 import com.vdxp.demon_front.core.units.HeroUnit;
@@ -33,9 +34,12 @@ public class SpriteTestScreen extends Screen {
 	private float controlTimerBucket = 0;
 
 	// These things are painted in this order, one list after another
-	private Set<Drawable> backgroundDrawables = new HashSet<Drawable>();
-	private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
-	private Set<Unit> activeCollidables = new HashSet<Unit>();
+	private Map map1_layer1 = new Map();
+    private Map map1_layer2 = new Map();
+    private Set<MapTile> background = new HashSet<MapTile>();
+    private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
+    private Set<Unit> activeCollidables = new HashSet<Unit>();
+    private Set<Drawable> inactiveNonCollidables_effects = new HashSet<Drawable>();
 
 	public SpriteTestScreen(final Game game) {
 		super(game);
@@ -46,13 +50,22 @@ public class SpriteTestScreen extends Screen {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		font = assetManager().get(Asset.mono16Font);
 
-		hero = new HeroUnit(spritesAtlas);
+        map1_layer1.Init("map/map_1_layer1.txt");
+        map1_layer2.Init("map/map_1_layer2.txt");
+
+        background.addAll(map1_layer1.getNonCollidableMapTiles());
+        inactiveCollidables.addAll(map1_layer1.getCollidableMapTiles());
+        activeCollidables.addAll(map1_layer1.getUnits());
+
+        background.addAll(map1_layer2.getNonCollidableMapTiles());
+        inactiveCollidables.addAll(map1_layer2.getCollidableMapTiles());
+        activeCollidables.addAll(map1_layer2.getUnits());
+
+        hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 1200, 800));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 800, 800));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 500, 1000));
-		activeCollidables.add(new LeatherUnit(spritesAtlas, 1100, 1000));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, Map.getGameXinPixel(11), Map.getGameYinPixel(9)));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, Map.getGameXinPixel(13), Map.getGameYinPixel(9)));
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
@@ -86,7 +99,7 @@ public class SpriteTestScreen extends Screen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
-		for (final Drawable drawable : backgroundDrawables) {
+		for (final Drawable drawable : background) {
 			drawable.draw(batch, viewport, delta, alpha);
 		}
 		for (final Drawable drawable : inactiveCollidables) {

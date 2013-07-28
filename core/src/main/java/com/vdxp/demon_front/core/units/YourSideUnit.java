@@ -2,6 +2,7 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
@@ -20,7 +21,10 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	private final Animation leftStoppedAnimation;
 	private final Animation leftMovingAnimation;
 
-	public YourSideUnit(final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final float x, final float y) {
+	public YourSideUnit(final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
+		final float x = Map.getGameXinPixel(xTile);
+		final float y = Map.getGameYinPixel(yTile);
+
 		downStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_" + spriteId + "_2of10");
 		upStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_" + spriteId + "_1of10");
 		rightStoppedAnimation = buildAnimation(animationSpeed, spritesAtlas, Animation.NORMAL, "yourside_richtaur_32x32_" + spriteId + "_5of10");
@@ -58,7 +62,8 @@ public abstract class YourSideUnit extends FriendlyUnit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		super.physics(delta, activeCollidables, inactiveCollidables);
+		final float angle = (float) (Math.PI * 2 * Math.random());
+		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 		setNextAnimation(getAngle());
 	}
 

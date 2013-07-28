@@ -144,10 +144,15 @@ public abstract class Unit implements Drawable {
 		return angle;
 	}
 
-	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		final float tryAngle = (float) (Math.PI * 2 * Math.random());
-		tryMove(tryAngle, delta, activeCollidables, inactiveCollidables);
+	public float getWidth() {
+		return width;
 	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public abstract void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables);
 
 	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final String... spriteNames) {
 		return buildAnimation(frameDuration, spritesAtlas, playType, false, spriteNames);
