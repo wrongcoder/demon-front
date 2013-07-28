@@ -64,8 +64,10 @@ public class SpriteTestScreen extends Screen {
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
-		activeCollidables.add(new EnemyUnit(spritesAtlas, Map.getGameXinPixel(11), Map.getGameYinPixel(9)));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, Map.getGameXinPixel(13), Map.getGameYinPixel(9)));
+		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 11));
+		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 8));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 6));
+		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 4));
 
 		batch = new SpriteBatch();
 		viewport = new Viewport(hero);
