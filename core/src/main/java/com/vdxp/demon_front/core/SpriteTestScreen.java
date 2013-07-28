@@ -102,13 +102,13 @@ public class SpriteTestScreen extends Screen {
 		batch.begin();
 
 		for (final Drawable drawable : background) {
-			drawable.draw(batch, viewport, delta, alpha);
+			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
 		for (final Drawable drawable : inactiveCollidables) {
-			drawable.draw(batch, viewport, delta, alpha);
+			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
 		for (final Drawable drawable : activeCollidables) {
-			drawable.draw(batch, viewport, delta, alpha);
+			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
 
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
