@@ -96,11 +96,14 @@ public abstract class Unit implements Drawable {
 		return y;
 	}
 
-	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		final float angle = (float) (Math.PI * 2 * Math.random());
-		final float deltaX = (float) (getSpeed() * Math.sin(angle)) * delta;
-		final float deltaY = (float) (getSpeed() * Math.cos(angle)) * delta;
-		tryMove(x + deltaX, y + deltaY, activeCollidables, inactiveCollidables);
-	}
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public abstract void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables);
 
 }

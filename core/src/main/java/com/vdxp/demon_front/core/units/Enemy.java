@@ -2,6 +2,9 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.vdxp.demon_front.core.map.MapTile;
+
+import java.util.Set;
 
 public class Enemy extends Unit {
 
@@ -13,5 +16,12 @@ public class Enemy extends Unit {
 
 		setDimensions(x, y, frame1.getRegionWidth(), frame1.getRegionHeight());
 	}
+
+    public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+        final float angle = (float) (Math.PI * 2 * Math.random());
+        final float deltaX = (float) (getSpeed() * Math.sin(angle)) * delta;
+        final float deltaY = (float) (getSpeed() * Math.cos(angle)) * delta;
+        tryMove(x + deltaX, y + deltaY, activeCollidables, inactiveCollidables);
+    }
 
 }

@@ -2,6 +2,7 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
@@ -17,7 +18,9 @@ public class Hero extends Unit {
 		animation = new Animation(0.25f, frame1, frame2);
 		animation.setPlayMode(Animation.LOOP);
 
-		setDimensions(1000, 1000, frame1.getRegionWidth(), frame1.getRegionHeight());
+		setDimensions(Map.getGameXinPixel(12),
+                Map.getGameYinPixel(10),
+                frame1.getRegionWidth(), frame1.getRegionHeight());
 	}
 
 	@Override
