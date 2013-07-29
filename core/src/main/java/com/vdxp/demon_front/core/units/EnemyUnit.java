@@ -88,6 +88,7 @@ public abstract class EnemyUnit extends Unit {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(20, this);
+						return;
 					}
 				}
 			}

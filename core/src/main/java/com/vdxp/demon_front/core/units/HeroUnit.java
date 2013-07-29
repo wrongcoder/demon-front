@@ -55,6 +55,7 @@ public class HeroUnit extends YourSideUnit {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(15, this);
+						return;
 					}
 				}
 			}
