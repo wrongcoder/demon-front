@@ -25,7 +25,7 @@ public class DemonGate extends Unit {
 
     private final Animation dyingAnimation;
 
-    private final float demonSpawnInterval1 = 60f * 0.3333f;
+    private final float demonSpawnInterval1 = 80f * 0.3333f;
     private float demonSpawnBucket1 = 0f;
     private final int spawnNumberPerInterval1 = 4;
 

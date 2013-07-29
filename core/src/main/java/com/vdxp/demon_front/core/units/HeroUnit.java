@@ -20,7 +20,7 @@ public class HeroUnit extends YourSideUnit {
 	private boolean shoutingRight;
 
 	public HeroUnit(final TextureAtlas spritesAtlas) {
-		super(270, spritesAtlas, 4, 0.25f, 22, 5);
+		super(300, spritesAtlas, 4, 0.25f, 22, 5);
 	}
 
 	@Override

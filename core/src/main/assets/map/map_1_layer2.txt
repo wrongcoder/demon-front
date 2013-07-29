@@ -31,8 +31,8 @@ tttttttttt
 
 
      d                                                             tttttttttt
-                                                                  tMMMMMMMMMMttt
-tttttttttttttttt     d       ttt                ttttttttt        tMMMMMMMMMMMMMM
+                  d                                               tMMMMMMMMMMttt
+tttttttttttttttt             ttt                ttttttttt        tMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMt            ttMMttt       tttttttMMMMMMMMt      ttMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMt           tMMMMMMtt ttttMMMMMMMMMMMMMMMt      tMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMt          tMMMMMMMt  ttMMMMMMMMMMMMMMMMMt      tMMMMMMMMMMMMMMM

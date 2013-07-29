@@ -54,7 +54,7 @@ public abstract class EnemyUnit extends Unit {
         final int tileY = Map.getDistInTile(this.getY());
 
         aggressivenessTimer += delta;
-        final float aggressivenessLevel = aggressivenessTimer / (float)30;
+        final float aggressivenessLevel = aggressivenessTimer / (float)60;
 
         float angle = -1;
 

@@ -44,7 +44,7 @@ public class SpriteTestScreen extends Screen {
 	private float controlTimerBucket = 0;
 
     private float friendlySpawnTimerbucket = 0;
-	private static final float friendlySpawnInterval = 30 * controlTimerRate;
+	private static final float friendlySpawnInterval = 15 * controlTimerRate;
 
     // These things are painted in this order, one list after another
 	private Map map1_layer1 = new Map();
@@ -114,7 +114,7 @@ public class SpriteTestScreen extends Screen {
 
         friendlySpawnTimerbucket += delta;
 		if (friendlySpawnTimerbucket > friendlySpawnInterval) {
-            scheduleFriendlySpawn(2);
+            scheduleFriendlySpawn(1);
             friendlySpawnTimerbucket = 0f;
         }
 
@@ -206,7 +206,7 @@ public class SpriteTestScreen extends Screen {
 
 	    for (int i=0;i<numberToSpawn;i++) {
 		    final double friendlyType = Math.random() * 3;
-		    final int spawnX = (int) Math.ceil(Math.random() * 44) + 6;
+		    final int spawnX = (int) Math.ceil(Math.random() * 42) + 8;
 
 		    if (friendlyType < 1) {
 			    toSpawn.add(new LeatherUnit(spritesAtlas, spawnX, 4));
