@@ -1,5 +1,6 @@
 package com.vdxp.demon_front.core.map;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -31,7 +32,11 @@ public class FogOfWarTile extends MapTile {
 
         setSpriteToDraw(fogOfWar1);
 
-        HeroUnit hero = ((SpriteTestScreen) Game.instance().getScreen()).getHero();
+	    final Screen screen = Game.instance().getScreen();
+	    if (!(screen instanceof SpriteTestScreen)) {
+		    return;
+	    }
+	    HeroUnit hero = ((SpriteTestScreen) screen).getHero();
 
         int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 

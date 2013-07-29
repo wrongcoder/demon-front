@@ -1,5 +1,6 @@
 package com.vdxp.demon_front.core.units;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.vdxp.demon_front.core.Game;
@@ -107,7 +108,11 @@ public class DemonGate extends Unit {
         // does spawning logic, delta is 0.3333f
         demonSpawnBucket1 += delta;
         if (demonSpawnBucket1 > demonSpawnInterval1) {
-            ((SpriteTestScreen)Game.instance().getScreen()).
+	        final Screen screen = Game.instance().getScreen();
+	        if (!(screen instanceof SpriteTestScreen)) {
+		        return;
+	        }
+	        ((SpriteTestScreen) screen).
                     scheduleEnemySpawn(4, Map.getDistInTile(this.getX()), Map.getDistInTile(this.getY()));
             demonSpawnBucket1 = 0f;
         }
