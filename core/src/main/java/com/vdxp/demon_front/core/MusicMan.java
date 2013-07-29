@@ -59,7 +59,7 @@ public class MusicMan {
         }
     }
 
-    public void Init (final AssetManager assetManager) {
+    private void Init (final AssetManager assetManager) {
 
         mAssetManager = assetManager;
 
