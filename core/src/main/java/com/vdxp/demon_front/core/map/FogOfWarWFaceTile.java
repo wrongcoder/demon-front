@@ -19,8 +19,6 @@ public class FogOfWarWFaceTile extends MapTile {
         fogOfWarWFace = spritesAtlas.findRegion((Math.random() < 0.9f)
                     ? "fogOfWar2" : "fogOfWar2b");
 
-        fogOfWarWFace = spritesAtlas.findRegion("fogOfWar2b");
-
         setWidth(fogOfWarWFace.getRegionWidth());
         setHeight(fogOfWarWFace.getRegionHeight());
 
