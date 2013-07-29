@@ -19,6 +19,8 @@ public class EnemyUnit extends Unit {
 	private final Sprite swordSlash;
 	private float swordSlashTimer = 0;
 
+	private float aggressivenessTimer = 0;
+
 	public EnemyUnit(final TextureAtlas spritesAtlas, final int xTile, final int yTile) {
 		super(40);
 		final float x = Map.getGameXinPixel(xTile);
@@ -41,7 +43,16 @@ public class EnemyUnit extends Unit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		final float angle = (float) (Math.PI * 2 * Math.random());
+        aggressivenessTimer += delta;
+
+        final float aggressivenessLevel = aggressivenessTimer / (float) 2;
+
+        final float angle = (float) (
+                                (((Math.PI * 2) - (aggressivenessLevel * Math.PI))
+                                * Math.random())
+                                - (Math.PI / 4)
+                                );
+
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 	}
 

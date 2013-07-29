@@ -111,7 +111,7 @@ public class SpriteTestScreen extends Screen {
 
         friendlySpawnTimerbucket += delta;
 		if (friendlySpawnTimerbucket > friendlySpawnInterval) {
-            scheduleFriendlySpawn(3);
+            scheduleFriendlySpawn(2);
             friendlySpawnTimerbucket = 0f;
         }
 
