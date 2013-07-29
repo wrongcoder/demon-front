@@ -12,6 +12,7 @@ import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.ClothUnit;
 import com.vdxp.demon_front.core.units.CricketUnit;
+import com.vdxp.demon_front.core.units.DemonGate;
 import com.vdxp.demon_front.core.units.HeroUnit;
 import com.vdxp.demon_front.core.units.LeatherUnit;
 import com.vdxp.demon_front.core.units.LobsterUnit;
@@ -186,7 +187,30 @@ public class SpriteTestScreen extends Screen {
 		}
 
 		final MusicMan musicMan = game().getMusicMan();
-		musicMan.requestMusic(MusicMan.Mood.Calm, delta);
+		final int units = activeCollidables.size();
+		final int demonGatesLeft = countGates(activeCollidables);
+
+		if (demonGatesLeft == 1) {
+			musicMan.requestMusic(MusicMan.Mood.Cliffhanger, delta);
+		} else if (units > 60) {
+			musicMan.requestMusic(MusicMan.Mood.Impasse, delta);
+		} else if (units > 40) {
+			musicMan.requestMusic(MusicMan.Mood.Conflict, delta);
+		} else if (units > 20) {
+			musicMan.requestMusic(MusicMan.Mood.Agitation, delta);
+		} else {
+			musicMan.requestMusic(MusicMan.Mood.Calm, delta);
+		}
+	}
+
+	private static int countGates(final Set<Unit> activeCollidables) {
+		int count = 0;
+		for (final Unit unit : activeCollidables) {
+			if (unit instanceof DemonGate) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {
