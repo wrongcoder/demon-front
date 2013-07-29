@@ -3,11 +3,14 @@ package com.vdxp.demon_front.core.units;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
+
+import static com.vdxp.demon_front.core.Util.interpolate;
 
 public class DemonGate extends Unit {
 
@@ -37,13 +40,20 @@ public class DemonGate extends Unit {
         demonGateSealing2 = spritesAtlas.findRegion("demongate_sealing2");
         demonGateSealing3 = spritesAtlas.findRegion("demongate_sealing3");
         dyingAnimation = new Animation(0.1f, demonGateSealing1, demonGateSealing2, demonGateSealing3);
-        dyingAnimation.setPlayMode(Animation.LOOP);
+        dyingAnimation.setPlayMode(Animation.NORMAL);
 
-        setDimensions(xPixel, yPixel, demonGateActive2.getRegionWidth(), demonGateActive2.getRegionHeight());
+        setDimensions(xPixel, yPixel, 64, 64);
         setAnimation(defaultAnimation, true);
+    }
 
-        // hack
-        drawOffsetX = 0; drawOffsetY = 0;
+    @Override
+    public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
+
+        if (this.getHP() <= 0) {
+            this.setAnimation(dyingAnimation);
+        }
+
+        super.drawSprite(batch, viewport, delta, alpha);
     }
 
     @Override
