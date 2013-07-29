@@ -4,9 +4,13 @@ t:fonts/liberation-sans-24.fnt:11484:application/unknown
 t:fonts/liberation-sans-48.fnt:11604:application/unknown
 i:fonts/liberation-sans-16.png:8618:image/png
 i:fonts/liberation-mono-16.png:8632:image/png
+i:fonts/liberation-sans-24-bold.png:13770:image/png
 i:fonts/liberation-sans-24.png:13833:image/png
 i:fonts/liberation-sans-48.png:30308:image/png
 t:fonts/liberation-sans-16.fnt:11424:application/unknown
+i:fonts/liberation-sans-28-bold.png:16203:image/png
+t:fonts/liberation-sans-24-bold.fnt:11515:application/unknown
+t:fonts/liberation-sans-28-bold.fnt:11546:application/unknown
 t:fonts/liberation-mono-16.fnt:11533:application/unknown
 t:Attributions.txt:2906:text/plain
 d:textures:0:application/unknown
@@ -46,7 +50,7 @@ a:music/01_Calm/00_old_city_theme_3_96.mp3:2236464:application/unknown
 a:music/01_Calm/10-Lamento Di Tristano_Rotta-Daughters of Elvin.mp3:8155067:application/unknown
 d:map:0:application/unknown
 t:map/map_1_layer1.txt:4918:text/plain
-t:map/map_1_layer2.txt:4447:text/plain
+t:map/map_1_layer2.txt:4445:text/plain
 t:map/fogOfWar.txt:4859:text/plain
 t:version.json:129:application/unknown
 d:sfx:0:application/unknown
