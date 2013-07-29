@@ -52,7 +52,7 @@ d:map:0:application/unknown
 t:map/map_1_layer1.txt:4918:text/plain
 t:map/map_1_layer2.txt:4445:text/plain
 t:map/fogOfWar.txt:4859:text/plain
-t:version.json:129:application/unknown
+t:version.json:128:application/unknown
 d:sfx:0:application/unknown
 a:sfx/explode1.wav:907308:audio/x-wav
 a:sfx/growl3.wav:766408:audio/x-wav
