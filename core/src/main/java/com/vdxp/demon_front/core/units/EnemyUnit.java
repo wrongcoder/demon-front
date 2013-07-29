@@ -1,6 +1,8 @@
 package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,6 +15,8 @@ import java.util.Set;
 public class EnemyUnit extends Unit {
 
 	private final Animation defaultAnimation;
+	private final Sprite swordSlash;
+	private float swordSlashTimer = 0;
 
 	public EnemyUnit(final TextureAtlas spritesAtlas, final int xTile, final int yTile) {
 		super(40);
@@ -22,6 +26,8 @@ public class EnemyUnit extends Unit {
 		final TextureAtlas.AtlasRegion frame2 = spritesAtlas.findRegion("invader2_2of2");
 		defaultAnimation = new Animation(0.8f, frame1, frame2);
 		defaultAnimation.setPlayMode(Animation.LOOP);
+
+		swordSlash = new Sprite(spritesAtlas.findRegion("sword-slash"));
 
 		setDimensions(x, y, frame1.getRegionWidth(), frame1.getRegionHeight());
 		setAnimation(defaultAnimation, true);
@@ -38,15 +44,14 @@ public class EnemyUnit extends Unit {
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 	}
 
-	/*
 	@Override
 	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 		super.drawSprite(batch, viewport, delta, alpha);
-		if (wasHit) {
+		if (swordSlashTimer > delta) {
+			swordSlashTimer -= delta;
 			batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
 		}
 	}
-	*/
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
@@ -85,4 +90,9 @@ public class EnemyUnit extends Unit {
 		}
 	}
 
+	@Override
+	public void receiveHit(final int hp, final Unit source) {
+		super.receiveHit(hp, source);
+		swordSlashTimer += 0.1f;
+	}
 }

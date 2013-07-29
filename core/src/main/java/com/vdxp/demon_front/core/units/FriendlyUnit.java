@@ -1,5 +1,8 @@
 package com.vdxp.demon_front.core.units;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.vdxp.demon_front.core.Viewport;
@@ -8,8 +11,21 @@ import java.util.Set;
 
 public abstract class FriendlyUnit extends Unit {
 
-	public FriendlyUnit(final float maxHp) {
+	private final Sprite clawSlash;
+	private float clawSlashTimer = 0;
+
+	public FriendlyUnit(final float maxHp, final TextureAtlas spritesAtlas) {
 		super(maxHp);
+		clawSlash = new Sprite(spritesAtlas.findRegion("claw-slash"));
+	}
+
+	@Override
+	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
+		super.drawSprite(batch, viewport, delta, alpha);
+		if (clawSlashTimer > delta) {
+			clawSlashTimer -= delta;
+			batch.draw(clawSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+		}
 	}
 
 	@Override
@@ -54,4 +70,9 @@ public abstract class FriendlyUnit extends Unit {
 		return 80;
 	}
 
+	@Override
+	public void receiveHit(final int hp, final Unit source) {
+		super.receiveHit(hp, source);
+		clawSlashTimer += 0.1f;
+	}
 }

@@ -22,7 +22,7 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	private final Animation leftMovingAnimation;
 
 	public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
-		super(maxHp);
+		super(maxHp, spritesAtlas);
 
 		final float x = Map.getGameXinPixel(xTile);
 		final float y = Map.getGameYinPixel(yTile);
