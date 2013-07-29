@@ -1,6 +1,7 @@
 package com.vdxp.demon_front.core;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,8 +18,9 @@ public class TitleSplashScreen extends Screen {
 
 	private SpriteBatch batch;
 
-	private static final float maxDisplayTimerBucket = 2.5f;
-	private static final float maxFadeTimerBucket = 0.8f;
+	private static final float maxDisplayTimerBucket = 2f;
+	private static final float maxFadeTimerBucket = 0.5f;
+	private static final float blankTime = 0.05f;
 
 	private float displayTimerBucket = 0;
 	private float fadeTimerBucket = 0;
@@ -34,6 +36,7 @@ public class TitleSplashScreen extends Screen {
 		normalFont = assetManager().get(Asset.sans24Font);
 		smallFont = assetManager().get(Asset.sans16Font);
 		fontColour = new Color(1, 1, 1, 1);
+		Gdx.input.setInputProcessor(new TitleSplashScreenInputHandler());
 	}
 
 	@Override
@@ -43,12 +46,13 @@ public class TitleSplashScreen extends Screen {
 
 
 		if (displayTimerBucket > maxDisplayTimerBucket) {
-			if (fadeTimerBucket > maxFadeTimerBucket) {
-				game().setScreen(new SpriteTestScreen(game()));
+			if (fadeTimerBucket > maxFadeTimerBucket + blankTime) {
+				game().getMusicMan().playUITitleScreen();
+				game().setScreen(new IntroSplashScreen1(game()));
 				return;
 			} else {
 				fadeTimerBucket += delta;
-				fontColour.a = 1 - (fadeTimerBucket / maxFadeTimerBucket);
+				fontColour.a = Math.max(0, 1 - (fadeTimerBucket / maxFadeTimerBucket));
 			}
 		} else {
 			displayTimerBucket += delta;
@@ -59,12 +63,23 @@ public class TitleSplashScreen extends Screen {
 		smallFont.setColor(fontColour);
 
 		batch.begin();
-		drawCentred("Demon Front", bigFont, batch, 470);
-		drawCentred("A MiniLD 44 Game", normalFont, batch, 395);
-		drawCentred("Controls:", normalFont, batch, 250);
-		drawCentred("Arrow Keys (Hero) and WASD (Units)", normalFont, batch, 210);
-		drawCentred("(We were too lazy to implement mouse controls)", smallFont, batch, 160);
+		drawCentred("Demon Front", bigFont, batch, 430);
+		drawCentred("A MiniLD 44 Game", normalFont, batch, 280);
+		drawCentred("by citizenlion and wrongcoder", smallFont, batch, 235);
 		batch.end();
 	}
 
+	private class TitleSplashScreenInputHandler extends InputAdapter {
+		@Override
+		public boolean keyDown(final int keycode) {
+			displayTimerBucket = maxDisplayTimerBucket;
+			return false;
+		}
+
+		@Override
+		public boolean touchDown(final int screenX, final int screenY, final int pointer, final int button) {
+			displayTimerBucket = maxDisplayTimerBucket;
+			return false;
+		}
+	}
 }

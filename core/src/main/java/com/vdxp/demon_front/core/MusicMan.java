@@ -13,8 +13,8 @@ public class MusicMan {
 	private Music prevPlaying;
 	private float faderTime;
 	private Map<Mood, Float> moodChangeTendency;
-	private float nowPlayingTime = 0;
-	private Mood currentMood = Mood.Calm;
+	private float nowPlayingTime = 30;
+	private Mood currentMood = null;
 
 	private AssetManager mAssetManager = null;
 
@@ -63,7 +63,7 @@ public class MusicMan {
 
 	    faderTime = 0;
 	    moodChangeTendency = new HashMap<Mood, Float>();
-	    resetMoodChangeTendency();
+	    resetMoodChangeTendency(5);
     }
 
     protected void loadMusicList(String[] list) {
@@ -157,7 +157,7 @@ public class MusicMan {
 
 	public void requestMusic(final Mood mood, final float delta) {
 		if (prevPlaying != null) {
-			final float totalFaderTime = 4.25f;
+			final float totalFaderTime = 3f;
 			faderTime += delta;
 			final float fader = Math.min(faderTime / totalFaderTime, 1);
 			prevPlaying.setVolume(1 - fader);
@@ -177,7 +177,7 @@ public class MusicMan {
 			nowPlaying.setVolume(1);
 			nowPlaying.play();
 			nowPlayingTime = 0;
-			resetMoodChangeTendency();
+			resetMoodChangeTendency(0);
 			return;
 		}
 
@@ -189,7 +189,7 @@ public class MusicMan {
 			nowPlaying = getMusicForMood(mood);
 			nowPlaying.play();
 			nowPlayingTime = 0;
-			resetMoodChangeTendency();
+			resetMoodChangeTendency(0);
 			currentMood = mood;
 		}
 	}
@@ -204,9 +204,9 @@ public class MusicMan {
 		}
 	}
 
-	private void resetMoodChangeTendency() {
+	private void resetMoodChangeTendency(final float init) {
 		for (final Mood mood : Mood.values()) {
-			moodChangeTendency.put(mood, 0f);
+			moodChangeTendency.put(mood, init);
 		}
 	}
 

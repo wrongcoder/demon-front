@@ -179,7 +179,7 @@ public class SpriteTestScreen extends Screen {
 		}
 
 		final MusicMan musicMan = game().getMusicMan();
-		musicMan.requestMusic(MusicMan.Mood.Conflict, delta);
+		musicMan.requestMusic(MusicMan.Mood.Calm, delta);
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {
