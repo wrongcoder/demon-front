@@ -99,7 +99,37 @@ public abstract class Unit extends Drawable {
 
 		final float targetX = this.x + (float) (getSpeed() * Math.cos(angle)) * delta;
 		final float targetY = this.y + (float) (getSpeed() * Math.sin(angle)) * delta;
+		float actualX;
+		float actualY;
 
+		if (!isCollision(activeCollidables, inactiveCollidables, targetX, targetY)) {
+			actualX = targetX;
+			actualY = targetY;
+		} else if (!isCollision(activeCollidables, inactiveCollidables, targetX, this.y)) {
+			actualX = targetX;
+			actualY = this.y;
+		} else if (!isCollision(activeCollidables, inactiveCollidables, this.x, targetY)) {
+			actualX = this.x;
+			actualY = targetY;
+		} else {
+			return false;
+		}
+
+		// N.B. Rectangle.tmp is not draw-offset
+		// FIXME viewport should not contain the map size
+		Rectangle.tmp.set(actualX + 2, actualY + 2, this.width - 4, this.height - 4);
+		Rectangle.tmp2.set(width * 2, height, Viewport.mapWidth - width * 3, Viewport.mapHeight - height * 2);
+		if (!Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+			return false;
+		}
+
+		this.x = actualX;
+		this.y = actualY;
+		this.angle = angle;
+		return true;
+	}
+
+	private boolean isCollision(final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables, final float targetX, final float targetY) {
 		Rectangle.tmp.set(targetX + 2, targetY + 2, this.width - 4, this.height - 4);
 
 		for (final Unit other : activeCollidables) {
@@ -108,27 +138,16 @@ public abstract class Unit extends Drawable {
 			}
 			Rectangle.tmp2.set(other.x, other.y, other.width, other.height);
 			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
-				return false;
+				return true;
 			}
 		}
 		for (final MapTile other : inactiveCollidables) {
 			Rectangle.tmp2.set(other.getX(), other.getY(), other.getWidth(), other.getHeight());
 			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
-				return false;
+				return true;
 			}
 		}
-
-		// N.B. Rectangle.tmp is not draw-offset
-		// FIXME viewport should not contain the map size
-		Rectangle.tmp2.set(width * 2, height, Viewport.mapWidth - width * 3, Viewport.mapHeight - height * 2);
-		if (!Rectangle.tmp.overlaps(Rectangle.tmp2)) {
-			return false;
-		}
-
-		this.x = targetX;
-		this.y = targetY;
-		this.angle = angle;
-		return true;
+		return false;
 	}
 
 	/** @return pixels per second */
