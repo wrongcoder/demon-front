@@ -43,22 +43,40 @@ public abstract class EnemyUnit extends Unit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+        //West(Math.PI), East(0), North(0.5f * Math.PI), South(1.5f * Math.PI);
 
         // lose condition, enemy reaches end of screen
-        if (this.getY() <= 0) {
+        if (this.getY() <= 10) {
             Game.instance().setScreen(new LoseEndSplashScreen(Game.instance()));
         }
 
+        final int tileX = Map.getDistInTile(this.getX());
+        final int tileY = Map.getDistInTile(this.getY());
+
         aggressivenessTimer += delta;
+        final float aggressivenessLevel = aggressivenessTimer / (float)30;
 
-        final float aggressivenessLevel = aggressivenessTimer / (float) 2;
+        float angle = -1;
 
-        final float angle = (float) (
-                                (((Math.PI * 2) - (aggressivenessLevel * Math.PI))
-                                * Math.random())
-                                - (Math.PI / 4)
-                                );
+        if (Math.random() < (aggressivenessLevel)) {
 
+            if (Math.random() > 0.5) {
+                if (tileX < 18) {
+                    angle = 0;
+                } else if (tileX > 61) {
+                    angle = (float)Math.PI;
+                } else if (tileY > 1) {
+                    angle = 1.5f * (float)Math.PI;
+                }
+
+                if (angle >= 0) {
+                    tryMove(angle, delta, activeCollidables, inactiveCollidables);
+                    return;
+                }
+            }
+        }
+
+        angle = (float) ((Math.PI * 2) * Math.random());
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 	}
 
