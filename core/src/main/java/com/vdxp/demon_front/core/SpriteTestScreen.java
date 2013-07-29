@@ -58,7 +58,7 @@ public class SpriteTestScreen extends Screen {
 	public void show() {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		debugFont = assetManager().get(Asset.mono16Font);
-	    shoutFont = assetManager().get(Asset.sans28boldFont);
+	    shoutFont = assetManager().get(Asset.sans24boldFont);
 
         map1_layer1.Init("map/map_1_layer1.txt");
         map1_layer2.Init("map/map_1_layer2.txt");
@@ -148,10 +148,10 @@ public class SpriteTestScreen extends Screen {
 			debugFont.draw(batch, "Game Over", 2, 104);
 		}
 		if (hero.isShouting()) {
-			shoutFont.setColor(0, 0, 0, 0.8f);
-			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX + 2, hero.getDrawY() - viewport.viewportY - 20);
+			shoutFont.setColor(0, 0, 0, 0.4f);
+			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX + 2, hero.getDrawY() - viewport.viewportY - 17);
 			shoutFont.setColor(1, 1, 1, 1);
-			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX, hero.getDrawY() - viewport.viewportY - 18);
+			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX, hero.getDrawY() - viewport.viewportY - 15);
 		}
 		batch.end();
 	}
