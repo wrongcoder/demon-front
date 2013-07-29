@@ -96,9 +96,6 @@ public abstract class IntroSplashScreen extends Screen {
 
 	@Override
 	public void render(final float delta) {
-		Gdx.gl.glClearColor(0, 0, 0, 0);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-
 		if (displayTimerBucket > maxDisplayTimerBucket) {
 			if (nextScreen instanceof IntroSplashScreen || fadeTimerBucket > maxFadeTimerBucket + blankTime) {
 				game().setScreen(nextScreen);
@@ -110,6 +107,9 @@ public abstract class IntroSplashScreen extends Screen {
 		} else {
 			displayTimerBucket += delta;
 		}
+
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
 		bigFont.setColor(colour);
 		normalFont.setColor(colour);
