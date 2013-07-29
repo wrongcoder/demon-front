@@ -46,6 +46,7 @@ public class DemonGate extends Unit {
         dyingAnimation.setPlayMode(Animation.NORMAL);
 
         setDimensions(xPixel, yPixel, 64, 64);
+	    drawOffsetX += 8; // hacks
         setAnimation(defaultAnimation, true);
     }
 
