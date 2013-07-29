@@ -205,7 +205,7 @@ public class SpriteTestScreen extends Screen {
 
 	    for (int i=0;i<numberToSpawn;i++) {
 		    final double friendlyType = Math.random() * 3;
-		    final int spawnX = (int) Math.ceil(Math.random() * 50);
+		    final int spawnX = (int) Math.ceil(Math.random() * 44) + 6;
 
 		    if (friendlyType < 1) {
 			    toSpawn.add(new LeatherUnit(spritesAtlas, spawnX, 4));
