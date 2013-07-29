@@ -3,13 +3,12 @@ package com.vdxp.demon_front.core.units;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.vdxp.demon_front.core.Game;
+import com.vdxp.demon_front.core.SpriteTestScreen;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
-
-import static com.vdxp.demon_front.core.Util.interpolate;
 
 public class DemonGate extends Unit {
 
@@ -25,6 +24,9 @@ public class DemonGate extends Unit {
 
     private final Animation dyingAnimation;
 
+    private final float demonSpawnInterval1 = 60f * 0.3333f;
+    private float demonSpawnBucket1 = 0f;
+    private final int spawnNumberPerInterval1 = 4;
 
     public DemonGate(final TextureAtlas spritesAtlas,
                      final int xTile,
@@ -101,6 +103,14 @@ public class DemonGate extends Unit {
     @Override
     public void combat(final float delta, final Set<Unit> activeCollidables) {
         // does not attack
+
+        // does spawning logic, delta is 0.3333f
+        demonSpawnBucket1 += delta;
+        if (demonSpawnBucket1 > demonSpawnInterval1) {
+            ((SpriteTestScreen)Game.instance().getScreen()).
+                    scheduleEnemySpawn(4, Map.getDistInTile(this.getX()), Map.getDistInTile(this.getY()));
+            demonSpawnBucket1 = 0f;
+        }
     }
 
 	@Override
