@@ -7,12 +7,14 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.vdxp.demon_front.core.map.Map;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
+import com.vdxp.demon_front.core.units.ClothUnit;
 import com.vdxp.demon_front.core.units.EnemyUnit;
 import com.vdxp.demon_front.core.units.HeroUnit;
 import com.vdxp.demon_front.core.units.LeatherUnit;
+import com.vdxp.demon_front.core.units.MailUnit;
 import com.vdxp.demon_front.core.units.Unit;
 
 import java.util.HashSet;
@@ -78,7 +80,8 @@ public class SpriteTestScreen extends Screen {
 		activeCollidables.add(hero);
 
 		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 11));
-		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 8));
+		activeCollidables.add(new MailUnit(spritesAtlas, 18, 8));
+		activeCollidables.add(new ClothUnit(spritesAtlas, 17, 6));
 		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 6));
 		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 4));
 

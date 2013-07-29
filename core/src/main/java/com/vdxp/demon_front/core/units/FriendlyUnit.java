@@ -69,7 +69,7 @@ public abstract class FriendlyUnit extends Unit {
 
 	@Override
 	public float getSpeed() {
-		return 80;
+		return 40;
 	}
 
 	@Override

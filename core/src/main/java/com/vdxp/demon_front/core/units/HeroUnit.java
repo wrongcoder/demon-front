@@ -61,6 +61,11 @@ public class HeroUnit extends YourSideUnit {
 		}
 	}
 
+	@Override
+	public float getSpeed() {
+		return 80;
+	}
+
 	public Float computeMovementAngle() {
 		final float pi = (float) Math.PI;
 
