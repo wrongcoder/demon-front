@@ -58,8 +58,6 @@ public class SpriteTestScreen extends Screen {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		font = assetManager().get(Asset.mono16Font);
 
-        Game.instance().getMusicMan().playConflict();
-
         map1_layer1.Init("map/map_1_layer1.txt");
         map1_layer2.Init("map/map_1_layer2.txt");
         fogOfWar.Init("map/fogOfWar.txt");
@@ -167,6 +165,11 @@ public class SpriteTestScreen extends Screen {
 			if (!unit.isAlive() && unit != hero) {
 				iterator.remove();
 			}
+		}
+
+		final MusicMan musicMan = game().getMusicMan();
+		if (musicMan.getPlaying() == null || !musicMan.getPlaying().isPlaying()) {
+			musicMan.playConflict();
 		}
 	}
 

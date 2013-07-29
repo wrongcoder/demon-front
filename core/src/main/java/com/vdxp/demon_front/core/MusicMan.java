@@ -127,4 +127,8 @@ public class MusicMan {
         playing = Game.instance().assetManager().get(BattleEnd_Bad);
         playing.play();
     }
+
+	public Music getPlaying() {
+		return playing;
+	}
 }
