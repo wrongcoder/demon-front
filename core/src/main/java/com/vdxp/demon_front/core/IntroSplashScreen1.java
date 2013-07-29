@@ -19,8 +19,8 @@ public class IntroSplashScreen1 extends IntroSplashScreen {
 		final BitmapFont smallFont = getSmallFont();
 
 		batch.begin();
-		Util.drawCentred("The demon gates", bigFont, batch, 400);
-		Util.drawCentred("have opened.", bigFont, batch, 320);
+		Util.drawCentred("The demon gates", bigFont, batch, 420);
+		Util.drawCentred("have opened.", bigFont, batch, 340);
 		batch.end();
 	}
 }
