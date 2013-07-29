@@ -26,7 +26,7 @@ public class MountainTile extends MapTile {
                      final float alpha) {
 
         setSpriteToDraw(mountain);
-        super.draw(batch, viewport, delta, alpha);
+        super.drawSprite(batch, viewport, delta, alpha);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.vdxp.demon_front.core.map;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.vdxp.demon_front.core.Drawable;
@@ -13,7 +15,7 @@ public abstract class MapTile extends Drawable {
 
     TextureAtlas.AtlasRegion spriteToDraw;
 
-	public float getX() {
+    public float getX() {
 		return x;
 	}
 
@@ -50,15 +52,27 @@ public abstract class MapTile extends Drawable {
     }
 
     @Override
-    public void draw(final SpriteBatch batch,
-                     final Viewport viewport,
-                     final float delta,
-                     final float alpha) {
+    public void drawSprite(final SpriteBatch batch,
+                           final Viewport viewport,
+                           final float delta,
+                           final float alpha) {
 
         if (spriteToDraw != null) {
             batch.draw(spriteToDraw,
                     this.getX()  - viewport.viewportX  - drawOffsetX,
                     this.getY() - viewport.viewportY  - drawOffsetY);
         }
+    }
+
+    public int getTileDistFrom(float targetX, float targetY) {
+        return Map.getDistInTile(Math.abs(
+                  Math.sqrt(
+                      (double) (
+                              (x - targetX) * (x - targetX) +
+                              (y - targetY) * (y - targetY)
+                      )
+                  )
+              )
+        );
     }
 }

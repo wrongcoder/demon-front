@@ -13,6 +13,6 @@ public abstract class Drawable {
 	 * @param delta The time (in seconds) since the last time this method was called
 	 * @param alpha The fraction of time that has elapsed from the previous physics tick to the next
 	 */
-	public abstract void draw(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha);
+	public abstract void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha);
 
 }
