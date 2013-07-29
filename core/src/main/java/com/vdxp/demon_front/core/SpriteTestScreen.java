@@ -168,9 +168,7 @@ public class SpriteTestScreen extends Screen {
 		}
 
 		final MusicMan musicMan = game().getMusicMan();
-		if (musicMan.getPlaying() == null || !musicMan.getPlaying().isPlaying()) {
-			musicMan.playConflict();
-		}
+		musicMan.requestMusic(MusicMan.Mood.Conflict, delta);
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {

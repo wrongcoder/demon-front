@@ -3,11 +3,20 @@ package com.vdxp.demon_front.core;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class MusicMan {
 
-    private com.badlogic.gdx.audio.Music playing;
-    private AssetManager mAssetManager = null;
+    private Music nowPlaying;
+	private Music prevPlaying;
+	private float faderTime;
+	private Map<Mood, Float> moodChangeTendency;
+	private float nowPlayingTime = 0;
+	private Mood currentMood = Mood.Calm;
+
+	private AssetManager mAssetManager = null;
 
     private String UI_TitleScreen = "music/00_UI/06-No Silence Please-Ehren Starks.mp3";
     private String UI_StageIntro = "music/00_UI/10-Tunnel Systems-Ehren Starks.mp3";
@@ -51,6 +60,10 @@ public class MusicMan {
 
     public MusicMan(){
        this.Init(Game.instance().assetManager());
+
+	    faderTime = 0;
+	    moodChangeTendency = new HashMap<Mood, Float>();
+	    resetMoodChangeTendency();
     }
 
     protected void loadMusicList(String[] list) {
@@ -82,13 +95,16 @@ public class MusicMan {
     }
 
     private void playRandomInList(String[] list) {
-        int whatToPlay = (int)Math.floor(Math.random() * list.length);
-
-        playing = Game.instance().assetManager().get(list[whatToPlay]);
-        playing.play();
+	    nowPlaying = getRandomInList(list);
+        nowPlaying.play();
     }
 
-    public void playCalm (){
+	private static Music getRandomInList(final String[] list) {
+		final int whatToPlay = (int)Math.floor(Math.random() * list.length);
+		return Game.instance().assetManager().get(list[whatToPlay]);
+	}
+
+	public void playCalm (){
         playRandomInList(Calm);
     }
 
@@ -109,26 +125,108 @@ public class MusicMan {
     }
 
     public void playUITitleScreen() {
-        playing = Game.instance().assetManager().get(UI_TitleScreen);
-        playing.play();
+        nowPlaying = Game.instance().assetManager().get(UI_TitleScreen);
+        nowPlaying.play();
     }
 
     public void playUIStageIntro() {
-        playing = Game.instance().assetManager().get(UI_StageIntro);
-        playing.play();
+        nowPlaying = Game.instance().assetManager().get(UI_StageIntro);
+        nowPlaying.play();
     }
 
     public void playBattleEndGood() {
-        playing = Game.instance().assetManager().get(BattleEnd_Good);
-        playing.play();
+        nowPlaying = Game.instance().assetManager().get(BattleEnd_Good);
+        nowPlaying.play();
     }
 
     public void playBattleEndBad () {
-        playing = Game.instance().assetManager().get(BattleEnd_Bad);
-        playing.play();
+        nowPlaying = Game.instance().assetManager().get(BattleEnd_Bad);
+        nowPlaying.play();
     }
 
-	public Music getPlaying() {
-		return playing;
+	public void stopPlaying() {
+		if (prevPlaying != null) {
+			prevPlaying.stop();
+			prevPlaying = null;
+		}
+		if (nowPlaying != null) {
+			nowPlaying.stop();
+			nowPlaying = null;
+		}
+	}
+
+	public void requestMusic(final Mood mood, final float delta) {
+		if (prevPlaying != null) {
+			final float totalFaderTime = 4.25f;
+			faderTime += delta;
+			final float fader = Math.min(faderTime / totalFaderTime, 1);
+			prevPlaying.setVolume(1 - fader);
+			if (nowPlaying != null) {
+				nowPlaying.setVolume(fader);
+			}
+			if (faderTime > totalFaderTime) {
+				faderTime = 0;
+				prevPlaying.stop();
+				prevPlaying = null;
+			}
+		}
+
+		if (nowPlaying == null || !nowPlaying.isPlaying()) {
+			currentMood = mood;
+			nowPlaying = getMusicForMood(mood);
+			nowPlaying.setVolume(1);
+			nowPlaying.play();
+			nowPlayingTime = 0;
+			resetMoodChangeTendency();
+			return;
+		}
+
+		nowPlayingTime += delta;
+		updateMoodChangeTendency(mood, delta);
+
+		if (mood != currentMood && nowPlayingTime > 30 && moodChangeTendency.get(mood) > 5) {
+			prevPlaying = nowPlaying;
+			nowPlaying = getMusicForMood(mood);
+			nowPlaying.play();
+			nowPlayingTime = 0;
+			resetMoodChangeTendency();
+			currentMood = mood;
+		}
+	}
+
+	private void updateMoodChangeTendency(final Mood requestedMood, final float delta) {
+		for (final Mood mood : Mood.values()) {
+			if (mood == requestedMood) {
+				moodChangeTendency.put(mood, moodChangeTendency.get(mood) + delta);
+			} else {
+				moodChangeTendency.put(mood, 0f);
+			}
+		}
+	}
+
+	private void resetMoodChangeTendency() {
+		for (final Mood mood : Mood.values()) {
+			moodChangeTendency.put(mood, 0f);
+		}
+	}
+
+	private Music getMusicForMood(final Mood mood) {
+		switch (mood) {
+			case Calm:
+				return getRandomInList(Calm);
+			case Agitation:
+				return getRandomInList(Agitation);
+			case Conflict:
+				return getRandomInList(Conflict);
+			case Impasse:
+				return getRandomInList(Impasse);
+			case Cliffhanger:
+				return getRandomInList(CliffHanger);
+		}
+		return null;
+	}
+
+	public enum Mood {
+		Calm(), Agitation(), Conflict(), Impasse(), Cliffhanger()
 	}
 }
