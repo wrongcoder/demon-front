@@ -184,6 +184,18 @@ public class SpriteTestScreen extends Screen {
 				case Input.Keys.DOWN:
 					hero.setMovingDown(true);
 					return true;
+				case Input.Keys.W:
+					hero.setShoutingUp(true);
+					return true;
+				case Input.Keys.A:
+					hero.setShoutingLeft(true);
+					return true;
+				case Input.Keys.S:
+					hero.setShoutingDown(true);
+					return true;
+				case Input.Keys.D:
+					hero.setShoutingRight(true);
+					return true;
 			}
 			return false;
 		}
@@ -202,6 +214,18 @@ public class SpriteTestScreen extends Screen {
 					return true;
 				case Input.Keys.DOWN:
 					hero.setMovingDown(false);
+					return true;
+				case Input.Keys.W:
+					hero.setShoutingUp(false);
+					return true;
+				case Input.Keys.A:
+					hero.setShoutingLeft(false);
+					return true;
+				case Input.Keys.S:
+					hero.setShoutingDown(false);
+					return true;
+				case Input.Keys.D:
+					hero.setShoutingRight(false);
 					return true;
 			}
 			return false;

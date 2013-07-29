@@ -21,6 +21,8 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	private final Animation leftStoppedAnimation;
 	private final Animation leftMovingAnimation;
 
+	private HeroUnit.ShoutCommand shoutCommand = null;
+
 	public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
 		super(maxHp, spritesAtlas);
 
@@ -64,9 +66,23 @@ public abstract class YourSideUnit extends FriendlyUnit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		final float angle = (float) (Math.PI * 2 * Math.random());
-		tryMove(angle, delta, activeCollidables, inactiveCollidables);
+		final float angle;
+
+		if (shoutCommand != null) {
+			angle = shoutCommand.angle;
+		} else {
+			angle = (float) (Math.PI * 2 * Math.random());
+		}
+
+		final boolean moved = tryMove(angle, delta, activeCollidables, inactiveCollidables);
+		if (!moved && shoutCommand != null) {
+			shoutCommand = null;
+		}
+
 		setNextAnimation(getAngle());
 	}
 
+	public void setShoutCommand(final HeroUnit.ShoutCommand shoutCommand) {
+		this.shoutCommand = shoutCommand;
+	}
 }

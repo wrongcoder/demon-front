@@ -13,6 +13,11 @@ public class HeroUnit extends YourSideUnit {
 	private boolean movingLeft;
 	private boolean movingRight;
 
+	private boolean shoutingUp;
+	private boolean shoutingDown;
+	private boolean shoutingLeft;
+	private boolean shoutingRight;
+
 	public HeroUnit(final TextureAtlas spritesAtlas) {
 		super(270, spritesAtlas, 4, 0.25f, 16, 14);
 	}
@@ -22,6 +27,20 @@ public class HeroUnit extends YourSideUnit {
 		final Float angle = computeMovementAngle();
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 		setNextAnimation(angle);
+
+		final ShoutCommand shoutCommand = computeShoutCommand();
+		if (shoutCommand != null) {
+			for (final Unit unit : activeCollidables) {
+				if (unit != this && unit instanceof YourSideUnit) {
+					final float unitDX = unit.getX() - getX();
+					final float unitDY = unit.getY() - getY();
+					final float distance = (float) Math.sqrt(unitDX*unitDX + unitDY*unitDY);
+					if (distance < 192) {
+						((YourSideUnit) unit).setShoutCommand(shoutCommand);
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -72,6 +91,22 @@ public class HeroUnit extends YourSideUnit {
 		return null;
 	}
 
+	public ShoutCommand computeShoutCommand() {
+		if (shoutingLeft) {
+			return ShoutCommand.Left;
+		}
+		if (shoutingRight) {
+			return ShoutCommand.Right;
+		}
+		if (shoutingUp) {
+			return ShoutCommand.Up;
+		}
+		if (shoutingDown) {
+			return ShoutCommand.Down;
+		}
+		return null;
+	}
+
 	public void setMovingUp(final boolean movingUp) {
 		this.movingUp = movingUp;
 	}
@@ -86,6 +121,35 @@ public class HeroUnit extends YourSideUnit {
 
 	public void setMovingRight(final boolean movingRight) {
 		this.movingRight = movingRight;
+	}
+
+	public void setShoutingUp(final boolean shoutingUp) {
+		this.shoutingUp = shoutingUp;
+	}
+
+	public void setShoutingDown(final boolean shoutingDown) {
+		this.shoutingDown = shoutingDown;
+	}
+
+	public void setShoutingLeft(final boolean shoutingLeft) {
+		this.shoutingLeft = shoutingLeft;
+	}
+
+	public void setShoutingRight(final boolean shoutingRight) {
+		this.shoutingRight = shoutingRight;
+	}
+
+	public enum ShoutCommand {
+		Left(Math.PI), Right(0), Up(0.5f * Math.PI), Down(1.5f * Math.PI);
+
+		public final float angle;
+
+		ShoutCommand(final float angle) {
+			this.angle = angle;
+		}
+		ShoutCommand(final double angle) {
+			this.angle = (float) angle;
+		}
 	}
 
 }

@@ -62,7 +62,7 @@ public class TitleSplashScreen extends Screen {
 		drawCentred("Demon Front", bigFont, batch, 470);
 		drawCentred("A MiniLD 44 Game", normalFont, batch, 395);
 		drawCentred("Controls:", normalFont, batch, 250);
-		drawCentred("Arrow Keys", normalFont, batch, 210);
+		drawCentred("Arrow Keys (Hero) and WASD (Units)", normalFont, batch, 210);
 		drawCentred("(We were too lazy to implement mouse controls)", smallFont, batch, 160);
 		batch.end();
 	}

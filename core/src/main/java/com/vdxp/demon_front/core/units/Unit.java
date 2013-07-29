@@ -99,6 +99,7 @@ public abstract class Unit extends Drawable {
 		this.animated = animated;
 	}
 
+	/** @return whether move was successful */
 	protected boolean tryMove(final Float angle, final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
 		this.prevX = this.x;
 		this.prevY = this.y;
@@ -108,8 +109,8 @@ public abstract class Unit extends Drawable {
 			return true;
 		}
 
-		final float targetDeltaX = (float) (getSpeed() * Math.cos(angle)) * delta;
-		final float targetDeltaY = (float) (getSpeed() * Math.sin(angle)) * delta;
+		final float targetDeltaX = zeroClamp(getSpeed() * Math.cos(angle) * delta);
+		final float targetDeltaY = zeroClamp(getSpeed() * Math.sin(angle) * delta);
 		final float actualX;
 		final float actualY;
 
@@ -117,19 +118,19 @@ public abstract class Unit extends Drawable {
 		if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX, targetDeltaY)) {
 			actualX = this.x + targetDeltaX;
 			actualY = this.y + targetDeltaY;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX, 0)) {
+		} else if (targetDeltaX != 0 && !isCollision(activeCollidables, inactiveCollidables, targetDeltaX, 0)) {
 			actualX = this.x + targetDeltaX;
 			actualY = this.y;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY)) {
+		} else if (targetDeltaY != 0 && !isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY)) {
 			actualX = this.x;
 			actualY = this.y + targetDeltaY;
 		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, targetDeltaY/2)) {
 			actualX = this.x + targetDeltaX/2;
 			actualY = this.y + targetDeltaY/2;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, 0)) {
+		} else if (targetDeltaX != 0 && !isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, 0)) {
 			actualX = this.x + targetDeltaX/2;
 			actualY = this.y;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY/2)) {
+		} else if (targetDeltaY != 0 && !isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY/2)) {
 			actualX = this.x;
 			actualY = this.y + targetDeltaY/2;
 		} else {
@@ -148,6 +149,15 @@ public abstract class Unit extends Drawable {
 		this.y = actualY;
 		this.angle = angle;
 		return true;
+	}
+
+	private static float zeroClamp(final double value) {
+		final double minDelta = 0.00001;
+		if (value < minDelta && value > -minDelta) {
+			return 0f;
+		} else {
+			return (float) value;
+		}
 	}
 
 	private boolean isCollision(final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables, final float targetDeltaX, final float targetDeltaY) {
