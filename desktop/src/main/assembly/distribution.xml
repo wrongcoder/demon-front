@@ -24,6 +24,11 @@
 			<outputDirectory>lib</outputDirectory>
 			<destName>version.txt</destName>
 		</file>
+		<file>
+			<source>${project.basedir}/../core/src/main/assets/Attributions.txt</source>
+			<outputDirectory>/</outputDirectory>
+			<destName>Attributions.txt</destName>
+		</file>
 	</files>
 	<fileSets>
 		<fileSet>
