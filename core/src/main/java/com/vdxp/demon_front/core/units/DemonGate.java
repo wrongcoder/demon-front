@@ -13,7 +13,12 @@ public class DemonGate extends Unit {
 
     TextureAtlas.AtlasRegion demonGateActive1;
     TextureAtlas.AtlasRegion demonGateActive2;
+    TextureAtlas.AtlasRegion demonGateSealing1;
+    TextureAtlas.AtlasRegion demonGateSealing2;
+    TextureAtlas.AtlasRegion demonGateSealing3;
     private final Animation defaultAnimation;
+
+    private final Animation dyingAnimation;
 
 
     public DemonGate(final TextureAtlas spritesAtlas,
@@ -22,13 +27,23 @@ public class DemonGate extends Unit {
 
         final float xPixel = Map.getGameXinPixel(xTile);
         final float yPixel = Map.getGameYinPixel(yTile);
-        final TextureAtlas.AtlasRegion demonGateActive1 = spritesAtlas.findRegion("demongate_active1");
-        final TextureAtlas.AtlasRegion demonGateActive2 = spritesAtlas.findRegion("demongate_active2");
+
+        demonGateActive1 = spritesAtlas.findRegion("demongate_active1");
+        demonGateActive2 = spritesAtlas.findRegion("demongate_active2");
         defaultAnimation = new Animation(0.1f, demonGateActive1, demonGateActive2);
         defaultAnimation.setPlayMode(Animation.LOOP);
 
+        demonGateSealing1 = spritesAtlas.findRegion("demongate_sealing1");
+        demonGateSealing2 = spritesAtlas.findRegion("demongate_sealing2");
+        demonGateSealing3 = spritesAtlas.findRegion("demongate_sealing3");
+        dyingAnimation = new Animation(0.1f, demonGateSealing1, demonGateSealing2, demonGateSealing3);
+        dyingAnimation.setPlayMode(Animation.LOOP);
+
         setDimensions(xPixel, yPixel, demonGateActive2.getRegionWidth(), demonGateActive2.getRegionHeight());
         setAnimation(defaultAnimation, true);
+
+        // hack
+        drawOffsetX = 0; drawOffsetY = 0;
     }
 
     @Override
