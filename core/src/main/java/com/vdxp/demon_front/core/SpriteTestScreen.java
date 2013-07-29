@@ -189,14 +189,22 @@ public class SpriteTestScreen extends Screen {
 	}
 
     public void scheduleEnemySpawn(int numberToSpawn, int tileX, int tileY) {
+	    final TextureAtlas spritesAtlas = assetManager().get(Asset.spritesAtlas);
+
         for (int i=0;i<numberToSpawn;i++) {
-            toSpawn.add(
-                    new EnemyUnit(
-                            Game.instance().assetManager().<TextureAtlas>get(Asset.spritesAtlas),
-                            tileX + (int)Math.floor(Math.random() * 2),
-                            tileY + (int)Math.floor(Math.random() * 2)
-                    )
-            );
+	        final double enemyType = Math.random() * 4;
+	        final int spawnX = tileX + (int)Math.floor(Math.random() * 2);
+	        final int spawnY = tileY + (int)Math.floor(Math.random() * 2);
+
+	        if (enemyType < 1) {
+		        toSpawn.add(new MosquitoUnit(spritesAtlas, spawnX, spawnY));
+	        } else if (enemyType < 2) {
+		        toSpawn.add(new WaspUnit(spritesAtlas, spawnX, spawnY));
+	        } else if (enemyType < 3) {
+		        toSpawn.add(new LobsterUnit(spritesAtlas, spawnX, spawnY));
+	        } else {
+		        toSpawn.add(new CricketUnit(spritesAtlas, spawnX, spawnY));
+	        }
         }
     }
 
