@@ -143,6 +143,7 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : inactiveNonCollidables_effects) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
+		/*
 		debugFont.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		debugFont.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
 		debugFont.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
@@ -150,6 +151,7 @@ public class SpriteTestScreen extends Screen {
 		if (!hero.isAlive()) {
 			debugFont.draw(batch, "Game Over", 2, 104);
 		}
+		*/
 		if (hero.isShouting()) {
 			shoutFont.setColor(0, 0, 0, 0.4f);
 			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX + 2, hero.getDrawY() - viewport.viewportY - 17);
