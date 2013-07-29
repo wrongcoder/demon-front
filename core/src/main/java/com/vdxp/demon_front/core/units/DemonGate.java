@@ -52,7 +52,7 @@ public class DemonGate extends Unit {
     @Override
     public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 
-        if (this.getHP() <= 0) {
+        if (this.getHp() <= 0) {
             this.setAnimation(dyingAnimation);
         }
 
@@ -64,7 +64,7 @@ public class DemonGate extends Unit {
 		final int barWidth = 64;
 		final int barHeight = 9;
 
-		final float barX = getDrawX() - viewport.viewportX - barWidth / 2;
+		final float barX = getDrawX() - viewport.viewportX - (barWidth / 8);
 		final float barY = getDrawY() + getHeight() - viewport.viewportY - barHeight;
 
 		shape.begin(ShapeRenderer.ShapeType.Filled);
