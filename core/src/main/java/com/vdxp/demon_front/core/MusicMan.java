@@ -126,20 +126,28 @@ public class MusicMan {
 
     public void playUITitleScreen() {
         nowPlaying = Game.instance().assetManager().get(UI_TitleScreen);
+        nowPlaying.setVolume(0.3f);
         nowPlaying.play();
     }
 
     public void playUIStageIntro() {
         nowPlaying = Game.instance().assetManager().get(UI_StageIntro);
+        nowPlaying.setVolume(0.3f);
         nowPlaying.play();
     }
 
     public void playBattleEndGood() {
+        if (nowPlaying != null) {
+            nowPlaying.stop();
+        }
         nowPlaying = Game.instance().assetManager().get(BattleEnd_Good);
         nowPlaying.play();
     }
 
     public void playBattleEndBad () {
+        if (nowPlaying != null) {
+            nowPlaying.stop();
+        }
         nowPlaying = Game.instance().assetManager().get(BattleEnd_Bad);
         nowPlaying.play();
     }

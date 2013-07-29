@@ -2,6 +2,7 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
+import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
@@ -35,7 +36,7 @@ public class HeroUnit extends YourSideUnit {
 					final float unitDX = unit.getX() - getX();
 					final float unitDY = unit.getY() - getY();
 					final float distance = (float) Math.sqrt(unitDX*unitDX + unitDY*unitDY);
-					if (distance < 192) {
+					if (distance <= (32*4)) {
 						((YourSideUnit) unit).setShoutCommand(shoutCommand);
 					}
 				}
@@ -99,16 +100,20 @@ public class HeroUnit extends YourSideUnit {
 
 	public ShoutCommand computeShoutCommand() {
 		if (shoutingLeft) {
-			return ShoutCommand.Left;
+            Game.instance().getSoundMan().playGoWest();
+            return ShoutCommand.West;
 		}
 		if (shoutingRight) {
-			return ShoutCommand.Right;
+		    Game.instance().getSoundMan().playGoEast();
+			return ShoutCommand.East;
 		}
 		if (shoutingUp) {
-			return ShoutCommand.Up;
+		    Game.instance().getSoundMan().playGoNorth();
+			return ShoutCommand.North;
 		}
 		if (shoutingDown) {
-			return ShoutCommand.Down;
+		    Game.instance().getSoundMan().playGoSouth();
+			return ShoutCommand.South;
 		}
 		return null;
 	}
@@ -150,7 +155,7 @@ public class HeroUnit extends YourSideUnit {
 	}
 
 	public enum ShoutCommand {
-		Left(Math.PI), Right(0), Up(0.5f * Math.PI), Down(1.5f * Math.PI);
+		West(Math.PI), East(0), North(0.5f * Math.PI), South(1.5f * Math.PI);
 
 		public final float angle;
 

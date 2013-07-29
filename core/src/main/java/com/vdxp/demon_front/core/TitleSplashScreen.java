@@ -37,7 +37,10 @@ public class TitleSplashScreen extends Screen {
 		smallFont = assetManager().get(Asset.sans16Font);
 		fontColour = new Color(1, 1, 1, 1);
 		Gdx.input.setInputProcessor(new TitleSplashScreenInputHandler());
-	}
+
+        game().getMusicMan().playUIStageIntro();
+
+    }
 
 	@Override
 	public void render(final float delta) {
@@ -47,7 +50,6 @@ public class TitleSplashScreen extends Screen {
 
 		if (displayTimerBucket > maxDisplayTimerBucket) {
 			if (fadeTimerBucket > maxFadeTimerBucket + blankTime) {
-				game().getMusicMan().playUITitleScreen();
 				game().setScreen(new IntroSplashScreen1(game()));
 				return;
 			} else {

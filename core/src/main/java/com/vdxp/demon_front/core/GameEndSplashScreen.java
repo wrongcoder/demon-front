@@ -64,11 +64,6 @@ public abstract class GameEndSplashScreen extends Screen {
 	public abstract void showMessage(final SpriteBatch batch, final BitmapFont bigFont, final BitmapFont normalFont, final BitmapFont smallFont);
 
 	private class GameEndSplashScreenInputHandler extends InputAdapter {
-		@Override
-		public boolean keyDown(final int keycode) {
-			proceed = true;
-			return false;
-		}
 
 		@Override
 		public boolean touchDown(final int screenX, final int screenY, final int pointer, final int button) {

@@ -198,6 +198,7 @@ public class SpriteTestScreen extends Screen {
 		        toSpawn.add(new CricketUnit(spritesAtlas, spawnX, spawnY));
 	        }
         }
+        Game.instance().getSoundMan().playGrowl();
     }
 
     public void scheduleFriendlySpawn(int numberToSpawn) {
@@ -215,6 +216,7 @@ public class SpriteTestScreen extends Screen {
 			    toSpawn.add(new ClothUnit(spritesAtlas, spawnX, 4));
 		    }
         }
+        Game.instance().getSoundMan().playOrkSpawn();
     }
 
 	private void control(final float delta) {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.vdxp.demon_front.core.Game;
+import com.vdxp.demon_front.core.LoseEndSplashScreen;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
@@ -42,6 +43,12 @@ public abstract class EnemyUnit extends Unit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+
+        // lose condition, enemy reach past the wall
+        if (this.getY() <= 0) {
+            Game.instance().setScreen(new LoseEndSplashScreen(Game.instance()));
+        }
+
         aggressivenessTimer += delta;
 
         final float aggressivenessLevel = aggressivenessTimer / (float) 2;

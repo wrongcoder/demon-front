@@ -9,6 +9,13 @@ public class IntroSplashScreen1 extends IntroSplashScreen {
 		super(game, new IntroSplashScreen2(game));
 	}
 
+    @Override
+    public void show(){
+
+        Game.instance().getSoundMan().playIntro();
+        super.show();
+    }
+
 	@Override
 	public void render(final float delta) {
 		super.render(delta);

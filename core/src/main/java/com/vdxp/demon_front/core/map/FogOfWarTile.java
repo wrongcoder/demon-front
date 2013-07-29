@@ -40,15 +40,15 @@ public class FogOfWarTile extends MapTile {
 
         int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 
-        if (tileDist > 6) {
+        if (tileDist > 4) {
 
-            if (tileDist < 9) {
+            if (tileDist < 6) {
                 batch.setColor(new Color(1f,1f,1f,0.25f));
-            } else if (tileDist < 12) {
+            } else if (tileDist < 8) {
                 batch.setColor(new Color(1f,1f,1f,0.5f));
-            } else if (tileDist < 14) {
+            } else if (tileDist < 10) {
                 batch.setColor(new Color(1f,1f,1f,0.75f));
-            } else if (tileDist < 16) {
+            } else if (tileDist < 12) {
                 batch.setColor(new Color(1f,1f,1f,0.95f));
             }
 
