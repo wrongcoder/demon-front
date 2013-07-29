@@ -30,8 +30,8 @@ public class WallSection extends Unit {
                      final float alpha) {
 
         batch.draw(wallSectionSprite,
-                this.getX()  - viewport.viewportX /*- drawOffsetX*/,
-                this.getY() - viewport.viewportY /*- drawOffsetY*/);
+                this.getX()  - viewport.viewportX - drawOffsetX,
+                this.getY() - viewport.viewportY - drawOffsetY);
     }
 
 	@Override
