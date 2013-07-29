@@ -92,14 +92,6 @@ public class SpriteTestScreen extends Screen {
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
-		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 11));
-		activeCollidables.add(new MailUnit(spritesAtlas, 18, 8));
-		activeCollidables.add(new ClothUnit(spritesAtlas, 17, 6));
-		activeCollidables.add(new MosquitoUnit(spritesAtlas, 25, 6));
-		activeCollidables.add(new LobsterUnit(spritesAtlas, 25, 4));
-		activeCollidables.add(new WaspUnit(spritesAtlas, 28, 8));
-		activeCollidables.add(new CricketUnit(spritesAtlas, 24, 3));
-
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
 		viewport = new Viewport(hero);
@@ -209,13 +201,19 @@ public class SpriteTestScreen extends Screen {
     }
 
     public void scheduleFriendlySpawn(int numberToSpawn) {
-        for (int i=0;i<numberToSpawn;i++) {
-            toSpawn.add(
-                    new LeatherUnit(
-                            Game.instance().assetManager().<TextureAtlas>get(Asset.spritesAtlas),
-                            (int)Math.ceil(Math.random() * 50),
-                            4)
-                    );
+	    final TextureAtlas spritesAtlas = assetManager().get(Asset.spritesAtlas);
+
+	    for (int i=0;i<numberToSpawn;i++) {
+		    final double friendlyType = Math.random() * 3;
+		    final int spawnX = (int) Math.ceil(Math.random() * 50);
+
+		    if (friendlyType < 1) {
+			    toSpawn.add(new LeatherUnit(spritesAtlas, spawnX, 4));
+		    } else if (friendlyType < 2) {
+			    toSpawn.add(new MailUnit(spritesAtlas, spawnX, 4));
+		    } else {
+			    toSpawn.add(new ClothUnit(spritesAtlas, spawnX, 4));
+		    }
         }
     }
 
