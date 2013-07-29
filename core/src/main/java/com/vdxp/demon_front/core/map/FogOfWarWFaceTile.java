@@ -35,10 +35,12 @@ public class FogOfWarWFaceTile extends MapTile {
 
         int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 
-        if (tileDist > 8) {
+        if (tileDist > 6) {
             setSpriteToDraw(fogOfWarWFace);
 
-            if (tileDist < 12) {
+            if (tileDist < 9) {
+                batch.setColor(new Color(1f,1f,1f,0.25f));
+            } else if (tileDist < 12) {
                 batch.setColor(new Color(1f,1f,1f,0.5f));
             } else if (tileDist < 14) {
                 batch.setColor(new Color(1f,1f,1f,0.75f));

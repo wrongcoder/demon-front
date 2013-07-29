@@ -167,6 +167,16 @@ public abstract class Unit extends Drawable {
 			if (other == this) {
 				continue;
 			}
+			if (this instanceof EnemyUnit) {
+                if (other instanceof EnemyUnit ||
+                    other instanceof DemonGate) {
+                    continue;
+                }
+            } else if (this instanceof FriendlyUnit) {
+                if (other instanceof FriendlyUnit) {
+                    continue;
+                }
+            }
 			Rectangle.tmp2.set(other.x, other.y, other.width, other.height);
 			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 				return true;

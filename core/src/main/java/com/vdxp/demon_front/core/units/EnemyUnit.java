@@ -82,7 +82,9 @@ public abstract class EnemyUnit extends Unit {
 		if (Math.random() < delta / 1.5) {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
 			for (final Unit unit : activeCollidables) {
-				if (!(unit instanceof EnemyUnit)) {
+				if (!(unit instanceof EnemyUnit) &&
+                    !(unit instanceof DemonGate)
+				        ) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(20, this);

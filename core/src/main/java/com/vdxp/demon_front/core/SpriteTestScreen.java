@@ -43,7 +43,10 @@ public class SpriteTestScreen extends Screen {
 	private static final float controlTimerRate = 0.3333f;
 	private float controlTimerBucket = 0;
 
-	// These things are painted in this order, one list after another
+    private float friendlySpawnTimerbucket = 0;
+	private static final float friendlySpawnInterval = 30 * controlTimerRate;
+
+    // These things are painted in this order, one list after another
 	private Map map1_layer1 = new Map();
     private Map map1_layer2 = new Map();
     private Map fogOfWar = new Map();
@@ -52,7 +55,13 @@ public class SpriteTestScreen extends Screen {
     private Set<Unit> activeCollidables = new HashSet<Unit>();
     private Set<Drawable> inactiveNonCollidables_effects = new HashSet<Drawable>();
 
-	public SpriteTestScreen(final Game game) {
+    private Set<Unit> toSpawn = new HashSet<Unit>();
+
+    public Set<Unit> getActiveCollidables() {
+        return activeCollidables;
+    }
+
+    public SpriteTestScreen(final Game game) {
 		super(game);
 	}
 
@@ -110,6 +119,12 @@ public class SpriteTestScreen extends Screen {
 			control(controlTimerRate);
 			controlTimerBucket -= controlTimerRate;
 		}
+
+        friendlySpawnTimerbucket += delta;
+		if (friendlySpawnTimerbucket > friendlySpawnInterval) {
+            scheduleFriendlySpawn(3);
+            friendlySpawnTimerbucket = 0f;
+        }
 
 		// This will be wrong if we had to call physics multiple times
 		// This will also be wrong for any movement taking place in the control loop
@@ -173,6 +188,29 @@ public class SpriteTestScreen extends Screen {
 		}
 	}
 
+    public void scheduleEnemySpawn(int numberToSpawn, int tileX, int tileY) {
+        for (int i=0;i<numberToSpawn;i++) {
+            toSpawn.add(
+                    new EnemyUnit(
+                            Game.instance().assetManager().<TextureAtlas>get(Asset.spritesAtlas),
+                            tileX + (int)Math.floor(Math.random() * 2),
+                            tileY + (int)Math.floor(Math.random() * 2)
+                    )
+            );
+        }
+    }
+
+    public void scheduleFriendlySpawn(int numberToSpawn) {
+        for (int i=0;i<numberToSpawn;i++) {
+            toSpawn.add(
+                    new LeatherUnit(
+                            Game.instance().assetManager().<TextureAtlas>get(Asset.spritesAtlas),
+                            (int)Math.ceil(Math.random() * 50),
+                            4)
+                    );
+        }
+    }
+
 	private void control(final float delta) {
 		for (final Unit unit : activeCollidables) {
 			unit.combat(delta, activeCollidables);
@@ -185,6 +223,11 @@ public class SpriteTestScreen extends Screen {
 				iterator.remove();
 			}
 		}
+
+        if (!toSpawn.isEmpty()) {
+		    activeCollidables.addAll(toSpawn);
+		    toSpawn.clear();
+        }
 
 		final MusicMan musicMan = game().getMusicMan();
 		final int units = activeCollidables.size();
