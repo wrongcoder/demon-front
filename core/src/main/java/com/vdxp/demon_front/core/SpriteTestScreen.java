@@ -44,7 +44,7 @@ public class SpriteTestScreen extends Screen {
 	private float controlTimerBucket = 0;
 
     private float friendlySpawnTimerbucket = 0;
-	private static final float friendlySpawnInterval = 10 * controlTimerRate;
+	private static final float friendlySpawnInterval = 9 * controlTimerRate;
 
     // These things are painted in this order, one list after another
 	private Map map1_layer1 = new Map();

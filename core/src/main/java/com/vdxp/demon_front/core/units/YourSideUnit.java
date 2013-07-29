@@ -24,7 +24,7 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	private HeroUnit.ShoutCommand shoutCommand = null;
 
     private float directionChangeTimer = 4;
-    private float angle = -1;
+    private float currDirection = -1;
 
     public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
 		super(maxHp, spritesAtlas);
@@ -73,15 +73,15 @@ public abstract class YourSideUnit extends FriendlyUnit {
 		directionChangeTimer += delta;
 
 		if (shoutCommand != null) {
-			angle = shoutCommand.angle;
+			currDirection = shoutCommand.angle;
 		} else {
             if (directionChangeTimer > 0.75f) {
-                angle = (float) ((Math.PI * 2) * Math.random());
+                currDirection = (float) ((Math.PI * 2) * Math.random());
                 directionChangeTimer = 0;
             }
 		}
 
-		final boolean moved = tryMove(angle, delta, activeCollidables, inactiveCollidables);
+		final boolean moved = tryMove(currDirection, delta, activeCollidables, inactiveCollidables);
 		if (!moved && shoutCommand != null) {
 			shoutCommand = null;
 		}

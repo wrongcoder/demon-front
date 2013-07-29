@@ -20,7 +20,7 @@ public abstract class EnemyUnit extends Unit {
 	private final Sprite swordSlash;
 	private float swordSlashTimer = 0;
     private float aggressivenessTimer = 0;
-    private float angle = 0;
+    private float currDirection = 0;
     private float directionChangeTimer = 4;
 
     public EnemyUnit(final TextureAtlas spritesAtlas, final int spriteId, final float maxHp, final float width, final float height, final int xTile, final int yTile) {
@@ -62,33 +62,31 @@ public abstract class EnemyUnit extends Unit {
 
             if (Math.random() > 0.5) {
                 if (tileX < 18) {
-                    angle = 0;
-                    tryMove(angle, delta, activeCollidables, inactiveCollidables);
+                    currDirection = 0;
                 } else if (tileX > 61) {
-                    angle = (float)Math.PI;
-                    tryMove(angle, delta, activeCollidables, inactiveCollidables);
-                } else if (tileY > 2) {
-                    angle = 1.5f * (float)Math.PI;
-                    tryMove(angle, delta, activeCollidables, inactiveCollidables);
+                    currDirection = (float)Math.PI;
+                } else if (tileY > 4) {
+                    currDirection = 1.5f * (float)Math.PI;
                 }
+                tryMove(currDirection, delta, activeCollidables, inactiveCollidables);
                 return;
             }
 
             if (directionChangeTimer > 1f) {
-                angle = (float) ((Math.PI * 2) * Math.random());
+                currDirection = (float) ((Math.PI * 2) * Math.random());
                 directionChangeTimer = 0;
             }
 
-            tryMove(angle, delta, activeCollidables, inactiveCollidables);
+            tryMove(currDirection, delta, activeCollidables, inactiveCollidables);
             return;
         }
 
         if (directionChangeTimer > 3) {
-            angle = (float) ((Math.PI * 2) * Math.random());
+            currDirection = (float) ((Math.PI * 2) * Math.random());
             directionChangeTimer = 0;
         }
 
-		tryMove(angle, delta, activeCollidables, inactiveCollidables);
+		tryMove(currDirection, delta, activeCollidables, inactiveCollidables);
 	}
 
 	@Override
