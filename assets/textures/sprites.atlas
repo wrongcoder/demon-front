@@ -5,476 +5,532 @@ filter: Nearest,Nearest
 repeat: none
 claw-slash
   rotate: false
-  xy: 840, 219
+  xy: 511, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 demongate_active1
   rotate: false
-  xy: 1, 1
+  xy: 1, 255
   size: 128, 250
   orig: 128, 250
   offset: 0, 0
   index: -1
 demongate_active2
   rotate: false
-  xy: 131, 1
+  xy: 1, 3
   size: 128, 250
   orig: 128, 250
   offset: 0, 0
   index: -1
 demongate_sealing1
   rotate: false
-  xy: 261, 1
+  xy: 131, 255
   size: 128, 250
   orig: 128, 250
   offset: 0, 0
   index: -1
 demongate_sealing2
   rotate: false
-  xy: 391, 1
+  xy: 131, 3
   size: 128, 250
   orig: 128, 250
   offset: 0, 0
   index: -1
 demongate_sealing3
   rotate: false
-  xy: 521, 1
+  xy: 261, 255
   size: 128, 250
   orig: 128, 250
   offset: 0, 0
   index: -1
 fogOfWar1
   rotate: false
-  xy: 874, 219
+  xy: 261, 103
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 fogOfWar2
   rotate: false
-  xy: 908, 219
+  xy: 391, 360
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 fogOfWar2b
   rotate: false
-  xy: 942, 219
+  xy: 545, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass1
   rotate: false
-  xy: 976, 219
+  xy: 261, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass2
   rotate: false
-  xy: 719, 182
+  xy: 391, 326
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 invader1_1of2
   rotate: false
-  xy: 651, 19
+  xy: 391, 394
   size: 49, 34
   orig: 49, 34
   offset: 0, 0
   index: -1
 invader1_2of2
   rotate: false
-  xy: 651, 93
+  xy: 391, 430
   size: 53, 36
   orig: 53, 36
   offset: 0, 0
   index: -1
 invader2_1of2
   rotate: false
-  xy: 651, 131
+  xy: 329, 215
   size: 57, 38
   orig: 57, 38
   offset: 0, 0
   index: -1
 invader2_2of2
   rotate: false
-  xy: 651, 171
+  xy: 391, 468
   size: 63, 37
   orig: 63, 37
   offset: 0, 0
   index: -1
 invader3_1of2
   rotate: false
-  xy: 651, 210
+  xy: 261, 212
   size: 66, 41
   orig: 66, 41
   offset: 0, 0
   index: -1
 invader3_2of2
   rotate: false
-  xy: 719, 216
+  xy: 261, 175
   size: 64, 35
   orig: 64, 35
   offset: 0, 0
   index: -1
 invader4_1of2
   rotate: false
-  xy: 785, 218
+  xy: 456, 472
   size: 53, 33
   orig: 53, 33
   offset: 0, 0
   index: -1
 invader4_2of2
   rotate: false
-  xy: 651, 55
+  xy: 261, 137
   size: 49, 36
   orig: 49, 36
   offset: 0, 0
   index: -1
+keyA
+  rotate: false
+  xy: 579, 473
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyD
+  rotate: false
+  xy: 261, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyDown
+  rotate: false
+  xy: 391, 292
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyLeft
+  rotate: false
+  xy: 613, 473
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyRight
+  rotate: false
+  xy: 391, 258
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyS
+  rotate: false
+  xy: 647, 473
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyUp
+  rotate: false
+  xy: 681, 473
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+keyW
+  rotate: false
+  xy: 715, 473
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 missing
   rotate: false
-  xy: 753, 182
+  xy: 749, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 mountain1_32x32
   rotate: false
-  xy: 787, 184
+  xy: 783, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 sword-slash
   rotate: false
-  xy: 821, 184
+  xy: 817, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 tree1
   rotate: false
-  xy: 855, 185
+  xy: 851, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 walltiles_30x16_fromInvader_1of5
   rotate: false
-  xy: 651, 1
-  size: 30, 16
-  orig: 30, 16
+  xy: 480, 406
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
 walltiles_30x16_fromInvader_2of5
   rotate: false
-  xy: 914, 99
-  size: 30, 16
-  orig: 30, 16
+  xy: 493, 374
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
 walltiles_30x16_fromInvader_3of5
   rotate: false
-  xy: 946, 99
-  size: 30, 16
-  orig: 30, 16
+  xy: 493, 342
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
 walltiles_30x16_fromInvader_4of5
   rotate: false
-  xy: 978, 99
-  size: 30, 16
-  orig: 30, 16
+  xy: 493, 310
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
 walltiles_30x16_fromInvader_5of5
   rotate: false
-  xy: 910, 81
-  size: 30, 16
-  orig: 30, 16
+  xy: 493, 278
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_10of10
   rotate: false
-  xy: 889, 185
+  xy: 885, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_1of10
   rotate: false
-  xy: 923, 185
+  xy: 919, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_2of10
   rotate: false
-  xy: 957, 185
+  xy: 953, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_3of10
   rotate: false
-  xy: 991, 185
+  xy: 987, 473
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_4of10
   rotate: false
-  xy: 716, 148
+  xy: 261, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_5of10
   rotate: false
-  xy: 750, 148
+  xy: 295, 103
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_6of10
   rotate: false
-  xy: 710, 114
+  xy: 295, 69
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_7of10
   rotate: false
-  xy: 744, 114
+  xy: 295, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_8of10
   rotate: false
-  xy: 706, 80
+  xy: 295, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_1_9of10
   rotate: false
-  xy: 740, 80
+  xy: 425, 360
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_10of10
   rotate: false
-  xy: 702, 46
+  xy: 425, 326
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_1of10
   rotate: false
-  xy: 736, 46
+  xy: 425, 292
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_2of10
   rotate: false
-  xy: 702, 12
+  xy: 425, 258
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_3of10
   rotate: false
-  xy: 736, 12
+  xy: 312, 141
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_4of10
   rotate: false
-  xy: 778, 114
+  xy: 329, 107
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_5of10
   rotate: false
-  xy: 774, 80
+  xy: 329, 73
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_6of10
   rotate: false
-  xy: 770, 46
+  xy: 329, 39
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_7of10
   rotate: false
-  xy: 770, 12
+  xy: 329, 5
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_8of10
   rotate: false
-  xy: 784, 148
+  xy: 446, 434
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_2_9of10
   rotate: false
-  xy: 818, 150
+  xy: 480, 438
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_10of10
   rotate: false
-  xy: 812, 114
+  xy: 514, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_1of10
   rotate: false
-  xy: 808, 80
+  xy: 548, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_2of10
   rotate: false
-  xy: 804, 46
+  xy: 582, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_3of10
   rotate: false
-  xy: 804, 12
+  xy: 616, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_4of10
   rotate: false
-  xy: 846, 116
+  xy: 650, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_5of10
   rotate: false
-  xy: 852, 150
+  xy: 684, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_6of10
   rotate: false
-  xy: 886, 151
+  xy: 718, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_7of10
   rotate: false
-  xy: 920, 151
+  xy: 752, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_8of10
   rotate: false
-  xy: 954, 151
+  xy: 786, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_3_9of10
   rotate: false
-  xy: 988, 151
+  xy: 820, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_10of10
   rotate: false
-  xy: 880, 116
+  xy: 854, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_1of10
   rotate: false
-  xy: 914, 117
+  xy: 888, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_2of10
   rotate: false
-  xy: 948, 117
+  xy: 922, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_3of10
   rotate: false
-  xy: 982, 117
+  xy: 956, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_4of10
   rotate: false
-  xy: 842, 80
+  xy: 990, 439
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_5of10
   rotate: false
-  xy: 838, 46
+  xy: 442, 396
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_6of10
   rotate: false
-  xy: 838, 12
+  xy: 459, 362
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_7of10
   rotate: false
-  xy: 876, 82
+  xy: 459, 328
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_8of10
   rotate: false
-  xy: 872, 46
+  xy: 459, 294
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_9of10
   rotate: false
-  xy: 872, 12
+  xy: 459, 260
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
