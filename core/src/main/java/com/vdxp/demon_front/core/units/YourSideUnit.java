@@ -23,7 +23,10 @@ public abstract class YourSideUnit extends FriendlyUnit {
 
 	private HeroUnit.ShoutCommand shoutCommand = null;
 
-	public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
+    private float directionChangeTimer = 4;
+    private float angle = -1;
+
+    public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
 		super(maxHp, spritesAtlas);
 
 		final float x = Map.getGameXinPixel(xTile);
@@ -66,12 +69,16 @@ public abstract class YourSideUnit extends FriendlyUnit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-		final float angle;
+
+		directionChangeTimer += delta;
 
 		if (shoutCommand != null) {
 			angle = shoutCommand.angle;
 		} else {
-			angle = (float) (Math.PI * 2 * Math.random());
+            if (directionChangeTimer > 0.75f) {
+                angle = (float) ((Math.PI * 2) * Math.random());
+                directionChangeTimer = 0;
+            }
 		}
 
 		final boolean moved = tryMove(angle, delta, activeCollidables, inactiveCollidables);

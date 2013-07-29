@@ -20,8 +20,10 @@ public abstract class EnemyUnit extends Unit {
 	private final Sprite swordSlash;
 	private float swordSlashTimer = 0;
     private float aggressivenessTimer = 0;
+    private float angle = 0;
+    private float directionChangeTimer = 4;
 
-	public EnemyUnit(final TextureAtlas spritesAtlas, final int spriteId, final float maxHp, final float width, final float height, final int xTile, final int yTile) {
+    public EnemyUnit(final TextureAtlas spritesAtlas, final int spriteId, final float maxHp, final float width, final float height, final int xTile, final int yTile) {
 		super(maxHp);
 		final float x = Map.getGameXinPixel(xTile);
 		final float y = Map.getGameYinPixel(yTile);
@@ -43,7 +45,6 @@ public abstract class EnemyUnit extends Unit {
 
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
-        //West(Math.PI), East(0), North(0.5f * Math.PI), South(1.5f * Math.PI);
 
         // lose condition, enemy reaches end of screen
         if (this.getY() <= 10) {
@@ -54,29 +55,39 @@ public abstract class EnemyUnit extends Unit {
         final int tileY = Map.getDistInTile(this.getY());
 
         aggressivenessTimer += delta;
-        final float aggressivenessLevel = aggressivenessTimer / (float)60;
+        final float aggressivenessLevel = aggressivenessTimer / (float)180;
 
-        float angle = -1;
-
+        directionChangeTimer += delta;
         if (Math.random() < (aggressivenessLevel)) {
 
             if (Math.random() > 0.5) {
                 if (tileX < 18) {
                     angle = 0;
+                    tryMove(angle, delta, activeCollidables, inactiveCollidables);
                 } else if (tileX > 61) {
                     angle = (float)Math.PI;
-                } else if (tileY > 1) {
-                    angle = 1.5f * (float)Math.PI;
-                }
-
-                if (angle >= 0) {
                     tryMove(angle, delta, activeCollidables, inactiveCollidables);
-                    return;
+                } else if (tileY > 2) {
+                    angle = 1.5f * (float)Math.PI;
+                    tryMove(angle, delta, activeCollidables, inactiveCollidables);
                 }
+                return;
             }
+
+            if (directionChangeTimer > 1f) {
+                angle = (float) ((Math.PI * 2) * Math.random());
+                directionChangeTimer = 0;
+            }
+
+            tryMove(angle, delta, activeCollidables, inactiveCollidables);
+            return;
         }
 
-        angle = (float) ((Math.PI * 2) * Math.random());
+        if (directionChangeTimer > 3) {
+            angle = (float) ((Math.PI * 2) * Math.random());
+            directionChangeTimer = 0;
+        }
+
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 	}
 

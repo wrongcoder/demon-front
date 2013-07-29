@@ -27,7 +27,12 @@ public class IntroSplashScreen1 extends IntroSplashScreen {
 
 		batch.begin();
 		Util.drawCentred("The demon gates", bigFont, batch, 420);
-		Util.drawCentred("have opened.", bigFont, batch, 340);
-		batch.end();
+		Util.drawCentred("have opened!", bigFont, batch, 340);
+        Util.drawCentred("Orcs will shuffle aimlessly unless commanded", smallFont, batch, 220);
+        Util.drawCentred("Commands affect all orcs that the hero can clearly see", smallFont, batch, 200);
+        Util.drawCentred("Destroy all the demon gates, but stay alive and don't let the demons enter your city", smallFont, batch, 180);
+
+
+        batch.end();
 	}
 }
