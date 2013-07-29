@@ -39,6 +39,7 @@ public class SpriteTestScreen extends Screen {
 	// These things are painted in this order, one list after another
 	private Map map1_layer1 = new Map();
     private Map map1_layer2 = new Map();
+    private Map fogOfWar = new Map();
     private Set<MapTile> background = new HashSet<MapTile>();
     private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
     private Set<Unit> activeCollidables = new HashSet<Unit>();
@@ -48,13 +49,18 @@ public class SpriteTestScreen extends Screen {
 		super(game);
 	}
 
-	@Override
+    public HeroUnit getHero() {
+        return hero;
+    }
+
+    @Override
 	public void show() {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
 		font = assetManager().get(Asset.mono16Font);
 
         map1_layer1.Init("map/map_1_layer1.txt");
         map1_layer2.Init("map/map_1_layer2.txt");
+        fogOfWar.Init("map/fogOfWar.txt");
 
         background.addAll(map1_layer1.getNonCollidableMapTiles());
         inactiveCollidables.addAll(map1_layer1.getCollidableMapTiles());
@@ -63,6 +69,8 @@ public class SpriteTestScreen extends Screen {
         background.addAll(map1_layer2.getNonCollidableMapTiles());
         inactiveCollidables.addAll(map1_layer2.getCollidableMapTiles());
         activeCollidables.addAll(map1_layer2.getUnits());
+
+        inactiveNonCollidables_effects.addAll(fogOfWar.getNonCollidableMapTiles());
 
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
@@ -114,6 +122,9 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : activeCollidables) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
+		for (final Drawable drawable : inactiveNonCollidables_effects) {
+            drawable.drawSprite(batch, viewport, delta, alpha);
+        }
 		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
 		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
 		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);

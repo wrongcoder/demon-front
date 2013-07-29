@@ -3,7 +3,6 @@ package com.vdxp.demon_front.core.map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.vdxp.demon_front.core.Asset;
-import com.vdxp.demon_front.core.Drawable;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.units.DemonGate;
 import com.vdxp.demon_front.core.units.Unit;
@@ -84,6 +83,13 @@ public class Map {
                 case 'w':
                     units.add(new WallSection(spritesAtlas, currX, currY));
                     break;
+                case 'F':
+                    if ((currX*currY) % 2 == 0) {
+                        nonCollidableMapTiles.add(new FogOfWarTile(spritesAtlas, currX, currY));
+                    } else {
+                        nonCollidableMapTiles.add(new FogOfWarWFaceTile(spritesAtlas, currX, currY));
+                    }
+                    break;
             }
 
             currX++;
@@ -103,12 +109,15 @@ public class Map {
         return units;
     }
 
-    // hack
     public static float getGameXinPixel(int gameXinMapTile) {
         return gameXinMapTile * 32;
     }
 
     public static float getGameYinPixel(int gameYinMapTile) {
         return gameYinMapTile * 32;
+    }
+
+    public static int getDistInTile(double distInPixel) {
+        return (int) (distInPixel / 32);
     }
 }
