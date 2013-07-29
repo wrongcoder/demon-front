@@ -1,4 +1,5 @@
 d:html/target/gdx/:0:application/unknown
+t:Attributions.txt:2906:text/plain
 d:fonts:0:application/unknown
 t:fonts/liberation-mono-16.fnt:11533:application/unknown
 i:fonts/liberation-mono-16.png:8632:image/png
