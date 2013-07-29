@@ -23,7 +23,8 @@ public class SpriteTestScreen extends Screen {
 
 	private HeroUnit hero;
 
-	private BitmapFont font;
+	private BitmapFont debugFont;
+	private BitmapFont shoutFont;
 
 	private SpriteBatch batch;
 	private ShapeRenderer shape;
@@ -56,7 +57,8 @@ public class SpriteTestScreen extends Screen {
     @Override
 	public void show() {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
-		font = assetManager().get(Asset.mono16Font);
+		debugFont = assetManager().get(Asset.mono16Font);
+	    shoutFont = assetManager().get(Asset.sans28boldFont);
 
         map1_layer1.Init("map/map_1_layer1.txt");
         map1_layer2.Init("map/map_1_layer2.txt");
@@ -138,12 +140,18 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : inactiveNonCollidables_effects) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
-		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
-		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
-		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
-		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
+		debugFont.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
+		debugFont.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
+		debugFont.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
+		debugFont.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
 		if (!hero.isAlive()) {
-			font.draw(batch, "Game Over", 2, 104);
+			debugFont.draw(batch, "Game Over", 2, 104);
+		}
+		if (hero.isShouting()) {
+			shoutFont.setColor(0, 0, 0, 0.8f);
+			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX + 2, hero.getDrawY() - viewport.viewportY - 20);
+			shoutFont.setColor(1, 1, 1, 1);
+			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX, hero.getDrawY() - viewport.viewportY - 18);
 		}
 		batch.end();
 	}

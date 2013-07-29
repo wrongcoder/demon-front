@@ -17,6 +17,13 @@ public class Util {
 		font.draw(batch, text, centreX, y);
 	}
 
+	public static void drawCentredOn(final String text, final BitmapFont font, final SpriteBatch batch, final float x, final float y) {
+		final BitmapFont.TextBounds bounds = font.getBounds(text);
+		final float centreX = x - bounds.width / 2;
+		final float centreY = y + bounds.height / 2;
+		font.draw(batch, text, centreX, centreY);
+	}
+
 	public static void log(final String message) {
 		Gdx.app.log("DF", message);
 	}

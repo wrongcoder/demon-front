@@ -107,6 +107,10 @@ public class HeroUnit extends YourSideUnit {
 		return null;
 	}
 
+	public boolean isShouting() {
+		return computeShoutCommand() != null;
+	}
+
 	public void setMovingUp(final boolean movingUp) {
 		this.movingUp = movingUp;
 	}
