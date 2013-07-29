@@ -97,20 +97,30 @@ public abstract class Unit extends Drawable {
 			return true;
 		}
 
-		final float targetX = this.x + (float) (getSpeed() * Math.cos(angle)) * delta;
-		final float targetY = this.y + (float) (getSpeed() * Math.sin(angle)) * delta;
-		float actualX;
-		float actualY;
+		final float targetDeltaX = (float) (getSpeed() * Math.cos(angle)) * delta;
+		final float targetDeltaY = (float) (getSpeed() * Math.sin(angle)) * delta;
+		final float actualX;
+		final float actualY;
 
-		if (!isCollision(activeCollidables, inactiveCollidables, targetX, targetY)) {
-			actualX = targetX;
-			actualY = targetY;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, targetX, this.y)) {
-			actualX = targetX;
+		// this is going to be slow with a lot of units
+		if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX, targetDeltaY)) {
+			actualX = this.x + targetDeltaX;
+			actualY = this.y + targetDeltaY;
+		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX, 0)) {
+			actualX = this.x + targetDeltaX;
 			actualY = this.y;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, this.x, targetY)) {
+		} else if (!isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY)) {
 			actualX = this.x;
-			actualY = targetY;
+			actualY = this.y + targetDeltaY;
+		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, targetDeltaY/2)) {
+			actualX = this.x + targetDeltaX/2;
+			actualY = this.y + targetDeltaY/2;
+		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, 0)) {
+			actualX = this.x + targetDeltaX/2;
+			actualY = this.y;
+		} else if (!isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY/2)) {
+			actualX = this.x;
+			actualY = this.y + targetDeltaY/2;
 		} else {
 			return false;
 		}
@@ -129,8 +139,8 @@ public abstract class Unit extends Drawable {
 		return true;
 	}
 
-	private boolean isCollision(final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables, final float targetX, final float targetY) {
-		Rectangle.tmp.set(targetX + 2, targetY + 2, this.width - 4, this.height - 4);
+	private boolean isCollision(final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables, final float targetDeltaX, final float targetDeltaY) {
+		Rectangle.tmp.set(this.x + targetDeltaX + 2, this.y + targetDeltaY + 2, this.width - 4, this.height - 4);
 
 		for (final Unit other : activeCollidables) {
 			if (other == this) {
