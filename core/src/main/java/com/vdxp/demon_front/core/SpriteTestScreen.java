@@ -250,6 +250,13 @@ public class SpriteTestScreen extends Screen {
 		} else {
 			musicMan.requestMusic(MusicMan.Mood.Calm, delta);
 		}
+
+		if (!hero.isAlive() /* || gates are down */) {
+			game().setScreen(new LoseEndSplashScreen(game()));
+		}
+		if (demonGatesLeft == 0) {
+			game().setScreen(new WinEndSplashScreen(game()));
+		}
 	}
 
 	private static int countGates(final Set<Unit> activeCollidables) {

@@ -176,8 +176,8 @@ public class MusicMan {
 			nowPlaying = getMusicForMood(mood);
 			nowPlaying.setVolume(1);
 			nowPlaying.play();
-			nowPlayingTime = 0;
-			resetMoodChangeTendency(0);
+			nowPlayingTime = mood.shortPlayTime ? 60 : 0;
+			resetMoodChangeTendency(mood.shortPlayTime ? 5 : 0);
 			return;
 		}
 
@@ -188,8 +188,8 @@ public class MusicMan {
 			prevPlaying = nowPlaying;
 			nowPlaying = getMusicForMood(mood);
 			nowPlaying.play();
-			nowPlayingTime = 0;
-			resetMoodChangeTendency(0);
+			nowPlayingTime = mood.shortPlayTime ? 60 : 0;
+			resetMoodChangeTendency(mood.shortPlayTime ? 5 : 0);
 			currentMood = mood;
 		}
 	}
@@ -222,11 +222,25 @@ public class MusicMan {
 				return getRandomInList(Impasse);
 			case Cliffhanger:
 				return getRandomInList(CliffHanger);
+			case BattleEndGood:
+				return Game.instance().assetManager().get(BattleEnd_Good);
+			case BattleEndBad:
+				return Game.instance().assetManager().get(BattleEnd_Bad);
 		}
 		return null;
 	}
 
 	public enum Mood {
-		Calm(), Agitation(), Conflict(), Impasse(), Cliffhanger()
+		Calm(), Agitation(), Conflict(), Impasse(), Cliffhanger(), BattleEndGood(true), BattleEndBad(true);
+
+		public final boolean shortPlayTime;
+
+		Mood() {
+			shortPlayTime = false;
+		}
+
+		Mood(final boolean shortPlayTime) {
+			this.shortPlayTime = shortPlayTime;
+		}
 	}
 }
