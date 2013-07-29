@@ -90,4 +90,11 @@ public class Game extends com.badlogic.gdx.Game {
 		}
 	}
 
+    public MusicMan getMusicMan() {
+        return musicMan;
+    }
+
+    public Sounds getSoundMan() {
+        return soundMan;
+    }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
@@ -50,6 +51,7 @@ public class EnemyUnit extends Unit {
 		if (swordSlashTimer > delta) {
 			swordSlashTimer -= delta;
 			batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+            Game.instance().getSoundMan().playHumanAttack();
 		}
 	}
 

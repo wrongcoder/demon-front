@@ -1,10 +1,8 @@
 package com.vdxp.demon_front.core.units;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
@@ -21,6 +19,9 @@ public class DemonGate extends Unit {
     TextureAtlas.AtlasRegion demonGateSealing2;
     TextureAtlas.AtlasRegion demonGateSealing3;
     private final Animation defaultAnimation;
+
+    private final Sprite swordSlash;
+    private float swordSlashTimer = 0;
 
     private final Animation dyingAnimation;
 
@@ -45,6 +46,8 @@ public class DemonGate extends Unit {
         dyingAnimation = new Animation(0.1f, demonGateSealing1, demonGateSealing2, demonGateSealing3);
         dyingAnimation.setPlayMode(Animation.NORMAL);
 
+        swordSlash = new Sprite(spritesAtlas.findRegion("sword-slash"));
+
         setDimensions(xPixel, yPixel, 64, 64);
 	    drawOffsetX += 8; // hacks
         setAnimation(defaultAnimation, true);
@@ -54,10 +57,18 @@ public class DemonGate extends Unit {
     public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 
         if (this.getHp() <= 0) {
-            this.setAnimation(dyingAnimation);
+            if (this.getAnimation().isAnimationFinished(this.stateTime)) {
+                die();
+                Game.instance().getSoundMan().playSealing();
+            }
         }
 
         super.drawSprite(batch, viewport, delta, alpha);
+        if (swordSlashTimer > delta) {
+            swordSlashTimer -= delta;
+            batch.draw(swordSlash, getDrawX() - viewport.viewportX + 8, getDrawY() - viewport.viewportY);
+            Game.instance().getSoundMan().playHumanAttack();
+        }
     }
 
 	@Override
@@ -96,5 +107,20 @@ public class DemonGate extends Unit {
 	public float getSpeed() {
 		return 0;
 	}
+
+    @Override
+    public void receiveHit(final int hp, final Unit source) {
+        super.receiveHit(hp, source);
+        swordSlashTimer += 0.1f;
+    }
+
+    @Override
+    public void changeHp(final float deltaHp) {
+        this.setHp(this.getHp() + deltaHp);
+
+        if (this.getHp() < 0) {
+            this.setAnimation(dyingAnimation);
+        }
+    }
 
 }

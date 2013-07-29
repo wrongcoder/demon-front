@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.Viewport;
 
 import java.util.Set;
@@ -25,6 +26,7 @@ public abstract class FriendlyUnit extends Unit {
 		if (clawSlashTimer > delta) {
 			clawSlashTimer -= delta;
 			batch.draw(clawSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+            Game.instance().getSoundMan().playEnemyAttack();
 		}
 	}
 

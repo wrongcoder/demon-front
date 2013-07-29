@@ -25,7 +25,7 @@ public abstract class Unit extends Drawable {
 
 	private Animation animation;
 	private boolean animated = true;
-	private float stateTime = 0;
+	protected float stateTime = 0;
 
     private Float angle = null;
 
@@ -82,6 +82,10 @@ public abstract class Unit extends Drawable {
 
 	protected void setAnimation(final Animation animation) {
 		setAnimation(animation, false);
+	}
+
+	protected Animation getAnimation() {
+	    return this.animation;
 	}
 
 	protected void setAnimation(final Animation animation, final boolean resetTimer) {
