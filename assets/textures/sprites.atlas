@@ -122,301 +122,301 @@ missing
   orig: 32, 32
   offset: 0, 0
   index: -1
-sword-slash
+mountain1_32x32
   rotate: false
   xy: 976, 219
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-tree1
+sword-slash
   rotate: false
   xy: 719, 182
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-walltiles_30x16_fromInvader
-  rotate: false
-  xy: 651, 1
-  size: 30, 16
-  orig: 30, 16
-  offset: 0, 0
-  index: 1
-walltiles_30x16_fromInvader
-  rotate: false
-  xy: 838, 28
-  size: 30, 16
-  orig: 30, 16
-  offset: 0, 0
-  index: 2
-walltiles_30x16_fromInvader
-  rotate: false
-  xy: 876, 98
-  size: 30, 16
-  orig: 30, 16
-  offset: 0, 0
-  index: 3
-walltiles_30x16_fromInvader
-  rotate: false
-  xy: 876, 80
-  size: 30, 16
-  orig: 30, 16
-  offset: 0, 0
-  index: 4
-walltiles_30x16_fromInvader
-  rotate: false
-  xy: 872, 62
-  size: 30, 16
-  orig: 30, 16
-  offset: 0, 0
-  index: 5
-yourside_richtaur_32x32_1_10of10
+tree1
   rotate: false
   xy: 753, 182
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_1of10
+walltiles_30x16_fromInvader_1of5
+  rotate: false
+  xy: 651, 1
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+walltiles_30x16_fromInvader_2of5
+  rotate: false
+  xy: 876, 98
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+walltiles_30x16_fromInvader_3of5
+  rotate: false
+  xy: 876, 80
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+walltiles_30x16_fromInvader_4of5
+  rotate: false
+  xy: 872, 62
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+walltiles_30x16_fromInvader_5of5
+  rotate: false
+  xy: 872, 44
+  size: 30, 16
+  orig: 30, 16
+  offset: 0, 0
+  index: -1
+yourside_richtaur_32x32_1_10of10
   rotate: false
   xy: 787, 184
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_2of10
+yourside_richtaur_32x32_1_1of10
   rotate: false
   xy: 821, 184
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_3of10
+yourside_richtaur_32x32_1_2of10
   rotate: false
   xy: 855, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_4of10
+yourside_richtaur_32x32_1_3of10
   rotate: false
   xy: 889, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_5of10
+yourside_richtaur_32x32_1_4of10
   rotate: false
   xy: 923, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_6of10
+yourside_richtaur_32x32_1_5of10
   rotate: false
   xy: 957, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_7of10
+yourside_richtaur_32x32_1_6of10
   rotate: false
   xy: 991, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_8of10
+yourside_richtaur_32x32_1_7of10
   rotate: false
   xy: 716, 148
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_1_9of10
+yourside_richtaur_32x32_1_8of10
   rotate: false
   xy: 750, 148
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_10of10
+yourside_richtaur_32x32_1_9of10
   rotate: false
   xy: 710, 114
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_1of10
+yourside_richtaur_32x32_2_10of10
   rotate: false
   xy: 744, 114
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_2of10
+yourside_richtaur_32x32_2_1of10
   rotate: false
   xy: 706, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_3of10
+yourside_richtaur_32x32_2_2of10
   rotate: false
   xy: 740, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_4of10
+yourside_richtaur_32x32_2_3of10
   rotate: false
   xy: 702, 46
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_5of10
+yourside_richtaur_32x32_2_4of10
   rotate: false
   xy: 736, 46
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_6of10
+yourside_richtaur_32x32_2_5of10
   rotate: false
   xy: 702, 12
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_7of10
+yourside_richtaur_32x32_2_6of10
   rotate: false
   xy: 736, 12
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_8of10
+yourside_richtaur_32x32_2_7of10
   rotate: false
   xy: 778, 114
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_2_9of10
+yourside_richtaur_32x32_2_8of10
   rotate: false
   xy: 774, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_10of10
+yourside_richtaur_32x32_2_9of10
   rotate: false
   xy: 770, 46
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_1of10
+yourside_richtaur_32x32_3_10of10
   rotate: false
   xy: 770, 12
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_2of10
+yourside_richtaur_32x32_3_1of10
   rotate: false
   xy: 784, 148
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_3of10
+yourside_richtaur_32x32_3_2of10
   rotate: false
   xy: 818, 150
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_4of10
+yourside_richtaur_32x32_3_3of10
   rotate: false
   xy: 812, 114
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_5of10
+yourside_richtaur_32x32_3_4of10
   rotate: false
   xy: 808, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_6of10
+yourside_richtaur_32x32_3_5of10
   rotate: false
   xy: 804, 46
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_7of10
+yourside_richtaur_32x32_3_6of10
   rotate: false
   xy: 804, 12
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_8of10
+yourside_richtaur_32x32_3_7of10
   rotate: false
   xy: 846, 116
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_3_9of10
+yourside_richtaur_32x32_3_8of10
   rotate: false
   xy: 852, 150
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_4_10of10
+yourside_richtaur_32x32_3_9of10
   rotate: false
   xy: 886, 151
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_4_1of10
+yourside_richtaur_32x32_4_10of10
   rotate: false
   xy: 920, 151
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_4_2of10
+yourside_richtaur_32x32_4_1of10
   rotate: false
   xy: 954, 151
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_4_3of10
+yourside_richtaur_32x32_4_2of10
   rotate: false
   xy: 988, 151
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_4_4of10
+yourside_richtaur_32x32_4_3of10
   rotate: false
   xy: 880, 116
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yourside_richtaur_32x32_4_5aof10
+yourside_richtaur_32x32_4_4of10
   rotate: false
   xy: 914, 117
   size: 32, 32
@@ -425,26 +425,12 @@ yourside_richtaur_32x32_4_5aof10
   index: -1
 yourside_richtaur_32x32_4_5of10
   rotate: false
-  xy: 914, 117
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-yourside_richtaur_32x32_4_6aof10
-  rotate: false
   xy: 948, 117
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_6of10
-  rotate: false
-  xy: 948, 117
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-yourside_richtaur_32x32_4_7aof10
   rotate: false
   xy: 982, 117
   size: 32, 32
@@ -453,20 +439,6 @@ yourside_richtaur_32x32_4_7aof10
   index: -1
 yourside_richtaur_32x32_4_7of10
   rotate: false
-  xy: 982, 117
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-yourside_richtaur_32x32_4_7bof10
-  rotate: false
-  xy: 982, 117
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-yourside_richtaur_32x32_4_8aof10
-  rotate: false
   xy: 842, 80
   size: 32, 32
   orig: 32, 32
@@ -474,14 +446,14 @@ yourside_richtaur_32x32_4_8aof10
   index: -1
 yourside_richtaur_32x32_4_8of10
   rotate: false
-  xy: 842, 80
+  xy: 838, 46
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yourside_richtaur_32x32_4_9of10
   rotate: false
-  xy: 838, 46
+  xy: 838, 12
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

@@ -11,7 +11,7 @@ i:fonts/liberation-sans-48.png:30308:image/png
 i:libgdx-logo.png:78970:image/png
 d:map:0:application/unknown
 t:map/map_1_layer1.txt:4918:text/plain
-t:map/map_1_layer2.txt:4922:text/plain
+t:map/map_1_layer2.txt:4447:text/plain
 d:music:0:application/unknown
 d:music/00_UI:0:application/unknown
 a:music/00_UI/06-No Silence Please-Ehren Starks.mp3:2755008:application/unknown
@@ -54,8 +54,8 @@ a:sfx/sword_sound.wav:95214:audio/x-wav
 d:textures:0:application/unknown
 t:textures/loading.atlas:254:application/unknown
 i:textures/loading.png:2989:image/png
-t:textures/sprites.atlas:7963:application/unknown
-i:textures/sprites.png:88744:image/png
+t:textures/sprites.atlas:7492:application/unknown
+i:textures/sprites.png:90608:image/png
 t:version.json:129:application/unknown
 t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:2837:application/unknown
 t:com/badlogic/gdx/graphics/g3d/shaders/default.vertex.glsl:7603:application/unknown
