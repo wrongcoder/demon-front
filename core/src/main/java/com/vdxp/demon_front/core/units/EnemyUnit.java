@@ -13,26 +13,25 @@ import com.vdxp.demon_front.core.map.MapTile;
 
 import java.util.Set;
 
-public class EnemyUnit extends Unit {
+public abstract class EnemyUnit extends Unit {
 
 	private final Animation defaultAnimation;
 	private final Sprite swordSlash;
 	private float swordSlashTimer = 0;
+    private float aggressivenessTimer = 0;
 
-	private float aggressivenessTimer = 0;
-
-	public EnemyUnit(final TextureAtlas spritesAtlas, final int xTile, final int yTile) {
-		super(40);
+	public EnemyUnit(final TextureAtlas spritesAtlas, final int spriteId, final float maxHp, final float width, final float height, final int xTile, final int yTile) {
+		super(maxHp);
 		final float x = Map.getGameXinPixel(xTile);
 		final float y = Map.getGameYinPixel(yTile);
-		final TextureAtlas.AtlasRegion frame1 = spritesAtlas.findRegion("invader2_1of2");
-		final TextureAtlas.AtlasRegion frame2 = spritesAtlas.findRegion("invader2_2of2");
-		defaultAnimation = new Animation(0.8f, frame1, frame2);
+		final TextureAtlas.AtlasRegion frame1 = spritesAtlas.findRegion("invader" + spriteId + "_1of2");
+		final TextureAtlas.AtlasRegion frame2 = spritesAtlas.findRegion("invader" + spriteId + "_2of2");
+		defaultAnimation = new Animation(0.6f, frame1, frame2);
 		defaultAnimation.setPlayMode(Animation.LOOP);
 
 		swordSlash = new Sprite(spritesAtlas.findRegion("sword-slash"));
 
-		setDimensions(x, y, frame1.getRegionWidth(), frame1.getRegionHeight());
+		setDimensions(x, y, width, height);
 		setAnimation(defaultAnimation, true);
 	}
 
@@ -99,6 +98,7 @@ public class EnemyUnit extends Unit {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(20, this);
+						return;
 					}
 				}
 			}

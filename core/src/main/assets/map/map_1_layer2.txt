@@ -25,7 +25,7 @@ MMMMMMMMMMMt           ttMMMMMMMMMMMMMMMMMMMMMMMt
 MMMMMMMMMMMt            ttMMMMMMMMMMMMMMMMMMMMMMt
 MMMMMMMMMMt              ttMMMMMMMMMMMMMMMMMMMMtt
 MMMMMMMMMMt               tttMMMMMMMMMMMMMMttttt
-MMMMMMMMMtt                  tttttttttttttt                                  d
+MMMMMMMMMtt                  tttttttttttttt                                d
 tttttttttt
 
 

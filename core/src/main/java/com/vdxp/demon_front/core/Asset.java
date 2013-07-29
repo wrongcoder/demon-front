@@ -11,6 +11,9 @@ public class Asset {
 	public static final String sans16Font = "fonts/liberation-sans-16.fnt";
 	public static final String sans24Font = "fonts/liberation-sans-24.fnt";
 	public static final String sans48Font = "fonts/liberation-sans-48.fnt";
+	public static final String sans24boldFont = "fonts/liberation-sans-24-bold.fnt";
+	public static final String sans28boldFont = "fonts/liberation-sans-28-bold.fnt";
+
 
 	public static final String loadingAtlas = "textures/loading.atlas";
 	public static final String loadingText = "text";
@@ -30,6 +33,8 @@ public class Asset {
 		assetManager.load(sans16Font, BitmapFont.class);
 		assetManager.load(sans24Font, BitmapFont.class);
 		assetManager.load(sans48Font, BitmapFont.class);
+		assetManager.load(sans24boldFont, BitmapFont.class);
+		assetManager.load(sans28boldFont, BitmapFont.class);
 		assetManager.load(spritesAtlas, TextureAtlas.class);
 	}
 

@@ -19,7 +19,7 @@ public class HeroUnit extends YourSideUnit {
 	private boolean shoutingRight;
 
 	public HeroUnit(final TextureAtlas spritesAtlas) {
-		super(270, spritesAtlas, 4, 0.25f, 16, 14);
+		super(270, spritesAtlas, 4, 0.25f, 22, 5);
 	}
 
 	@Override
@@ -54,11 +54,17 @@ public class HeroUnit extends YourSideUnit {
 				if (unit instanceof EnemyUnit || unit instanceof DemonGate) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
-						unit.receiveHit(36, this);
+						unit.receiveHit(15, this);
+						return;
 					}
 				}
 			}
 		}
+	}
+
+	@Override
+	public float getSpeed() {
+		return 80;
 	}
 
 	public Float computeMovementAngle() {
@@ -105,6 +111,10 @@ public class HeroUnit extends YourSideUnit {
 			return ShoutCommand.Down;
 		}
 		return null;
+	}
+
+	public boolean isShouting() {
+		return computeShoutCommand() != null;
 	}
 
 	public void setMovingUp(final boolean movingUp) {

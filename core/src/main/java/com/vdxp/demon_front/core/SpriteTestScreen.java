@@ -7,13 +7,19 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.vdxp.demon_front.core.map.Map;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
-import com.vdxp.demon_front.core.units.EnemyUnit;
+import com.vdxp.demon_front.core.units.ClothUnit;
+import com.vdxp.demon_front.core.units.CricketUnit;
+import com.vdxp.demon_front.core.units.DemonGate;
 import com.vdxp.demon_front.core.units.HeroUnit;
 import com.vdxp.demon_front.core.units.LeatherUnit;
+import com.vdxp.demon_front.core.units.LobsterUnit;
+import com.vdxp.demon_front.core.units.MailUnit;
+import com.vdxp.demon_front.core.units.MosquitoUnit;
 import com.vdxp.demon_front.core.units.Unit;
+import com.vdxp.demon_front.core.units.WaspUnit;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -23,7 +29,8 @@ public class SpriteTestScreen extends Screen {
 
 	private HeroUnit hero;
 
-	private BitmapFont font;
+	private BitmapFont debugFont;
+	private BitmapFont shoutFont;
 
 	private SpriteBatch batch;
 	private ShapeRenderer shape;
@@ -65,7 +72,8 @@ public class SpriteTestScreen extends Screen {
     @Override
 	public void show() {
 		final TextureAtlas spritesAtlas = assetManager().<TextureAtlas>get(Asset.spritesAtlas);
-		font = assetManager().get(Asset.mono16Font);
+		debugFont = assetManager().get(Asset.mono16Font);
+	    shoutFont = assetManager().get(Asset.sans24boldFont);
 
         map1_layer1.Init("map/map_1_layer1.txt");
         map1_layer2.Init("map/map_1_layer2.txt");
@@ -83,11 +91,6 @@ public class SpriteTestScreen extends Screen {
 
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
-
-		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 11));
-		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 8));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 6));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 4));
 
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
@@ -153,12 +156,20 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : inactiveNonCollidables_effects) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
-		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
-		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
-		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
-		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
+		/*
+		debugFont.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
+		debugFont.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
+		debugFont.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
+		debugFont.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
 		if (!hero.isAlive()) {
-			font.draw(batch, "Game Over", 2, 104);
+			debugFont.draw(batch, "Game Over", 2, 104);
+		}
+		*/
+		if (hero.isShouting()) {
+			shoutFont.setColor(0, 0, 0, 0.4f);
+			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX + 2, hero.getDrawY() - viewport.viewportY - 17);
+			shoutFont.setColor(1, 1, 1, 1);
+			Util.drawCentredOn("Orcs! Go " + hero.computeShoutCommand() + "!", shoutFont, batch, hero.getDrawX() - viewport.viewportX, hero.getDrawY() - viewport.viewportY - 15);
 		}
 		batch.end();
 	}
@@ -170,25 +181,39 @@ public class SpriteTestScreen extends Screen {
 	}
 
     public void scheduleEnemySpawn(int numberToSpawn, int tileX, int tileY) {
+	    final TextureAtlas spritesAtlas = assetManager().get(Asset.spritesAtlas);
+
         for (int i=0;i<numberToSpawn;i++) {
-            toSpawn.add(
-                    new EnemyUnit(
-                            Game.instance().assetManager().<TextureAtlas>get(Asset.spritesAtlas),
-                            tileX + (int)Math.floor(Math.random() * 2),
-                            tileY + (int)Math.floor(Math.random() * 2)
-                    )
-            );
+	        final double enemyType = Math.random() * 4;
+	        final int spawnX = tileX + (int)Math.floor(Math.random() * 2);
+	        final int spawnY = tileY + (int)Math.floor(Math.random() * 2);
+
+	        if (enemyType < 1) {
+		        toSpawn.add(new MosquitoUnit(spritesAtlas, spawnX, spawnY));
+	        } else if (enemyType < 2) {
+		        toSpawn.add(new WaspUnit(spritesAtlas, spawnX, spawnY));
+	        } else if (enemyType < 3) {
+		        toSpawn.add(new LobsterUnit(spritesAtlas, spawnX, spawnY));
+	        } else {
+		        toSpawn.add(new CricketUnit(spritesAtlas, spawnX, spawnY));
+	        }
         }
     }
 
     public void scheduleFriendlySpawn(int numberToSpawn) {
-        for (int i=0;i<numberToSpawn;i++) {
-            toSpawn.add(
-                    new LeatherUnit(
-                            Game.instance().assetManager().<TextureAtlas>get(Asset.spritesAtlas),
-                            (int)Math.ceil(Math.random() * 50),
-                            4)
-                    );
+	    final TextureAtlas spritesAtlas = assetManager().get(Asset.spritesAtlas);
+
+	    for (int i=0;i<numberToSpawn;i++) {
+		    final double friendlyType = Math.random() * 3;
+		    final int spawnX = (int) Math.ceil(Math.random() * 50);
+
+		    if (friendlyType < 1) {
+			    toSpawn.add(new LeatherUnit(spritesAtlas, spawnX, 4));
+		    } else if (friendlyType < 2) {
+			    toSpawn.add(new MailUnit(spritesAtlas, spawnX, 4));
+		    } else {
+			    toSpawn.add(new ClothUnit(spritesAtlas, spawnX, 4));
+		    }
         }
     }
 
@@ -211,7 +236,30 @@ public class SpriteTestScreen extends Screen {
         }
 
 		final MusicMan musicMan = game().getMusicMan();
-		musicMan.requestMusic(MusicMan.Mood.Conflict, delta);
+		final int units = activeCollidables.size();
+		final int demonGatesLeft = countGates(activeCollidables);
+
+		if (demonGatesLeft == 1) {
+			musicMan.requestMusic(MusicMan.Mood.Cliffhanger, delta);
+		} else if (units > 60) {
+			musicMan.requestMusic(MusicMan.Mood.Impasse, delta);
+		} else if (units > 40) {
+			musicMan.requestMusic(MusicMan.Mood.Conflict, delta);
+		} else if (units > 20) {
+			musicMan.requestMusic(MusicMan.Mood.Agitation, delta);
+		} else {
+			musicMan.requestMusic(MusicMan.Mood.Calm, delta);
+		}
+	}
+
+	private static int countGates(final Set<Unit> activeCollidables) {
+		int count = 0;
+		for (final Unit unit : activeCollidables) {
+			if (unit instanceof DemonGate) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {
