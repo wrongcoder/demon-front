@@ -75,9 +75,9 @@ public abstract class Unit extends Drawable {
 		this.prevY = y;
 		this.drawY = y;
 		this.height = height;
-		this.drawOffsetX = height / 2f;
+		this.drawOffsetY = height / 2f;
 		this.width = width;
-		this.drawOffsetY = width / 2f;
+		this.drawOffsetX = width / 2f;
 	}
 
 	protected void setAnimation(final Animation animation) {
