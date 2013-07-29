@@ -16,6 +16,7 @@ import com.vdxp.demon_front.core.units.LeatherUnit;
 import com.vdxp.demon_front.core.units.Unit;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class SpriteTestScreen extends Screen {
@@ -32,7 +33,7 @@ public class SpriteTestScreen extends Screen {
 	private static final float physicsTimerRate = 0.1f;
 	private float physicsTimerBucket = 0;
 
-	private static final float controlTimerRate = 1.0f;
+	private static final float controlTimerRate = 0.3333f;
 	private float controlTimerBucket = 0;
 
 	// These things are painted in this order, one list after another
@@ -117,6 +118,9 @@ public class SpriteTestScreen extends Screen {
 		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
 		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
 		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
+		if (!hero.isAlive()) {
+			font.draw(batch, "Game Over", 2, 104);
+		}
 		batch.end();
 
 		for (final Drawable drawable : background) {
@@ -137,6 +141,17 @@ public class SpriteTestScreen extends Screen {
 	}
 
 	private void control(final float delta) {
+		for (final Unit unit : activeCollidables) {
+			unit.combat(delta, activeCollidables);
+		}
+
+		final Iterator<Unit> iterator = activeCollidables.iterator();
+		while (iterator.hasNext()) {
+			final Unit unit = iterator.next();
+			if (!unit.isAlive() && unit != hero) {
+				iterator.remove();
+			}
+		}
 	}
 
 	private class SpriteTestInputHandler extends InputAdapter {

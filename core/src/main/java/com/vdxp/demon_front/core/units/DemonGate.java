@@ -40,6 +40,11 @@ public class DemonGate extends Unit {
     }
 
 	@Override
+	public void combat(final float delta, final Set<Unit> activeCollidables) {
+		// does not attack
+	}
+
+	@Override
 	public float getHitPointsFraction() {
 		return 0.75f;
 	}

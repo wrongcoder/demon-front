@@ -39,6 +39,8 @@ public abstract class Unit extends Drawable {
 	private float width = 32;
 	private float height = 32;
 
+	private boolean alive = true;
+
 	public Unit() {
 		this.animated = true;
 	}
@@ -191,7 +193,23 @@ public abstract class Unit extends Drawable {
 		return height;
 	}
 
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void die() {
+		this.alive = false;
+	}
+
 	public abstract void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables);
+
+	public void combat(final float delta, final Set<Unit> activeCollidables) {
+		// temporarily not abstract, do nothing
+	}
+
+	public void receiveHit(final int hp, final Unit source) {
+		// temporarily not abstract, do nothing
+	}
 
 	/** @return Ratio of hit points remaining in range [0, 1] */
 	public abstract float getHitPointsFraction();

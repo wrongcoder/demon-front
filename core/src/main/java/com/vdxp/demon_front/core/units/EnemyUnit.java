@@ -3,6 +3,7 @@ package com.vdxp.demon_front.core.units;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
@@ -10,6 +11,9 @@ import com.vdxp.demon_front.core.map.MapTile;
 import java.util.Set;
 
 public class EnemyUnit extends Unit {
+
+	private static final float maxHp = 40;
+	private float hp = 40;
 
 	private final Animation defaultAnimation;
 
@@ -60,7 +64,30 @@ public class EnemyUnit extends Unit {
 
 	@Override
 	public float getHitPointsFraction() {
-		return 0.33f;
+		return Math.max(0, hp / maxHp);
+	}
+
+	@Override
+	public void combat(final float delta, final Set<Unit> activeCollidables) {
+		if (Math.random() < delta / 1.5) {
+			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
+			for (final Unit unit : activeCollidables) {
+				if (!(unit instanceof EnemyUnit)) {
+					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
+					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+						unit.receiveHit(20, this);
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void receiveHit(final int hp, final Unit source) {
+		this.hp -= hp;
+		if (this.hp < 0) {
+			die();
+		}
 	}
 
 }
