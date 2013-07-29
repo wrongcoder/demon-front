@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import static com.vdxp.demon_front.core.Util.drawCentred;
 
-public class SplashScreen extends Screen {
+public class TitleSplashScreen extends Screen {
 
 	private BitmapFont bigFont;
 	private BitmapFont normalFont;
@@ -23,7 +23,7 @@ public class SplashScreen extends Screen {
 	private float displayTimerBucket = 0;
 	private float fadeTimerBucket = 0;
 
-	public SplashScreen(final Game game) {
+	public TitleSplashScreen(final Game game) {
 		super(game);
 	}
 
