@@ -20,7 +20,7 @@ public class IntroSplashScreen2 extends IntroSplashScreen {
 
 		batch.begin();
 		Util.drawCentred("You have been hired", bigFont, batch, 450);
-		Util.drawCentred("to Lead the Orcs", bigFont, batch, 390);
+		Util.drawCentred("to lead the Orcs", bigFont, batch, 390);
 		Util.drawCentred("to Victory!", bigFont, batch, 330);
 		batch.end();
 	}

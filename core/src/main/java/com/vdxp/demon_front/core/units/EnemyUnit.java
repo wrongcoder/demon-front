@@ -44,7 +44,7 @@ public abstract class EnemyUnit extends Unit {
 	@Override
 	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
 
-        // lose condition, enemy reach past the wall
+        // lose condition, enemy reaches end of screen
         if (this.getY() <= 0) {
             Game.instance().setScreen(new LoseEndSplashScreen(Game.instance()));
         }

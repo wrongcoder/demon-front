@@ -22,7 +22,7 @@ public class LoseEndSplashScreen extends GameEndSplashScreen {
 		Util.drawCentred("The demons swarm the city.", normalFont, batch, 525);
 		Util.drawCentred("Many innocent orcs perished...", normalFont, batch, 475);
 
-        Util.drawCentred("Here lies the big humies baus, commander of orcs.", normalFont, batch, 375);
+        Util.drawCentred("Here lies the big humies boss, commander of orcs.", normalFont, batch, 375);
         Util.drawCentred("He was quite strong, but was still crumped in the end.", normalFont, batch, 325);
 
         Util.drawCentred("You lose.", bigFont, batch, 245);
