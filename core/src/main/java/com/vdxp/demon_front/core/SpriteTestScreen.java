@@ -11,11 +11,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.ClothUnit;
-import com.vdxp.demon_front.core.units.EnemyUnit;
+import com.vdxp.demon_front.core.units.CricketUnit;
 import com.vdxp.demon_front.core.units.HeroUnit;
 import com.vdxp.demon_front.core.units.LeatherUnit;
+import com.vdxp.demon_front.core.units.LobsterUnit;
 import com.vdxp.demon_front.core.units.MailUnit;
+import com.vdxp.demon_front.core.units.MosquitoUnit;
 import com.vdxp.demon_front.core.units.Unit;
+import com.vdxp.demon_front.core.units.WaspUnit;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -82,8 +85,10 @@ public class SpriteTestScreen extends Screen {
 		activeCollidables.add(new LeatherUnit(spritesAtlas, 18, 11));
 		activeCollidables.add(new MailUnit(spritesAtlas, 18, 8));
 		activeCollidables.add(new ClothUnit(spritesAtlas, 17, 6));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 6));
-		activeCollidables.add(new EnemyUnit(spritesAtlas, 25, 4));
+		activeCollidables.add(new MosquitoUnit(spritesAtlas, 25, 6));
+		activeCollidables.add(new LobsterUnit(spritesAtlas, 25, 4));
+		activeCollidables.add(new WaspUnit(spritesAtlas, 28, 8));
+		activeCollidables.add(new CricketUnit(spritesAtlas, 24, 3));
 
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
