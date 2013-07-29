@@ -12,12 +12,10 @@ import java.util.Set;
 
 public class EnemyUnit extends Unit {
 
-	private static final float maxHp = 40;
-	private float hp = 40;
-
 	private final Animation defaultAnimation;
 
 	public EnemyUnit(final TextureAtlas spritesAtlas, final int xTile, final int yTile) {
+		super(40);
 		final float x = Map.getGameXinPixel(xTile);
 		final float y = Map.getGameYinPixel(yTile);
 		final TextureAtlas.AtlasRegion frame1 = spritesAtlas.findRegion("invader2_1of2");
@@ -39,6 +37,16 @@ public class EnemyUnit extends Unit {
 		final float angle = (float) (Math.PI * 2 * Math.random());
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 	}
+
+	/*
+	@Override
+	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
+		super.drawSprite(batch, viewport, delta, alpha);
+		if (wasHit) {
+			batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+		}
+	}
+	*/
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
@@ -63,11 +71,6 @@ public class EnemyUnit extends Unit {
 	}
 
 	@Override
-	public float getHitPointsFraction() {
-		return Math.max(0, hp / maxHp);
-	}
-
-	@Override
 	public void combat(final float delta, final Set<Unit> activeCollidables) {
 		if (Math.random() < delta / 1.5) {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
@@ -79,14 +82,6 @@ public class EnemyUnit extends Unit {
 					}
 				}
 			}
-		}
-	}
-
-	@Override
-	public void receiveHit(final int hp, final Unit source) {
-		this.hp -= hp;
-		if (this.hp < 0) {
-			die();
 		}
 	}
 

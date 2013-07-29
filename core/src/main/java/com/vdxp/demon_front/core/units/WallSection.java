@@ -14,6 +14,8 @@ public class WallSection extends Unit {
     public WallSection(final TextureAtlas spritesAtlas,
                        int mapX,
                        int mapY) {
+	    super(100);
+
         wallSectionSprite = spritesAtlas.findRegion("walltiles_30x16_fromInvader_1of5");
 
 
@@ -45,7 +47,8 @@ public class WallSection extends Unit {
     }
 
 	@Override
-	public float getHitPointsFraction() {
-		return 0.80f;
+	public void combat(final float delta, final Set<Unit> activeCollidables) {
+		// walls don't attack
 	}
+
 }

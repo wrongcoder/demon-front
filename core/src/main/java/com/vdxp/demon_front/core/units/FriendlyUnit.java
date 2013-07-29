@@ -8,6 +8,10 @@ import java.util.Set;
 
 public abstract class FriendlyUnit extends Unit {
 
+	public FriendlyUnit(final float maxHp) {
+		super(maxHp);
+	}
+
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
 		final int barWidth = 32;
