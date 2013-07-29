@@ -60,7 +60,7 @@ public abstract class EnemyUnit extends Unit {
         directionChangeTimer += delta;
         if (Math.random() < (aggressivenessLevel)) {
 
-            if (Math.random() > 0.5) {
+            if (Math.random() > 0.6f) {
                 if (tileX < 18) {
                     currDirection = 0;
                 } else if (tileX > 61) {
