@@ -124,16 +124,6 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : activeCollidables) {
 			drawable.drawSprite(batch, viewport, delta, alpha);
 		}
-		for (final Drawable drawable : inactiveNonCollidables_effects) {
-            drawable.drawSprite(batch, viewport, delta, alpha);
-        }
-		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
-		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
-		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
-		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
-		if (!hero.isAlive()) {
-			font.draw(batch, "Game Over", 2, 104);
-		}
 		batch.end();
 
 		for (final Drawable drawable : background) {
@@ -145,6 +135,19 @@ public class SpriteTestScreen extends Screen {
 		for (final Drawable drawable : activeCollidables) {
 			drawable.drawOverlay(shape, viewport, delta, alpha);
 		}
+
+		batch.begin();
+		for (final Drawable drawable : inactiveNonCollidables_effects) {
+			drawable.drawSprite(batch, viewport, delta, alpha);
+		}
+		font.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
+		font.draw(batch, "hero: " + hero.getDrawX() + ", " + hero.getDrawY(), 2, 52);
+		font.draw(batch, "moving: " + hero.computeMovementAngle(), 300, 52);
+		font.draw(batch, "viewport: " + viewport.viewportX + ", " + viewport.viewportY, 2, 78);
+		if (!hero.isAlive()) {
+			font.draw(batch, "Game Over", 2, 104);
+		}
+		batch.end();
 	}
 
 	private void physics(final float delta) {
