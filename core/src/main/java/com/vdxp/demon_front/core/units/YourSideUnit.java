@@ -21,7 +21,9 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	private final Animation leftStoppedAnimation;
 	private final Animation leftMovingAnimation;
 
-	public YourSideUnit(final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
+	public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
+		super(maxHp);
+
 		final float x = Map.getGameXinPixel(xTile);
 		final float y = Map.getGameYinPixel(yTile);
 

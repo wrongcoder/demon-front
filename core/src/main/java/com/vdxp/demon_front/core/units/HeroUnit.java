@@ -13,11 +13,8 @@ public class HeroUnit extends YourSideUnit {
 	private boolean movingLeft;
 	private boolean movingRight;
 
-	private static final float maxHp = 270;
-	private float hp = 270;
-
 	public HeroUnit(final TextureAtlas spritesAtlas) {
-		super(spritesAtlas, 4, 0.25f, 16, 14);
+		super(270, spritesAtlas, 4, 0.25f, 16, 14);
 	}
 
 	@Override
@@ -30,7 +27,7 @@ public class HeroUnit extends YourSideUnit {
 	@Override
 	public void combat(final float delta, final Set<Unit> activeCollidables) {
 		// regeneration
-		hp = Math.min(hp + 3 * delta, maxHp);
+		setHp(Math.min(getMaxHp(), getHp() + 3 * delta));
 
 		if (Math.random() < delta) {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
@@ -43,19 +40,6 @@ public class HeroUnit extends YourSideUnit {
 				}
 			}
 		}
-	}
-
-	@Override
-	public void receiveHit(final int hp, final Unit source) {
-		this.hp -= hp;
-		if (this.hp < 0) {
-			die();
-		}
-	}
-
-	@Override
-	public float getHitPointsFraction() {
-		return Math.max(0, hp / maxHp);
 	}
 
 	public Float computeMovementAngle() {

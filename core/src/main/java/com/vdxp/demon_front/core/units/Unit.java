@@ -39,10 +39,15 @@ public abstract class Unit extends Drawable {
 	private float width = 32;
 	private float height = 32;
 
+	private final float maxHp;
+
+	private float hp;
 	private boolean alive = true;
 
-	public Unit() {
+	public Unit(final float maxHp) {
 		this.animated = true;
+		this.maxHp = maxHp;
+		this.hp = maxHp;
 	}
 
 	@Override
@@ -197,22 +202,40 @@ public abstract class Unit extends Drawable {
 		return alive;
 	}
 
+	public float getMaxHp() {
+		return maxHp;
+	}
+
+	public float getHp() {
+		return hp;
+	}
+
+	public void setHp(final float hp) {
+		this.hp = hp;
+	}
+
+	public void changeHp(final float deltaHp) {
+		this.hp += deltaHp;
+		if (this.hp < 0) {
+			die();
+		}
+	}
+
 	public void die() {
 		this.alive = false;
 	}
 
 	public abstract void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables);
 
-	public void combat(final float delta, final Set<Unit> activeCollidables) {
-		// temporarily not abstract, do nothing
-	}
+	public abstract void combat(final float delta, final Set<Unit> activeCollidables);
 
 	public void receiveHit(final int hp, final Unit source) {
-		// temporarily not abstract, do nothing
+		changeHp(-hp);
 	}
 
-	/** @return Ratio of hit points remaining in range [0, 1] */
-	public abstract float getHitPointsFraction();
+	public float getHitPointsFraction() {
+		return Math.max(0, hp / maxHp);
+	}
 
 	public static Animation buildAnimation(final float frameDuration, final TextureAtlas spritesAtlas, final int playType, final String... spriteNames) {
 		return buildAnimation(frameDuration, spritesAtlas, playType, false, spriteNames);
