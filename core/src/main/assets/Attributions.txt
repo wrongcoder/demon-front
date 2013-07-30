@@ -85,6 +85,8 @@ CC-By Matt Hackett/richtaur
 
 All demongate sprite: CC-By Daniel Cook (Lostgarden.com)
 
+Fog of War tiles: Public Domain (from Dungeon Crawl Stone Soup http://crawl.develz.org/wordpress/)
+
 Tree1
 CC-By Matt Hackett/richtaur
 "Original Bomb Party sprite sheet by Matt Hackett of Lost Decade Games, expanded by Cem Kalyoncu and /usr/share."
@@ -92,4 +94,6 @@ CC-By Matt Hackett/richtaur
 grass1 and 2 -> from the OGA community tile set -> various authors
 CC-By-SA from the OpenGameArt.org Community Tileset. http://opengameart.org
 
-Voice: N/A
+Voice:
+
+All voice samples are recorded by citizenlion
