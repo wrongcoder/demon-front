@@ -26,6 +26,8 @@ public abstract class YourSideUnit extends FriendlyUnit {
     private float directionChangeTimer = 4;
     private float currDirection = -1;
 
+    private float commandForgottenTimer = 0;
+
     public YourSideUnit(final float maxHp, final TextureAtlas spritesAtlas, final int spriteId, final float animationSpeed, final int xTile, final int yTile) {
 		super(maxHp, spritesAtlas);
 
@@ -75,7 +77,7 @@ public abstract class YourSideUnit extends FriendlyUnit {
 		if (shoutCommand != null) {
 			currDirection = shoutCommand.angle;
 		} else {
-            if (directionChangeTimer > 0.75f) {
+            if (directionChangeTimer > 0.5f) {
                 currDirection = (float) ((Math.PI * 2) * Math.random());
                 directionChangeTimer = 0;
             }
@@ -86,6 +88,13 @@ public abstract class YourSideUnit extends FriendlyUnit {
 			shoutCommand = null;
 		}
 
+        // orcs are dumb, but because of this, they can be
+        // group together into great forces!
+        commandForgottenTimer += delta;
+        if (commandForgottenTimer > 10 /* secs */ && shoutCommand != null) {
+            shoutCommand = null;
+            commandForgottenTimer = 0;
+        }
 		setNextAnimation(getAngle());
 	}
 
