@@ -55,7 +55,7 @@ public class HeroUnit extends YourSideUnit {
 				if (unit instanceof EnemyUnit || unit instanceof DemonGate) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
-						unit.receiveHit(18, this);
+						unit.receiveHit(22, this);
 						return;
 					}
 				}
