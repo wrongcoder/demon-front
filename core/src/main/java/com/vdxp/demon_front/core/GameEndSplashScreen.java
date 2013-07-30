@@ -57,7 +57,7 @@ public abstract class GameEndSplashScreen extends Screen {
 
 		batch.begin();
 		showMessage(batch, bigFont, normalFont, smallFont);
-		Util.drawCentred("Press any key or click any button to play again.", smallFont, batch, 150);
+		Util.drawCentred("Click any button to play again.", smallFont, batch, 150);
 		batch.end();
 	}
 
