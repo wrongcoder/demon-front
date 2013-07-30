@@ -65,7 +65,7 @@ public class HeroUnit extends YourSideUnit {
 
 	@Override
 	public float getSpeed() {
-		return 110;
+		return 120;
 	}
 
 	public Float computeMovementAngle() {
