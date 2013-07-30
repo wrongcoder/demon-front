@@ -142,6 +142,8 @@ public class MusicMan {
         }
         nowPlaying = Game.instance().assetManager().get(BattleEnd_Good);
         nowPlaying.play();
+	    nowPlayingTime = 1000;
+	    resetMoodChangeTendency(60);
     }
 
     public void playBattleEndBad () {
@@ -150,6 +152,8 @@ public class MusicMan {
         }
         nowPlaying = Game.instance().assetManager().get(BattleEnd_Bad);
         nowPlaying.play();
+	    nowPlayingTime = 1000;
+	    resetMoodChangeTendency(60);
     }
 
 	public void stopPlaying() {
@@ -165,7 +169,7 @@ public class MusicMan {
 
 	public void requestMusic(final Mood mood, final float delta) {
 		if (prevPlaying != null) {
-			final float totalFaderTime = 3f;
+			final float totalFaderTime = 2.5f;
 			faderTime += delta;
 			final float fader = Math.min(faderTime / totalFaderTime, 1);
 			prevPlaying.setVolume(1 - fader);
