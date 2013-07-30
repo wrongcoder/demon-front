@@ -100,5 +100,6 @@ public abstract class YourSideUnit extends FriendlyUnit {
 
 	public void setShoutCommand(final HeroUnit.ShoutCommand shoutCommand) {
 		this.shoutCommand = shoutCommand;
+		commandForgottenTimer = 0;
 	}
 }
