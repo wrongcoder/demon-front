@@ -114,25 +114,24 @@ public abstract class Unit extends Drawable implements Collidable {
 		final float actualY;
 
 		final Array<Unit> shortlistedActiveCollidables = shortlistActiveCandidates(this, activeCollidables);
-		final Array<MapTile> shortlistedInactiveCollidables = shortlistInactiveCandidates(this, inactiveCollidables);
 
 		// this is going to be slow with a lot of units
-		if (!isCollision(shortlistedActiveCollidables, shortlistedInactiveCollidables, targetDeltaX, targetDeltaY)) {
+		if (!isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX, targetDeltaY)) {
 			actualX = this.x + targetDeltaX;
 			actualY = this.y + targetDeltaY;
-		} else if (targetDeltaX != 0 && !isCollision(shortlistedActiveCollidables, shortlistedInactiveCollidables, targetDeltaX, 0)) {
+		} else if (targetDeltaX != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX, 0)) {
 			actualX = this.x + targetDeltaX;
 			actualY = this.y;
-		} else if (targetDeltaY != 0 && !isCollision(shortlistedActiveCollidables, shortlistedInactiveCollidables, 0, targetDeltaY)) {
+		} else if (targetDeltaY != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, 0, targetDeltaY)) {
 			actualX = this.x;
 			actualY = this.y + targetDeltaY;
-		} else if (!isCollision(shortlistedActiveCollidables, shortlistedInactiveCollidables, targetDeltaX/2, targetDeltaY/2)) {
+		} else if (!isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX/2, targetDeltaY/2)) {
 			actualX = this.x + targetDeltaX/2;
 			actualY = this.y + targetDeltaY/2;
-		} else if (targetDeltaX != 0 && !isCollision(shortlistedActiveCollidables, shortlistedInactiveCollidables, targetDeltaX/2, 0)) {
+		} else if (targetDeltaX != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX/2, 0)) {
 			actualX = this.x + targetDeltaX/2;
 			actualY = this.y;
-		} else if (targetDeltaY != 0 && !isCollision(shortlistedActiveCollidables, shortlistedInactiveCollidables, 0, targetDeltaY/2)) {
+		} else if (targetDeltaY != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, 0, targetDeltaY/2)) {
 			actualX = this.x;
 			actualY = this.y + targetDeltaY/2;
 		} else {
@@ -174,17 +173,6 @@ public abstract class Unit extends Drawable implements Collidable {
 		final Array<Unit> shortlist = new Array<Unit>(false, candidates.size);
 		for (int ix = 0; ix < candidates.size; ix++) {
 			final Unit candidate = candidates.get(ix);
-			if (!(candidate.x < it.x - 128 || candidate.x > it.x + 128 || candidate.y < it.y - 128 || candidate.y > it.y + 128)) {
-				shortlist.add(candidate);
-			}
-		}
-		return shortlist;
-	}
-
-	private static Array<MapTile> shortlistInactiveCandidates(final Unit it, final Array<MapTile> candidates) {
-		final Array<MapTile> shortlist = new Array<MapTile>(false, 16);
-		for (int ix = 0; ix < candidates.size; ix++) {
-			final MapTile candidate = candidates.get(ix);
 			if (!(candidate.x < it.x - 128 || candidate.x > it.x + 128 || candidate.y < it.y - 128 || candidate.y > it.y + 128)) {
 				shortlist.add(candidate);
 			}
