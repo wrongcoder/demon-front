@@ -14,7 +14,7 @@ public class Map {
     private String asciiSourcePath = null;
     private String asciiSource = null;
     private Array<MapTile> nonCollidableMapTiles = new Array<MapTile>();
-    private Array<MapTile> collidableMapTiles = new Array<MapTile>();
+    private Array[][] collidableMapTiles = new Array[16][12];
     private Array<Unit> units = new Array<Unit>();
 
     private int tileMapSizeX = 0;
@@ -36,6 +36,12 @@ public class Map {
     public void Init(String asciiSourcePath) {
         this.asciiSourcePath = asciiSourcePath;
 
+	    for (int regionX = 0; regionX < 16; regionX++) {
+		    for (int regionY = 0; regionY < 12; regionY++) {
+			    collidableMapTiles[regionX][regionY] = new Array<MapTile>(false, 25);
+		    }
+	    }
+
         asciiSource =
                 Gdx.files.internal(asciiSourcePath).readString();
 
@@ -50,6 +56,9 @@ public class Map {
         for (int i=0;i<asciiSource.length();i++) {
 
             currChar = asciiSource.charAt(i);
+
+	        final int regionX = currX / 5;
+	        final int regionY = currY / 5;
 
             switch (currChar) {
                 case '*':
@@ -67,13 +76,16 @@ public class Map {
                     }
                     break;
                 case 't':
-                    collidableMapTiles.add(new TreeTile(spritesAtlas, currX, currY));
+	                //noinspection unchecked
+	                collidableMapTiles[regionX][regionY].add(new TreeTile(spritesAtlas, currX, currY));
                     break;
                 case 'T':
-                    collidableMapTiles.add(new TreeTile(spritesAtlas, currX, currY));
+	                //noinspection unchecked
+	                collidableMapTiles[regionX][regionY].add(new TreeTile(spritesAtlas, currX, currY));
                     break;
                 case 'M':
-                    collidableMapTiles.add(new MountainTile(spritesAtlas, currX, currY));
+	                //noinspection unchecked
+	                collidableMapTiles[regionX][regionY].add(new MountainTile(spritesAtlas, currX, currY));
                     break;
                 case 'd':
                     units.add(new DemonGate(spritesAtlas, currX, currY));
@@ -100,7 +112,13 @@ public class Map {
     }
 
     public Array<MapTile> getCollidableMapTiles() {
-        return collidableMapTiles;
+	    final Array<MapTile> tiles = new Array<MapTile>(false, 128);
+	    for (int regionX = 0; regionX < 16; regionX++) {
+		    for (int regionY = 0; regionY < 12; regionY++) {
+			    tiles.addAll(collidableMapTiles[regionX][regionY]);
+		    }
+	    }
+	    return tiles;
     }
 
     public Array<Unit> getUnits() {
