@@ -98,15 +98,21 @@ public class SpriteTestScreen extends Screen {
 	@Override
 	public void render(final float delta) {
 		physicsTimerBucket += delta;
-		while (physicsTimerBucket > physicsTimerRate) {
+		if (physicsTimerBucket > physicsTimerRate) {
 			physics(physicsTimerRate);
 			physicsTimerBucket -= physicsTimerRate;
 		}
+		if (physicsTimerBucket > physicsTimerRate) {
+			physicsTimerBucket = 0;
+		}
 
 		controlTimerBucket += delta;
-		while (controlTimerBucket > controlTimerRate) {
+		if (controlTimerBucket > controlTimerRate) {
 			control(controlTimerRate);
 			controlTimerBucket -= controlTimerRate;
+		}
+		if (controlTimerBucket > controlTimerRate) {
+			controlTimerBucket = 0;
 		}
 
         friendlySpawnTimerbucket += delta;
