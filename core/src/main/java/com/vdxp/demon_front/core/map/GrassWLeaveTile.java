@@ -13,11 +13,11 @@ public class GrassWLeaveTile extends MapTile {
                            int mapY) {
         grass_w_leave = spritesAtlas.findRegion("grass2");
 
-        setWidth(grass_w_leave.getRegionWidth());
-        setHeight(grass_w_leave.getRegionHeight());
+        width = grass_w_leave.getRegionWidth();
+        height = grass_w_leave.getRegionHeight();
 
-        setX(mapX * getWidth());
-        setY(mapY * getHeight());
+        x = mapX * width;
+        y = mapY * height;
     }
 
     public void drawSprite(final SpriteBatch batch,

@@ -18,11 +18,11 @@ public class FogOfWarTile extends MapTile {
                         int mapY) {
         fogOfWar1 = spritesAtlas.findRegion("fogOfWar1");
 
-        setWidth(fogOfWar1.getRegionWidth());
-        setHeight(fogOfWar1.getRegionHeight());
+        width = fogOfWar1.getRegionWidth();
+        height = fogOfWar1.getRegionHeight();
 
-        setX(mapX * getWidth());
-        setY(mapY * getHeight());
+        x = mapX * width;
+        y = mapY * height;
     }
 
     public void drawSprite(final SpriteBatch batch,
