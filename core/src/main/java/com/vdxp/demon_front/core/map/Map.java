@@ -57,7 +57,7 @@ public class Map {
                     break;
                 case '\n':
                     currY--;
-                    currX = TILE_MAP_LEFT;
+                    currX = -1;
                     break;
                 case 'L':
                     if (Math.random() > 0.9f) {
