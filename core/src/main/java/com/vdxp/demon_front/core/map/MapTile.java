@@ -3,10 +3,11 @@ package com.vdxp.demon_front.core.map;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.vdxp.demon_front.core.Collidable;
 import com.vdxp.demon_front.core.Drawable;
 import com.vdxp.demon_front.core.Viewport;
 
-public abstract class MapTile extends Drawable {
+public abstract class MapTile extends Drawable implements Collidable {
 	public float x;
 	public float y;
 	public float width;
@@ -46,5 +47,15 @@ public abstract class MapTile extends Drawable {
               )
         );
     }
+
+	@Override
+	public final float getX() {
+		return x;
+	}
+
+	@Override
+	public final float getY() {
+		return y;
+	}
 
 }
