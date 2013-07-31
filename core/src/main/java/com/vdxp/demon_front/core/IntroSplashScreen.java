@@ -135,6 +135,9 @@ public abstract class IntroSplashScreen extends Screen {
 		keyLeft.draw(batch);
 		keyRight.draw(batch);
 		keyDown.draw(batch);
+		Util.drawCentred("Orcs will shuffle aimlessly unless commanded", smallFont, batch, 230);
+		Util.drawCentred("Commands affect all orcs that the hero can clearly see", smallFont, batch, 210);
+		Util.drawCentred("Destroy all the demon gates, but stay alive and don't let the demons enter your city", smallFont, batch, 190);
 		batch.end();
 	}
 
