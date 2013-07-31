@@ -6,13 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.LoseEndSplashScreen;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
-
-import java.util.Set;
 
 public abstract class EnemyUnit extends Unit {
 
@@ -44,7 +43,7 @@ public abstract class EnemyUnit extends Unit {
 	}
 
 	@Override
-	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+	public void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables) {
 
         // lose condition, enemy reaches end of screen
         if (this.getY() <= 10) {
@@ -122,10 +121,11 @@ public abstract class EnemyUnit extends Unit {
 	}
 
 	@Override
-	public void combat(final float delta, final Set<Unit> activeCollidables) {
+	public void combat(final float delta, final Array<Unit> activeCollidables) {
 		if (Math.random() < delta / 1.5) {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
-			for (final Unit unit : activeCollidables) {
+			for (int ix = 0; ix < activeCollidables.size; ix++) {
+				final Unit unit = activeCollidables.get(ix);
 				if (!(unit instanceof EnemyUnit) &&
                     !(unit instanceof DemonGate)
 				        ) {

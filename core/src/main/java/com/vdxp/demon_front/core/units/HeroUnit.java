@@ -2,10 +2,9 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.map.MapTile;
-
-import java.util.Set;
 
 public class HeroUnit extends YourSideUnit {
 
@@ -24,14 +23,15 @@ public class HeroUnit extends YourSideUnit {
 	}
 
 	@Override
-	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+	public void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables) {
 		final Float angle = computeMovementAngle();
 		tryMove(angle, delta, activeCollidables, inactiveCollidables);
 		setNextAnimation(angle);
 
 		final ShoutCommand shoutCommand = computeShoutCommand();
 		if (shoutCommand != null) {
-			for (final Unit unit : activeCollidables) {
+			for (int ix = 0; ix < activeCollidables.size; ix++) {
+				final Unit unit = activeCollidables.get(ix);
 				if (unit != this && unit instanceof YourSideUnit) {
 					final float unitDX = unit.getX() - getX();
 					final float unitDY = unit.getY() - getY();
@@ -45,13 +45,14 @@ public class HeroUnit extends YourSideUnit {
 	}
 
 	@Override
-	public void combat(final float delta, final Set<Unit> activeCollidables) {
+	public void combat(final float delta, final Array<Unit> activeCollidables) {
 		// regeneration
 		setHp(Math.min(getMaxHp(), getHp() + 3 * delta));
 
 		if (Math.random() < delta) {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
-			for (final Unit unit : activeCollidables) {
+			for (int ix = 0; ix < activeCollidables.size; ix++) {
+				final Unit unit = activeCollidables.get(ix);
 				if (unit instanceof EnemyUnit || unit instanceof DemonGate) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {

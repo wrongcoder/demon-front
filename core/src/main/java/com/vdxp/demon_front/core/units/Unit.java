@@ -12,8 +12,6 @@ import com.vdxp.demon_front.core.Drawable;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.MapTile;
 
-import java.util.Set;
-
 import static com.vdxp.demon_front.core.Util.interpolate;
 
 public abstract class Unit extends Drawable {
@@ -100,7 +98,7 @@ public abstract class Unit extends Drawable {
 	}
 
 	/** @return whether move was successful */
-	protected boolean tryMove(final Float angle, final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+	protected boolean tryMove(final Float angle, final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables) {
 		this.prevX = this.x;
 		this.prevY = this.y;
 		this.angle = null;
@@ -160,10 +158,11 @@ public abstract class Unit extends Drawable {
 		}
 	}
 
-	private boolean isCollision(final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables, final float targetDeltaX, final float targetDeltaY) {
+	private boolean isCollision(final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables, final float targetDeltaX, final float targetDeltaY) {
 		Rectangle.tmp.set(this.x + targetDeltaX + 2, this.y + targetDeltaY + 2, this.width - 4, this.height - 4);
 
-		for (final Unit other : activeCollidables) {
+		for (int ix = 0; ix < activeCollidables.size; ix++) {
+			final Unit other = activeCollidables.get(ix);
 			if (other == this) {
 				continue;
 			}
@@ -182,7 +181,8 @@ public abstract class Unit extends Drawable {
 				return true;
 			}
 		}
-		for (final MapTile other : inactiveCollidables) {
+		for (int ix = 0; ix < inactiveCollidables.size; ix++) {
+			final MapTile other = inactiveCollidables.get(ix);
 			Rectangle.tmp2.set(other.getX(), other.getY(), other.getWidth(), other.getHeight());
 			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 				return true;
@@ -249,9 +249,9 @@ public abstract class Unit extends Drawable {
 		this.alive = false;
 	}
 
-	public abstract void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables);
+	public abstract void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables);
 
-	public abstract void combat(final float delta, final Set<Unit> activeCollidables);
+	public abstract void combat(final float delta, final Array<Unit> activeCollidables);
 
 	public void receiveHit(final int hp, final Unit source) {
 		changeHp(-hp);
