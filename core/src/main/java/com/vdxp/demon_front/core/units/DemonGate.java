@@ -1,15 +1,17 @@
 package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.SpriteTestScreen;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
-
-import java.util.Set;
 
 public class DemonGate extends Unit {
 
@@ -97,12 +99,12 @@ public class DemonGate extends Unit {
 	}
 
 	@Override
-    public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+    public void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables) {
         // no movement, no collision
     }
 
     @Override
-    public void combat(final float delta, final Set<Unit> activeCollidables) {
+    public void combat(final float delta, final Array<Unit> activeCollidables) {
         // does not attack
 
         // does spawning logic, delta is 0.3333f

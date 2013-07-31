@@ -2,22 +2,20 @@ package com.vdxp.demon_front.core.map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Asset;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.units.DemonGate;
 import com.vdxp.demon_front.core.units.Unit;
 import com.vdxp.demon_front.core.units.WallSection;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Map {
 
     private String asciiSourcePath = null;
     private String asciiSource = null;
-    private Set<MapTile> nonCollidableMapTiles = new HashSet<MapTile>();
-    private Set<MapTile> collidableMapTiles = new HashSet<MapTile>();
-    private Set<Unit> units = new HashSet<Unit>();
+    private Array<MapTile> nonCollidableMapTiles = new Array<MapTile>();
+    private Array<MapTile> collidableMapTiles = new Array<MapTile>();
+    private Array<Unit> units = new Array<Unit>();
 
     private int tileMapSizeX = 0;
     private int tileMapSizeY = 0;
@@ -97,15 +95,15 @@ public class Map {
 
     }
 
-    public Set<MapTile> getNonCollidableMapTiles() {
+    public Array<MapTile> getNonCollidableMapTiles() {
         return nonCollidableMapTiles;
     }
 
-    public Set<MapTile> getCollidableMapTiles() {
+    public Array<MapTile> getCollidableMapTiles() {
         return collidableMapTiles;
     }
 
-    public Set<Unit> getUnits() {
+    public Array<Unit> getUnits() {
         return units;
     }
 

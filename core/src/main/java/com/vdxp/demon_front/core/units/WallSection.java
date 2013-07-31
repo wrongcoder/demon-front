@@ -3,11 +3,10 @@ package com.vdxp.demon_front.core.units;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.MapTile;
-
-import java.util.Set;
 
 public class WallSection extends Unit {
 
@@ -92,12 +91,12 @@ public class WallSection extends Unit {
 	}
 
 	@Override
-	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+	public void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables) {
         // other things interacts with the wall but the wall does not move
     }
 
 	@Override
-	public void combat(final float delta, final Set<Unit> activeCollidables) {
+	public void combat(final float delta, final Array<Unit> activeCollidables) {
 		// walls don't attack
 	}
 

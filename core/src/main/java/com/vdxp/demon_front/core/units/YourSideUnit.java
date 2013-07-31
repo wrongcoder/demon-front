@@ -2,10 +2,9 @@ package com.vdxp.demon_front.core.units;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
-
-import java.util.Set;
 
 /** This is any FriendlyUnit that uses a Your Side sprite */
 public abstract class YourSideUnit extends FriendlyUnit {
@@ -70,7 +69,7 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	}
 
 	@Override
-	public void physics(final float delta, final Set<Unit> activeCollidables, final Set<MapTile> inactiveCollidables) {
+	public void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables) {
 
 		directionChangeTimer += delta;
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 import com.vdxp.demon_front.core.units.ClothUnit;
@@ -20,10 +21,6 @@ import com.vdxp.demon_front.core.units.MailUnit;
 import com.vdxp.demon_front.core.units.MosquitoUnit;
 import com.vdxp.demon_front.core.units.Unit;
 import com.vdxp.demon_front.core.units.WaspUnit;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 public class SpriteTestScreen extends Screen {
 
@@ -50,14 +47,14 @@ public class SpriteTestScreen extends Screen {
 	private Map map1_layer1 = new Map();
     private Map map1_layer2 = new Map();
     private Map fogOfWar = new Map();
-    private Set<MapTile> background = new HashSet<MapTile>();
-    private Set<MapTile> inactiveCollidables = new HashSet<MapTile>();
-    private Set<Unit> activeCollidables = new HashSet<Unit>();
-    private Set<Drawable> inactiveNonCollidables_effects = new HashSet<Drawable>();
+    private Array<MapTile> background = new Array<MapTile>();
+    private Array<MapTile> inactiveCollidables = new Array<MapTile>();
+    private Array<Unit> activeCollidables = new Array<Unit>();
+    private Array<Drawable> inactiveNonCollidables_effects = new Array<Drawable>();
 
-    private Set<Unit> toSpawn = new HashSet<Unit>();
+    private Array<Unit> toSpawn = new Array<Unit>();
 
-    public Set<Unit> getActiveCollidables() {
+    public Array<Unit> getActiveCollidables() {
         return activeCollidables;
     }
 
@@ -131,30 +128,30 @@ public class SpriteTestScreen extends Screen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		for (final Drawable drawable : background) {
-			drawable.drawSprite(batch, viewport, delta, alpha);
+		for (int ix = 0; ix < background.size; ix++) {
+			background.get(ix).drawSprite(batch, viewport, delta, alpha);
 		}
-		for (final Drawable drawable : inactiveCollidables) {
-			drawable.drawSprite(batch, viewport, delta, alpha);
+		for (int ix = 0; ix < inactiveCollidables.size; ix++) {
+			inactiveCollidables.get(ix).drawSprite(batch, viewport, delta, alpha);
 		}
-		for (final Drawable drawable : activeCollidables) {
-			drawable.drawSprite(batch, viewport, delta, alpha);
+		for (int ix = 0; ix < activeCollidables.size; ix++) {
+			activeCollidables.get(ix).drawSprite(batch, viewport, delta, alpha);
 		}
 		batch.end();
 
-		for (final Drawable drawable : background) {
-			drawable.drawOverlay(shape, viewport, delta, alpha);
+		for (int ix = 0; ix < background.size; ix++) {
+			background.get(ix).drawOverlay(shape, viewport, delta, alpha);
 		}
-		for (final Drawable drawable : inactiveCollidables) {
-			drawable.drawOverlay(shape, viewport, delta, alpha);
+		for (int ix = 0; ix < inactiveCollidables.size; ix++) {
+			inactiveCollidables.get(ix).drawOverlay(shape, viewport, delta, alpha);
 		}
-		for (final Drawable drawable : activeCollidables) {
-			drawable.drawOverlay(shape, viewport, delta, alpha);
+		for (int ix = 0; ix < activeCollidables.size; ix++) {
+			activeCollidables.get(ix).drawOverlay(shape, viewport, delta, alpha);
 		}
 
 		batch.begin();
-		for (final Drawable drawable : inactiveNonCollidables_effects) {
-			drawable.drawSprite(batch, viewport, delta, alpha);
+		for (int ix = 0; ix < inactiveNonCollidables_effects.size; ix++) {
+			inactiveNonCollidables_effects.get(ix).drawSprite(batch, viewport, delta, alpha);
 		}
 		/*
 		debugFont.draw(batch, "FPS " + (int) (1 / delta), 2, 26);
@@ -175,8 +172,8 @@ public class SpriteTestScreen extends Screen {
 	}
 
 	private void physics(final float delta) {
-		for (final Unit unit : activeCollidables) {
-			unit.physics(delta, activeCollidables, inactiveCollidables);
+		for (int ix = 0; ix < activeCollidables.size; ix++) {
+			activeCollidables.get(ix).physics(delta, activeCollidables, inactiveCollidables);
 		}
 	}
 
@@ -220,25 +217,21 @@ public class SpriteTestScreen extends Screen {
     }
 
 	private void control(final float delta) {
-		for (final Unit unit : activeCollidables) {
+		for (int ix = activeCollidables.size - 1; ix >= 0; ix--) {
+			final Unit unit = activeCollidables.get(ix);
 			unit.combat(delta, activeCollidables);
-		}
-
-		final Iterator<Unit> iterator = activeCollidables.iterator();
-		while (iterator.hasNext()) {
-			final Unit unit = iterator.next();
 			if (!unit.isAlive() && unit != hero) {
-				iterator.remove();
+				activeCollidables.removeIndex(ix);
 			}
 		}
 
-        if (!toSpawn.isEmpty()) {
+        if (toSpawn.size > 0) {
 		    activeCollidables.addAll(toSpawn);
 		    toSpawn.clear();
         }
 
 		final MusicMan musicMan = game().getMusicMan();
-		final int units = activeCollidables.size();
+		final int units = activeCollidables.size;
 		final int demonGatesLeft = countGates(activeCollidables);
 
 		if (demonGatesLeft == 1) {
@@ -261,10 +254,10 @@ public class SpriteTestScreen extends Screen {
 		}
 	}
 
-	private static int countGates(final Set<Unit> activeCollidables) {
+	private static int countGates(final Array<Unit> activeCollidables) {
 		int count = 0;
-		for (final Unit unit : activeCollidables) {
-			if (unit instanceof DemonGate) {
+		for (int ix = 0; ix < activeCollidables.size; ix++) {
+			if (activeCollidables.get(ix) instanceof DemonGate) {
 				count++;
 			}
 		}
