@@ -57,7 +57,7 @@ public abstract class FriendlyUnit extends Unit {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
-				if (unit instanceof EnemyUnit) {
+				if (!isOnMySide(unit) && unit.getClass() != DemonGate.class) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(10, this);

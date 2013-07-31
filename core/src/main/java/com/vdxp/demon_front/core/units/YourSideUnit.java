@@ -100,4 +100,9 @@ public abstract class YourSideUnit extends FriendlyUnit {
 	public void setShoutCommand(final HeroUnit.ShoutCommand shoutCommand) {
 		this.shoutCommand = shoutCommand;
 	}
+
+	@Override
+	public boolean isFriendly() {
+		return true;
+	}
 }

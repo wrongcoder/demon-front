@@ -33,7 +33,7 @@ public class FogOfWarWFaceTile extends MapTile {
                      final float alpha) {
 
 	    final Screen screen = Game.instance().getScreen();
-	    if (!(screen instanceof SpriteTestScreen)) {
+	    if (screen.getClass() != SpriteTestScreen.class) {
 		    return;
 	    }
 	    HeroUnit hero = ((SpriteTestScreen) screen).getHero();

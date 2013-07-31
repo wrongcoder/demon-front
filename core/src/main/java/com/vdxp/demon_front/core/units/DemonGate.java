@@ -111,7 +111,7 @@ public class DemonGate extends Unit {
         demonSpawnBucket1 += delta;
         if (demonSpawnBucket1 > demonSpawnInterval1) {
 	        final Screen screen = Game.instance().getScreen();
-	        if (!(screen instanceof SpriteTestScreen)) {
+	        if (screen.getClass() != SpriteTestScreen.class) {
 		        return;
 	        }
 	        ((SpriteTestScreen) screen).
@@ -139,5 +139,10 @@ public class DemonGate extends Unit {
             this.setAnimation(dyingAnimation);
         }
     }
+
+	@Override
+	public boolean isFriendly() {
+		return false;
+	}
 
 }

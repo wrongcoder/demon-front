@@ -33,7 +33,7 @@ public class FogOfWarTile extends MapTile {
         setSpriteToDraw(fogOfWar1);
 
 	    final Screen screen = Game.instance().getScreen();
-	    if (!(screen instanceof SpriteTestScreen)) {
+	    if (screen.getClass() != SpriteTestScreen.class) {
 		    return;
 	    }
 	    HeroUnit hero = ((SpriteTestScreen) screen).getHero();

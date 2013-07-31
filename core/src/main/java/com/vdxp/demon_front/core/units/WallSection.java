@@ -106,4 +106,8 @@ public class WallSection extends Unit {
         clawSlashTimer += 0.1f;
     }
 
+	@Override
+	public boolean isFriendly() {
+		return true;
+	}
 }

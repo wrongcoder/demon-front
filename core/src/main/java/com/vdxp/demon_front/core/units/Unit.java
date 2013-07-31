@@ -166,16 +166,9 @@ public abstract class Unit extends Drawable {
 			if (other == this) {
 				continue;
 			}
-			if (this instanceof EnemyUnit) {
-                if (other instanceof EnemyUnit ||
-                    other instanceof DemonGate) {
-                    continue;
-                }
-            } else if (this instanceof FriendlyUnit) {
-                if (other instanceof FriendlyUnit) {
-                    continue;
-                }
-            }
+			if (isOnMySide(other) && other.getClass() != WallSection.class) {
+				continue;
+			}
 			Rectangle.tmp2.set(other.x, other.y, other.width, other.height);
 			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 				return true;
@@ -252,6 +245,12 @@ public abstract class Unit extends Drawable {
 	public abstract void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables);
 
 	public abstract void combat(final float delta, final Array<Unit> activeCollidables);
+
+	public boolean isOnMySide(final Unit other) {
+		return this.isFriendly() == other.isFriendly();
+	}
+
+	public abstract boolean isFriendly();
 
 	public void receiveHit(final int hp, final Unit source) {
 		changeHp(-hp);
