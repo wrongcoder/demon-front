@@ -121,7 +121,20 @@ public class Map {
 	    return tiles;
     }
 
-    public Array<Unit> getUnits() {
+	public Array<MapTile> getNearbyCollidableMapTiles(final float x, final float y) {
+		final int regionX = (int) (x / (5*32));
+		final int regionY = (int) (y / (5*32));
+		final Array<MapTile> nearby = new Array<MapTile>(false, 32);
+
+		for (int xIx = ((regionX <= 1) ? 0 : regionX - 1); xIx <= ((regionX >= 14) ? 15 : regionX + 1); xIx++) {
+			for (int yIx = ((regionY <= 1) ? 0 : regionY - 1); yIx <= ((regionY >= 10) ? 11 : regionY + 1); yIx++) {
+				nearby.addAll(collidableMapTiles[xIx][yIx]);
+			}
+		}
+		return nearby;
+	}
+
+	public Array<Unit> getUnits() {
         return units;
     }
 
