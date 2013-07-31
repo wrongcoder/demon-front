@@ -159,7 +159,10 @@ public abstract class Unit extends Drawable {
 	}
 
 	private boolean isCollision(final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables, final float targetDeltaX, final float targetDeltaY) {
-		Rectangle.tmp.set(this.x + targetDeltaX + 2, this.y + targetDeltaY + 2, this.width - 4, this.height - 4);
+		final float x1 = this.x + targetDeltaX + 2;
+		final float y1 = this.y + targetDeltaY + 2;
+		final float w1 = this.width - 4;
+		final float h1 = this.height - 4;
 
 		for (int ix = 0; ix < activeCollidables.size; ix++) {
 			final Unit other = activeCollidables.get(ix);
@@ -169,19 +172,22 @@ public abstract class Unit extends Drawable {
 			if (isOnMySide(other) && other.getClass() != WallSection.class) {
 				continue;
 			}
-			Rectangle.tmp2.set(other.x, other.y, other.width, other.height);
-			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+			if (overlaps(x1, y1, h1, w1, other.x, other.y, other.width, other.height)) {
 				return true;
 			}
 		}
 		for (int ix = 0; ix < inactiveCollidables.size; ix++) {
 			final MapTile other = inactiveCollidables.get(ix);
-			Rectangle.tmp2.set(other.getX(), other.getY(), other.getWidth(), other.getHeight());
-			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+			if (overlaps(x1, y1, h1, w1, other.getX(), other.getY(), other.getWidth(), other.getHeight())) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	private static boolean overlaps(final float x1, final float y1, final float w1, final float h1, final float x2, final float y2, final float w2, final float h2) {
+		// Copied from com.badlogic.gdx.math.Rectangle.overlaps(Rectangle) to inline
+		return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
 	}
 
 	/** @return pixels per second */
