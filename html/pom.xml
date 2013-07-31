@@ -74,10 +74,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<draftCompile>true</draftCompile>
 					<logLevel>INFO</logLevel>
 					<style>OBFUSCATED</style>
 					<runTarget>index.html</runTarget>
+					<disableCastChecking>true</disableCastChecking>
 				</configuration>
 			</plugin>
 			<plugin>
