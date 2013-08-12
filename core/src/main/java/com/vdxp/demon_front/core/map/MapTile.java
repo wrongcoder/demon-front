@@ -13,7 +13,7 @@ public abstract class MapTile extends Drawable implements Collidable {
 	public float width;
 	public float height;
 
-    TextureAtlas.AtlasRegion spriteToDraw;
+    protected TextureAtlas.AtlasRegion spriteToDraw;
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {

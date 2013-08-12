@@ -13,6 +13,7 @@ public class FogOfWarWFaceTile extends MapTile {
 
     TextureAtlas.AtlasRegion fogOfWarWFace;
 
+    private Screen screen = null;
 
     public FogOfWarWFaceTile(final TextureAtlas spritesAtlas,
                              int mapX,
@@ -25,6 +26,8 @@ public class FogOfWarWFaceTile extends MapTile {
 
         x = mapX * width;
         y = mapY * height;
+
+        screen = Game.instance().getScreen();
     }
 
     public void drawSprite(final SpriteBatch batch,
@@ -32,30 +35,30 @@ public class FogOfWarWFaceTile extends MapTile {
                      final float delta,
                      final float alpha) {
 
-	    final Screen screen = Game.instance().getScreen();
-	    if (screen.getClass() != SpriteTestScreen.class) {
-		    return;
-	    }
-	    HeroUnit hero = ((SpriteTestScreen) screen).getHero();
+	    final HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
         int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 
-        if (tileDist > 4) {
-            setSpriteToDraw(fogOfWarWFace);
+        if (tileDist < 29) {
+            if (tileDist > 4) {
+                spriteToDraw = fogOfWarWFace;
 
-            if (tileDist < 6) {
-                batch.setColor(new Color(1f,1f,1f,0.25f));
-            } else if (tileDist < 8) {
-                batch.setColor(new Color(1f,1f,1f,0.5f));
-            } else if (tileDist < 10) {
-                batch.setColor(new Color(1f,1f,1f,0.75f));
-            } else if (tileDist < 12) {
-                batch.setColor(new Color(1f,1f,1f,0.95f));
+                if (tileDist < 6) {
+                    batch.setColor(new Color(1f,1f,1f,0.25f));
+                } else if (tileDist < 8) {
+                    batch.setColor(new Color(1f,1f,1f,0.5f));
+                } else if (tileDist < 10) {
+                    batch.setColor(new Color(1f,1f,1f,0.75f));
+                } else if (tileDist < 12) {
+                    batch.setColor(new Color(1f,1f,1f,0.95f));
+                }
+
+                super.drawSprite(batch, viewport, delta, alpha);
+
+                if (tileDist < 12) {
+                    batch.setColor(new Color(1f,1f,1f,1f));
+                }
             }
-
-            super.drawSprite(batch, viewport, delta, alpha);
-
-            batch.setColor(new Color(1f,1f,1f,1f));
         }
     }
 

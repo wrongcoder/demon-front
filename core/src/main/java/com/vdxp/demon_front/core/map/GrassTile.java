@@ -1,12 +1,18 @@
 package com.vdxp.demon_front.core.map;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.vdxp.demon_front.core.Game;
+import com.vdxp.demon_front.core.SpriteTestScreen;
 import com.vdxp.demon_front.core.Viewport;
+import com.vdxp.demon_front.core.units.HeroUnit;
 
 public class GrassTile extends MapTile {
 
     TextureAtlas.AtlasRegion grass;
+
+    private Screen screen = null;
 
     public GrassTile(final TextureAtlas spritesAtlas,
                       int mapX,
@@ -18,6 +24,8 @@ public class GrassTile extends MapTile {
 
         x = mapX * width;
         y = mapY * height;
+
+        screen = Game.instance().getScreen();
     }
 
     public void drawSprite(final SpriteBatch batch,
@@ -25,8 +33,14 @@ public class GrassTile extends MapTile {
                      final float delta,
                      final float alpha) {
 
-        setSpriteToDraw(grass);
-        super.drawSprite(batch, viewport, delta, alpha);
+        final HeroUnit hero = ((SpriteTestScreen) screen).hero;
+
+        int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
+
+        if (tileDist < 13) {
+            setSpriteToDraw(grass);
+            super.drawSprite(batch, viewport, delta, alpha);
+        }
     }
 
 }

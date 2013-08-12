@@ -1,12 +1,13 @@
 package com.vdxp.demon_front.core;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.vdxp.demon_front.core.units.HeroUnit;
 
 public abstract class Screen implements com.badlogic.gdx.Screen {
 
 	private final Game game;
 
-	public Screen(final Game game) {
+    public Screen(final Game game) {
 		this.game = game;
 	}
 

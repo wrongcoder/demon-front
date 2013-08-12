@@ -24,7 +24,7 @@ import com.vdxp.demon_front.core.units.WaspUnit;
 
 public class SpriteTestScreen extends Screen {
 
-	private HeroUnit hero;
+	public HeroUnit hero;
 
 	private BitmapFont debugFont;
 	private BitmapFont shoutFont;
@@ -61,10 +61,6 @@ public class SpriteTestScreen extends Screen {
     public SpriteTestScreen(final Game game) {
 		super(game);
 	}
-
-    public HeroUnit getHero() {
-        return hero;
-    }
 
     @Override
 	public void show() {
