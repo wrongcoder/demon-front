@@ -126,9 +126,7 @@ public abstract class EnemyUnit extends Unit {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
-				if (!(unit instanceof EnemyUnit) &&
-                    !(unit instanceof DemonGate)
-				        ) {
+				if (!isOnMySide(unit)) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(20, this);
@@ -143,5 +141,10 @@ public abstract class EnemyUnit extends Unit {
 	public void receiveHit(final int hp, final Unit source) {
 		super.receiveHit(hp, source);
 		swordSlashTimer += 0.1f;
+	}
+
+	@Override
+	public boolean isFriendly() {
+		return false;
 	}
 }

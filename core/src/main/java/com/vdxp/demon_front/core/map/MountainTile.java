@@ -13,11 +13,11 @@ public class MountainTile extends MapTile {
                         int mapY) {
         mountain = spritesAtlas.findRegion("mountain1_32x32");
 
-        setWidth(mountain.getRegionWidth());
-        setHeight(mountain.getRegionHeight());
+        width = mountain.getRegionWidth();
+        height = mountain.getRegionHeight();
 
-        setX(mapX * getWidth());
-        setY(mapY * getHeight());
+        x = mapX * width;
+        y = mapY * height;
     }
 
     public void drawSprite(final SpriteBatch batch,

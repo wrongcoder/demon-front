@@ -20,11 +20,11 @@ public class FogOfWarWFaceTile extends MapTile {
         fogOfWarWFace = spritesAtlas.findRegion((Math.random() < 0.9f)
                     ? "fogOfWar2" : "fogOfWar2b");
 
-        setWidth(fogOfWarWFace.getRegionWidth());
-        setHeight(fogOfWarWFace.getRegionHeight());
+        width = fogOfWarWFace.getRegionWidth();
+        height = fogOfWarWFace.getRegionHeight();
 
-        setX(mapX * getWidth());
-        setY(mapY * getHeight());
+        x = mapX * width;
+        y = mapY * height;
     }
 
     public void drawSprite(final SpriteBatch batch,
@@ -33,7 +33,7 @@ public class FogOfWarWFaceTile extends MapTile {
                      final float alpha) {
 
 	    final Screen screen = Game.instance().getScreen();
-	    if (!(screen instanceof SpriteTestScreen)) {
+	    if (screen.getClass() != SpriteTestScreen.class) {
 		    return;
 	    }
 	    HeroUnit hero = ((SpriteTestScreen) screen).getHero();

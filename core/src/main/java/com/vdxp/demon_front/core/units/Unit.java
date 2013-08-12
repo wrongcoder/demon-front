@@ -8,13 +8,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.vdxp.demon_front.core.Collidable;
 import com.vdxp.demon_front.core.Drawable;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import static com.vdxp.demon_front.core.Util.interpolate;
 
-public abstract class Unit extends Drawable {
+public abstract class Unit extends Drawable implements Collidable {
 
 	// x/y: model position, map-relative
 	// prevX/prevY: model position during previous physics tick, map-relative
@@ -112,23 +113,25 @@ public abstract class Unit extends Drawable {
 		final float actualX;
 		final float actualY;
 
+		final Array<Unit> shortlistedActiveCollidables = shortlistActiveCandidates(this, activeCollidables);
+
 		// this is going to be slow with a lot of units
-		if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX, targetDeltaY)) {
+		if (!isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX, targetDeltaY)) {
 			actualX = this.x + targetDeltaX;
 			actualY = this.y + targetDeltaY;
-		} else if (targetDeltaX != 0 && !isCollision(activeCollidables, inactiveCollidables, targetDeltaX, 0)) {
+		} else if (targetDeltaX != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX, 0)) {
 			actualX = this.x + targetDeltaX;
 			actualY = this.y;
-		} else if (targetDeltaY != 0 && !isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY)) {
+		} else if (targetDeltaY != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, 0, targetDeltaY)) {
 			actualX = this.x;
 			actualY = this.y + targetDeltaY;
-		} else if (!isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, targetDeltaY/2)) {
+		} else if (!isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX/2, targetDeltaY/2)) {
 			actualX = this.x + targetDeltaX/2;
 			actualY = this.y + targetDeltaY/2;
-		} else if (targetDeltaX != 0 && !isCollision(activeCollidables, inactiveCollidables, targetDeltaX/2, 0)) {
+		} else if (targetDeltaX != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, targetDeltaX/2, 0)) {
 			actualX = this.x + targetDeltaX/2;
 			actualY = this.y;
-		} else if (targetDeltaY != 0 && !isCollision(activeCollidables, inactiveCollidables, 0, targetDeltaY/2)) {
+		} else if (targetDeltaY != 0 && !isCollision(shortlistedActiveCollidables, inactiveCollidables, 0, targetDeltaY/2)) {
 			actualX = this.x;
 			actualY = this.y + targetDeltaY/2;
 		} else {
@@ -149,6 +152,34 @@ public abstract class Unit extends Drawable {
 		return true;
 	}
 
+	/*
+	private static <T extends Collidable> Array<T> shortlistCandidates(final Collidable it, final Array<T> candidates, final Class<T> clazz) {
+		final Array<T> shortlist = new Array<T>(false, candidates.size, clazz);
+		for (int ix = 0; ix < candidates.size; ix++) {
+			final T candidate = candidates.get(ix);
+			final float itX = it.getX();
+			final float itY = it.getY();
+			final float candidateY = candidate.getY();
+			final float candidateX = candidate.getX();
+			if (!(candidateX < itX - 128 || candidateX > itX + 128 || candidateY < itY - 128 || candidateY > itY + 128)) {
+				shortlist.add(candidate);
+			}
+		}
+		return shortlist;
+	}
+	*/
+
+	private static Array<Unit> shortlistActiveCandidates(final Unit it, final Array<Unit> candidates) {
+		final Array<Unit> shortlist = new Array<Unit>(false, candidates.size);
+		for (int ix = 0; ix < candidates.size; ix++) {
+			final Unit candidate = candidates.get(ix);
+			if (!(candidate.x < it.x - 128 || candidate.x > it.x + 128 || candidate.y < it.y - 128 || candidate.y > it.y + 128)) {
+				shortlist.add(candidate);
+			}
+		}
+		return shortlist;
+	}
+
 	private static float zeroClamp(final double value) {
 		final double minDelta = 0.00001;
 		if (value < minDelta && value > -minDelta) {
@@ -159,32 +190,28 @@ public abstract class Unit extends Drawable {
 	}
 
 	private boolean isCollision(final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables, final float targetDeltaX, final float targetDeltaY) {
-		Rectangle.tmp.set(this.x + targetDeltaX + 2, this.y + targetDeltaY + 2, this.width - 4, this.height - 4);
+		final float x1 = this.x + targetDeltaX + 2;
+		final float y1 = this.y + targetDeltaY + 2;
+		final float w1 = this.width - 4;
+		final float h1 = this.height - 4;
 
 		for (int ix = 0; ix < activeCollidables.size; ix++) {
 			final Unit other = activeCollidables.get(ix);
 			if (other == this) {
 				continue;
 			}
-			if (this instanceof EnemyUnit) {
-                if (other instanceof EnemyUnit ||
-                    other instanceof DemonGate) {
-                    continue;
-                }
-            } else if (this instanceof FriendlyUnit) {
-                if (other instanceof FriendlyUnit) {
-                    continue;
-                }
-            }
-			Rectangle.tmp2.set(other.x, other.y, other.width, other.height);
-			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+			if (isOnMySide(other) && other.getClass() != WallSection.class) {
+				continue;
+			}
+			// Copied from com.badlogic.gdx.math.Rectangle.overlaps(Rectangle) to inline
+			if (x1 < other.x + other.width && x1 + h1 > other.x && y1 < other.y + other.height && y1 + w1 > other.y) {
 				return true;
 			}
 		}
 		for (int ix = 0; ix < inactiveCollidables.size; ix++) {
 			final MapTile other = inactiveCollidables.get(ix);
-			Rectangle.tmp2.set(other.getX(), other.getY(), other.getWidth(), other.getHeight());
-			if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
+			// Copied from com.badlogic.gdx.math.Rectangle.overlaps(Rectangle) to inline
+			if (x1 < other.x + other.width && x1 + h1 > other.x && y1 < other.y + other.height && y1 + w1 > other.y) {
 				return true;
 			}
 		}
@@ -194,11 +221,13 @@ public abstract class Unit extends Drawable {
 	/** @return pixels per second */
 	public abstract float getSpeed();
 
-	public float getX() {
+	@Override
+	public final float getX() {
 		return x;
 	}
 
-	public float getY() {
+	@Override
+	public final float getY() {
 		return y;
 	}
 
@@ -252,6 +281,12 @@ public abstract class Unit extends Drawable {
 	public abstract void physics(final float delta, final Array<Unit> activeCollidables, final Array<MapTile> inactiveCollidables);
 
 	public abstract void combat(final float delta, final Array<Unit> activeCollidables);
+
+	public boolean isOnMySide(final Unit other) {
+		return this.isFriendly() == other.isFriendly();
+	}
+
+	public abstract boolean isFriendly();
 
 	public void receiveHit(final int hp, final Unit source) {
 		changeHp(-hp);

@@ -53,10 +53,10 @@ public class HeroUnit extends YourSideUnit {
 			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
-				if (unit instanceof EnemyUnit || unit instanceof DemonGate) {
+				if (!isOnMySide(unit)) {
 					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
-						unit.receiveHit(22, this);
+						unit.receiveHit(18, this);
 						return;
 					}
 				}
@@ -66,7 +66,7 @@ public class HeroUnit extends YourSideUnit {
 
 	@Override
 	public float getSpeed() {
-		return 120;
+		return 110;
 	}
 
 	public Float computeMovementAngle() {

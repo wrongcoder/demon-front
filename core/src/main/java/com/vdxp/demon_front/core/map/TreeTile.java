@@ -13,11 +13,11 @@ public class TreeTile extends MapTile {
                     int mapY) {
         treeSprite = spritesAtlas.findRegion("tree1");
 
-        setWidth(treeSprite.getRegionWidth());
-        setHeight(treeSprite.getRegionHeight());
+        width = treeSprite.getRegionWidth();
+        height = treeSprite.getRegionHeight();
 
-        setX(mapX * getWidth());
-        setY(mapY * getHeight());
+        x = mapX * width;
+        y = mapY * height;
     }
 
     public void drawSprite(final SpriteBatch batch,

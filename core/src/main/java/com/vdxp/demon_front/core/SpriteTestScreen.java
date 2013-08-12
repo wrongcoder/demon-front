@@ -179,7 +179,9 @@ public class SpriteTestScreen extends Screen {
 
 	private void physics(final float delta) {
 		for (int ix = 0; ix < activeCollidables.size; ix++) {
-			activeCollidables.get(ix).physics(delta, activeCollidables, inactiveCollidables);
+			final Unit unit = activeCollidables.get(ix);
+			final Array<MapTile> nearbyInactiveCollidables = map1_layer2.getNearbyCollidableMapTiles(unit.getX(), unit.getY());
+			unit.physics(delta, activeCollidables, nearbyInactiveCollidables);
 		}
 	}
 

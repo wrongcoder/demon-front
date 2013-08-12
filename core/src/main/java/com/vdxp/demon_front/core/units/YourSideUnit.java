@@ -101,4 +101,9 @@ public abstract class YourSideUnit extends FriendlyUnit {
 		this.shoutCommand = shoutCommand;
 		commandForgottenTimer = 0;
 	}
+
+	@Override
+	public boolean isFriendly() {
+		return true;
+	}
 }
