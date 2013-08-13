@@ -61,41 +61,72 @@ public class DemonGate extends Unit {
     @Override
     public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 
-        if (this.getHp() <= 0) {
-            if (this.getAnimation().isAnimationFinished(this.stateTime)) {
-                die();
-                Game.instance().getSoundMan().playSealing();
-            }
-        }
+        HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-        super.drawSprite(batch, viewport, delta, alpha);
-        if (swordSlashTimer > delta) {
-            swordSlashTimer -= delta;
-            batch.draw(swordSlash, getDrawX() - viewport.viewportX + 8, getDrawY() - viewport.viewportY);
-            Game.instance().getSoundMan().playHumanAttack();
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
+
+        if (tileDist < 12) {
+            if (this.getHp() <= 0) {
+                if (this.getAnimation().isAnimationFinished(this.stateTime)) {
+                    die();
+                    Game.instance().getSoundMan().playSealing();
+                }
+            }
+
+            super.drawSprite(batch, viewport, delta, alpha);
+            if (swordSlashTimer > delta) {
+                swordSlashTimer -= delta;
+                batch.draw(swordSlash, getDrawX() - viewport.viewportX + 8, getDrawY() - viewport.viewportY);
+                Game.instance().getSoundMan().playHumanAttack();
+            }
         }
     }
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
-		final int barWidth = 64;
-		final int barHeight = 9;
 
-		final float barX = getDrawX() - viewport.viewportX - (barWidth / 8);
-		final float barY = getDrawY() + getHeight() - viewport.viewportY - barHeight;
+        HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-		shape.begin(ShapeRenderer.ShapeType.Filled);
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
 
-		shape.setColor(0.65f, 0, 0, 1);
-		shape.rect(barX, barY, barWidth, barHeight);
+        if (tileDist < 12) {
+            final int barWidth = 64;
+            final int barHeight = 9;
 
-		shape.setColor(0.33f, 0, 0, 1);
-		shape.rect(barX + 1, barY + 1, barWidth - 2, barHeight - 2);
+            final float barX = getDrawX() - viewport.viewportX - (barWidth / 8);
+            final float barY = getDrawY() + getHeight() - viewport.viewportY - barHeight;
 
-		shape.setColor(1, 0, 0, 1);
-		shape.rect(barX + 1, barY + 1, (barWidth - 2) * getHitPointsFraction(), barHeight - 2);
+            shape.begin(ShapeRenderer.ShapeType.Filled);
 
-		shape.end();
+            shape.setColor(0.65f, 0, 0, 1);
+            shape.rect(barX, barY, barWidth, barHeight);
+
+            shape.setColor(0.33f, 0, 0, 1);
+            shape.rect(barX + 1, barY + 1, barWidth - 2, barHeight - 2);
+
+            shape.setColor(1, 0, 0, 1);
+            shape.rect(barX + 1, barY + 1, (barWidth - 2) * getHitPointsFraction(), barHeight - 2);
+
+            shape.end();
+        }
 	}
 
 	@Override

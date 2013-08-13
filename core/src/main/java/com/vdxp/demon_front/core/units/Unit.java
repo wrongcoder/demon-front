@@ -32,8 +32,8 @@ public abstract class Unit extends Drawable implements Collidable {
 
     private Float angle = null;
 
-	private float x = 0;
-	private float y = 0;
+	protected float x = 0;
+	protected float y = 0;
 	private float prevX = 0;
 	private float prevY = 0;
 	private float drawX = 0;
@@ -47,7 +47,7 @@ public abstract class Unit extends Drawable implements Collidable {
 	private float hp;
 	private boolean alive = true;
 
-    private Screen screen = null;
+    protected Screen screen = null;
 
     public Unit(final float maxHp) {
 		this.animated = true;
@@ -60,30 +60,15 @@ public abstract class Unit extends Drawable implements Collidable {
 	@Override
 	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 
-        HeroUnit hero = ((SpriteTestScreen) screen).hero;
-
-        float targetX = hero.getX();
-        float targetY = hero.getY();
-        double tileDist = ((Math.abs(
-                Math.sqrt(
-                        (double) (
-                                (x - targetX) * (x - targetX) +
-                                        (y - targetY) * (y - targetY)
-                        )
-                )
-        )) / 32);
-
-        if (tileDist < 12) {
-            if (animated) {
-                stateTime += delta;
-            }
-
-            drawX = interpolate(prevX, x, alpha);
-            drawY = interpolate(prevY, y, alpha);
-
-            final TextureRegion frame = animation.getKeyFrame(stateTime);
-            batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
+        if (animated) {
+            stateTime += delta;
         }
+
+        drawX = interpolate(prevX, x, alpha);
+        drawY = interpolate(prevY, y, alpha);
+
+        final TextureRegion frame = animation.getKeyFrame(stateTime);
+        batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
 	}
 
 	@Override

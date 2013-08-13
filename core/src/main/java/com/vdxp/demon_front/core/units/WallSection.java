@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Game;
+import com.vdxp.demon_front.core.SpriteTestScreen;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.MapTile;
 
@@ -44,44 +45,59 @@ public class WallSection extends Unit {
                      final float delta,
                      final float alpha) {
 
-        if (this.getHp() <= 0) {
-            die();
-            Game.instance().getSoundMan().playSealing();
-            return;
-        }
+        HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-        TextureAtlas.AtlasRegion toDraw = null;
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
 
-        switch ((int)(this.getHp() / 20)) {
-            case 5:
-                toDraw = wallSectionSprite1;
-                break;
-            case 4:
-                toDraw = wallSectionSprite2;
-                break;
-            case 3:
-                toDraw = wallSectionSprite3;
-                break;
-            case 2:
-                toDraw = wallSectionSprite4;
-                break;
-            case 1:
-                toDraw = wallSectionSprite5;
-                break;
-            default:
-                break;
-        }
+        if (tileDist < 12) {
+            if (this.getHp() <= 0) {
+                die();
+                Game.instance().getSoundMan().playSealing();
+                return;
+            }
 
-        if (toDraw != null) {
-            batch.draw(toDraw,
-                    this.getX()  - viewport.viewportX - drawOffsetX,
-                    this.getY() - viewport.viewportY - drawOffsetY);
-        }
+            TextureAtlas.AtlasRegion toDraw = null;
 
-        if (clawSlashTimer > delta) {
-            clawSlashTimer -= delta;
-            batch.draw(clawSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
-            Game.instance().getSoundMan().playEnemyAttack();
+            switch ((int)(this.getHp() / 20)) {
+                case 5:
+                    toDraw = wallSectionSprite1;
+                    break;
+                case 4:
+                    toDraw = wallSectionSprite2;
+                    break;
+                case 3:
+                    toDraw = wallSectionSprite3;
+                    break;
+                case 2:
+                    toDraw = wallSectionSprite4;
+                    break;
+                case 1:
+                    toDraw = wallSectionSprite5;
+                    break;
+                default:
+                    break;
+            }
+
+            if (toDraw != null) {
+                batch.draw(toDraw,
+                        this.getX()  - viewport.viewportX - drawOffsetX,
+                        this.getY() - viewport.viewportY - drawOffsetY);
+            }
+
+            if (clawSlashTimer > delta) {
+                clawSlashTimer -= delta;
+                batch.draw(clawSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+                Game.instance().getSoundMan().playEnemyAttack();
+            }
         }
     }
 

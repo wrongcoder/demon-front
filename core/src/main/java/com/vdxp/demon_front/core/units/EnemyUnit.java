@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Game;
 import com.vdxp.demon_front.core.LoseEndSplashScreen;
+import com.vdxp.demon_front.core.SpriteTestScreen;
 import com.vdxp.demon_front.core.Viewport;
 import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
@@ -90,34 +91,66 @@ public abstract class EnemyUnit extends Unit {
 
 	@Override
 	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
-		super.drawSprite(batch, viewport, delta, alpha);
-		if (swordSlashTimer > delta) {
-			swordSlashTimer -= delta;
-			batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
-            Game.instance().getSoundMan().playHumanAttack();
-		}
+        HeroUnit hero = ((SpriteTestScreen) screen).hero;
+
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
+
+        if (tileDist < 12) {
+            super.drawSprite(batch, viewport, delta, alpha);
+            if (swordSlashTimer > delta) {
+                swordSlashTimer -= delta;
+                batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+                Game.instance().getSoundMan().playHumanAttack();
+            }
+        }
 	}
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
-		final int barWidth = 32;
-		final int barHeight = 6;
 
-		final float barX = getDrawX() - viewport.viewportX - barWidth / 2;
-		final float barY = getDrawY() + getHeight() - viewport.viewportY - barHeight;
+        HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-		shape.begin(ShapeRenderer.ShapeType.Filled);
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
 
-		shape.setColor(0.65f, 0, 0, 1);
-		shape.rect(barX, barY, barWidth, barHeight);
+        if (tileDist < 12) {
 
-		shape.setColor(0.33f, 0, 0, 1);
-		shape.rect(barX + 1, barY + 1, barWidth - 2, barHeight - 2);
+            final int barWidth = 32;
+            final int barHeight = 6;
 
-		shape.setColor(1, 0, 0, 1);
-		shape.rect(barX + 1, barY + 1, (barWidth - 2) * getHitPointsFraction(), barHeight - 2);
+            final float barX = getDrawX() - viewport.viewportX - barWidth / 2;
+            final float barY = getDrawY() + getHeight() - viewport.viewportY - barHeight;
 
-		shape.end();
+            shape.begin(ShapeRenderer.ShapeType.Filled);
+
+            shape.setColor(0.65f, 0, 0, 1);
+            shape.rect(barX, barY, barWidth, barHeight);
+
+            shape.setColor(0.33f, 0, 0, 1);
+            shape.rect(barX + 1, barY + 1, barWidth - 2, barHeight - 2);
+
+            shape.setColor(1, 0, 0, 1);
+            shape.rect(barX + 1, barY + 1, (barWidth - 2) * getHitPointsFraction(), barHeight - 2);
+
+            shape.end();
+        }
 	}
 
 	@Override

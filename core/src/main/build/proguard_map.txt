@@ -118,12 +118,12 @@ com.vdxp.demon_front.core.MusicMan$Mood -> m:
     245:245:com.vdxp.demon_front.core.MusicMan$Mood[] values() -> a
 com.vdxp.demon_front.core.Screen -> n:
     com.vdxp.demon_front.core.Game game -> a
-    23:23:void resize(int,int) -> resize
-    27:27:void show() -> show
-    31:31:void hide() -> hide
-    35:35:void pause() -> pause
-    39:39:void resume() -> resume
-    43:43:void dispose() -> dispose
+    24:24:void resize(int,int) -> resize
+    28:28:void show() -> show
+    32:32:void hide() -> hide
+    36:36:void pause() -> pause
+    40:40:void resume() -> resume
+    44:44:void dispose() -> dispose
 com.vdxp.demon_front.core.Sounds -> o:
     com.badlogic.gdx.audio.Sound playing -> a
     com.badlogic.gdx.audio.Music mp3Player -> a
@@ -161,18 +161,16 @@ com.vdxp.demon_front.core.SpriteTestScreen -> p:
     com.badlogic.gdx.utils.Array activeCollidables -> c
     com.badlogic.gdx.utils.Array inactiveNonCollidables_effects -> d
     com.badlogic.gdx.utils.Array toSpawn -> e
-    66:66:com.vdxp.demon_front.core.units.HeroUnit getHero() -> a
-    71:96:void show() -> show
-    100:130:void render(float) -> render
-    133:178:void graphics(float,float) -> a
-    189:207:void scheduleEnemySpawn$4868d30e(int,int) -> a
-    210:225:void scheduleFriendlySpawn$13462e() -> a
-    228:263:void control$133aeb() -> b
-    25:25:com.vdxp.demon_front.core.units.HeroUnit access$100(com.vdxp.demon_front.core.SpriteTestScreen) -> a
+    67:92:void show() -> show
+    96:126:void render(float) -> render
+    129:174:void graphics(float,float) -> a
+    185:203:void scheduleEnemySpawn$4868d30e(int,int) -> a
+    206:221:void scheduleFriendlySpawn$13462e() -> a
+    224:259:void control$133aeb() -> b
 com.vdxp.demon_front.core.SpriteTestScreen$SpriteTestInputHandler -> q:
     com.vdxp.demon_front.core.SpriteTestScreen this$0 -> a
-    279:305:boolean keyDown(int) -> keyDown
-    310:336:boolean keyUp(int) -> keyUp
+    275:301:boolean keyDown(int) -> keyDown
+    306:332:boolean keyUp(int) -> keyUp
 com.vdxp.demon_front.core.TitleSplashScreen -> r:
     com.badlogic.gdx.graphics.g2d.BitmapFont bigFont -> a
     com.badlogic.gdx.graphics.g2d.BitmapFont normalFont -> b
@@ -196,16 +194,20 @@ com.vdxp.demon_front.core.WinEndSplashScreen -> u:
     23:27:void showMessage$5a39cdce(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.badlogic.gdx.graphics.g2d.BitmapFont,com.badlogic.gdx.graphics.g2d.BitmapFont) -> a
 com.vdxp.demon_front.core.map.FogOfWarTile -> v:
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion fogOfWar1 -> b
-    33:59:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    36:62:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
 com.vdxp.demon_front.core.map.FogOfWarWFaceTile -> w:
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion fogOfWarWFace -> b
-    35:60:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    38:63:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
 com.vdxp.demon_front.core.map.GrassTile -> x:
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion grass -> b
-    28:30:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    36:44:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
 com.vdxp.demon_front.core.map.GrassWLeaveTile -> y:
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion grass_w_leave -> b
-    28:30:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    36:44:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
 com.vdxp.demon_front.core.map.Map -> z:
     java.lang.String asciiSource -> a
     com.badlogic.gdx.utils.Array nonCollidableMapTiles -> a
@@ -219,14 +221,17 @@ com.vdxp.demon_front.core.map.MapTile -> A:
     float width -> e
     float height -> f
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion spriteToDraw -> a
+    23:24:void setSpriteToDraw(com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion) -> a
     32:37:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
     40:40:int getTileDistFrom(float,float) -> a
 com.vdxp.demon_front.core.map.MountainTile -> B:
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion mountain -> b
-    28:30:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    35:43:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
 com.vdxp.demon_front.core.map.TreeTile -> C:
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion treeSprite -> b
-    28:30:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    36:44:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
 com.vdxp.demon_front.core.units.ClothUnit -> D:
 com.vdxp.demon_front.core.units.CricketUnit -> E:
 com.vdxp.demon_front.core.units.DemonGate -> F:
@@ -309,24 +314,25 @@ com.vdxp.demon_front.core.units.Unit -> O:
     float maxHp -> j
     float hp -> k
     boolean alive -> i
-    54:63:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
-    67:67:void drawOverlay$70a6e01f(com.badlogic.gdx.graphics.glutils.ShapeRenderer,com.vdxp.demon_front.core.Viewport) -> a
-    70:80:void setDimensions(float,float,float,float) -> a
-    83:84:void setAnimation(com.badlogic.gdx.graphics.g2d.Animation) -> a
-    91:95:void setAnimation(com.badlogic.gdx.graphics.g2d.Animation,boolean) -> a
-    103:152:boolean tryMove$5702c1e0(java.lang.Float,com.badlogic.gdx.utils.Array,com.badlogic.gdx.utils.Array) -> a
-    184:188:float zeroClamp(double) -> a
-    193:218:boolean isCollision(com.badlogic.gdx.utils.Array,com.badlogic.gdx.utils.Array,float,float) -> a
+    com.badlogic.gdx.Screen screen -> a
+    63:87:void drawSprite(com.badlogic.gdx.graphics.g2d.SpriteBatch,com.vdxp.demon_front.core.Viewport,float,float) -> a
+    91:91:void drawOverlay$70a6e01f(com.badlogic.gdx.graphics.glutils.ShapeRenderer,com.vdxp.demon_front.core.Viewport) -> a
+    94:104:void setDimensions(float,float,float,float) -> a
+    107:108:void setAnimation(com.badlogic.gdx.graphics.g2d.Animation) -> a
+    115:119:void setAnimation(com.badlogic.gdx.graphics.g2d.Animation,boolean) -> a
+    127:176:boolean tryMove$5702c1e0(java.lang.Float,com.badlogic.gdx.utils.Array,com.badlogic.gdx.utils.Array) -> a
+    208:212:float zeroClamp(double) -> a
+    217:242:boolean isCollision(com.badlogic.gdx.utils.Array,com.badlogic.gdx.utils.Array,float,float) -> a
     float getSpeed() -> a
-    271:275:void changeHp(float) -> a
+    295:299:void changeHp(float) -> a
     void physics$7a2fb2f5(com.badlogic.gdx.utils.Array,com.badlogic.gdx.utils.Array) -> a
     void combat$427d5e05(com.badlogic.gdx.utils.Array) -> a
-    286:286:boolean isOnMySide(com.vdxp.demon_front.core.units.Unit) -> a
+    310:310:boolean isOnMySide(com.vdxp.demon_front.core.units.Unit) -> a
     boolean isFriendly() -> a
-    292:293:void receiveHit(int,com.vdxp.demon_front.core.units.Unit) -> a
-    296:296:float getHitPointsFraction() -> b
-    300:300:com.badlogic.gdx.graphics.g2d.Animation buildAnimation$52f74593(com.badlogic.gdx.graphics.g2d.TextureAtlas,int,java.lang.String[]) -> a
-    304:311:com.badlogic.gdx.graphics.g2d.Animation buildAnimation$6ab64eb3(com.badlogic.gdx.graphics.g2d.TextureAtlas,int,boolean,java.lang.String[]) -> a
+    316:317:void receiveHit(int,com.vdxp.demon_front.core.units.Unit) -> a
+    320:320:float getHitPointsFraction() -> b
+    324:324:com.badlogic.gdx.graphics.g2d.Animation buildAnimation$52f74593(com.badlogic.gdx.graphics.g2d.TextureAtlas,int,java.lang.String[]) -> a
+    328:335:com.badlogic.gdx.graphics.g2d.Animation buildAnimation$6ab64eb3(com.badlogic.gdx.graphics.g2d.TextureAtlas,int,boolean,java.lang.String[]) -> a
 com.vdxp.demon_front.core.units.WallSection -> P:
     com.badlogic.gdx.graphics.g2d.Sprite clawSlash -> a
     com.badlogic.gdx.graphics.g2d.TextureAtlas$AtlasRegion wallSectionSprite1 -> a
@@ -358,4 +364,4 @@ com.vdxp.demon_front.core.units.YourSideUnit -> R:
     float commandForgottenTimer -> n
     51:69:void setNextAnimation(java.lang.Float) -> a
     74:98:void physics$7a2fb2f5(com.badlogic.gdx.utils.Array,com.badlogic.gdx.utils.Array) -> a
-    106:106:boolean isFriendly() -> a
+    107:107:boolean isFriendly() -> a
