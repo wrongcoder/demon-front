@@ -37,7 +37,7 @@ public abstract class MapTile extends Drawable implements Collidable {
     }
 
     public int getTileDistFrom(float targetX, float targetY) {
-        return Map.getDistInTile(Math.abs(
+        return (int) (Math.abs(
                   Math.sqrt(
                       (double) (
                               (x - targetX) * (x - targetX) +
@@ -45,7 +45,7 @@ public abstract class MapTile extends Drawable implements Collidable {
                       )
                   )
               )
-        );
+        / 32);
     }
 
 	@Override

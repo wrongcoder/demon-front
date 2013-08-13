@@ -1,5 +1,6 @@
 package com.vdxp.demon_front.core.units;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,7 +11,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.vdxp.demon_front.core.Collidable;
 import com.vdxp.demon_front.core.Drawable;
+import com.vdxp.demon_front.core.Game;
+import com.vdxp.demon_front.core.SpriteTestScreen;
 import com.vdxp.demon_front.core.Viewport;
+import com.vdxp.demon_front.core.map.Map;
 import com.vdxp.demon_front.core.map.MapTile;
 
 import static com.vdxp.demon_front.core.Util.interpolate;
@@ -43,23 +47,43 @@ public abstract class Unit extends Drawable implements Collidable {
 	private float hp;
 	private boolean alive = true;
 
-	public Unit(final float maxHp) {
+    private Screen screen = null;
+
+    public Unit(final float maxHp) {
 		this.animated = true;
 		this.maxHp = maxHp;
 		this.hp = maxHp;
+
+		screen = Game.instance().getScreen();
 	}
 
 	@Override
 	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
-		if (animated) {
-			stateTime += delta;
-		}
 
-		drawX = interpolate(prevX, x, alpha);
-		drawY = interpolate(prevY, y, alpha);
+        HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-		final TextureRegion frame = animation.getKeyFrame(stateTime);
-		batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
+
+        if (tileDist < 12) {
+            if (animated) {
+                stateTime += delta;
+            }
+
+            drawX = interpolate(prevX, x, alpha);
+            drawY = interpolate(prevY, y, alpha);
+
+            final TextureRegion frame = animation.getKeyFrame(stateTime);
+            batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
+        }
 	}
 
 	@Override
