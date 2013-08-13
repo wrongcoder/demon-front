@@ -34,7 +34,7 @@ public class MountainTile extends MapTile {
                      final float alpha) {
         final HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-        int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
+        final float tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 
         if (tileDist < 13) {
             setSpriteToDraw(mountain);

@@ -55,7 +55,11 @@ public abstract class EnemyUnit extends Unit {
         final int tileY = Map.getDistInTile(this.getY());
 
         aggressivenessTimer += delta;
-        final float aggressivenessLevel = aggressivenessTimer / (float)180;
+        final float aggressivenessLevel = aggressivenessTimer / 180f;
+
+        if ((tileX > 27 || tileX < 53) && aggressivenessTimer > 30f) {
+            aggressivenessTimer = 0;
+        }
 
         directionChangeTimer += delta;
         if (Math.random() < (aggressivenessLevel)) {
@@ -91,33 +95,18 @@ public abstract class EnemyUnit extends Unit {
 
 	@Override
 	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
-        HeroUnit hero = ((SpriteTestScreen) screen).hero;
-
-        float targetX = hero.getX();
-        float targetY = hero.getY();
-        double tileDist = ((Math.abs(
-                Math.sqrt(
-                        (double) (
-                                (x - targetX) * (x - targetX) +
-                                        (y - targetY) * (y - targetY)
-                        )
-                )
-        )) / 32);
-
-        if (tileDist < 12) {
-            super.drawSprite(batch, viewport, delta, alpha);
-            if (swordSlashTimer > delta) {
-                swordSlashTimer -= delta;
-                batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
-                Game.instance().getSoundMan().playHumanAttack();
-            }
+        super.drawSprite(batch, viewport, delta, alpha);
+        if (swordSlashTimer > delta) {
+            swordSlashTimer -= delta;
+            batch.draw(swordSlash, getDrawX() - viewport.viewportX - drawOffsetX, getDrawY() - viewport.viewportY - drawOffsetY);
+            Game.instance().getSoundMan().playHumanAttack();
         }
 	}
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
 
-        HeroUnit hero = ((SpriteTestScreen) screen).hero;
+        HeroUnit hero = screen.hero;
 
         float targetX = hero.getX();
         float targetY = hero.getY();
@@ -140,13 +129,13 @@ public abstract class EnemyUnit extends Unit {
 
             shape.begin(ShapeRenderer.ShapeType.Filled);
 
-            shape.setColor(0.65f, 0, 0, 1);
+            shape.setColor(0.65f, 0, 0, 1f);
             shape.rect(barX, barY, barWidth, barHeight);
 
-            shape.setColor(0.33f, 0, 0, 1);
+            shape.setColor(0.33f, 0, 0, 1f);
             shape.rect(barX + 1, barY + 1, barWidth - 2, barHeight - 2);
 
-            shape.setColor(1, 0, 0, 1);
+            shape.setColor(1, 0, 0, 1f);
             shape.rect(barX + 1, barY + 1, (barWidth - 2) * getHitPointsFraction(), barHeight - 2);
 
             shape.end();

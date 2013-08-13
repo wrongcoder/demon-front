@@ -35,7 +35,7 @@ public class TreeTile extends MapTile {
 
         final HeroUnit hero = ((SpriteTestScreen) screen).hero;
 
-        int tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
+        final float tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 
         if (tileDist < 13) {
             setSpriteToDraw(treeSprite);

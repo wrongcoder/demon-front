@@ -47,19 +47,18 @@ public abstract class Unit extends Drawable implements Collidable {
 	private float hp;
 	private boolean alive = true;
 
-    protected Screen screen = null;
+    protected SpriteTestScreen screen = null;
 
     public Unit(final float maxHp) {
 		this.animated = true;
 		this.maxHp = maxHp;
 		this.hp = maxHp;
 
-		screen = Game.instance().getScreen();
+		screen = ((SpriteTestScreen) Game.instance().getScreen());
 	}
 
 	@Override
 	public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
-
         if (animated) {
             stateTime += delta;
         }
@@ -67,8 +66,23 @@ public abstract class Unit extends Drawable implements Collidable {
         drawX = interpolate(prevX, x, alpha);
         drawY = interpolate(prevY, y, alpha);
 
-        final TextureRegion frame = animation.getKeyFrame(stateTime);
-        batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
+        HeroUnit hero = screen.hero;
+
+        float targetX = hero.getX();
+        float targetY = hero.getY();
+        double tileDist = ((Math.abs(
+                Math.sqrt(
+                        (double) (
+                                (x - targetX) * (x - targetX) +
+                                        (y - targetY) * (y - targetY)
+                        )
+                )
+        )) / 32);
+
+        if (tileDist < 12) {
+            final TextureRegion frame = animation.getKeyFrame(stateTime);
+            batch.draw(frame, drawX - viewport.viewportX - drawOffsetX, drawY - viewport.viewportY - drawOffsetY);
+        }
 	}
 
 	@Override

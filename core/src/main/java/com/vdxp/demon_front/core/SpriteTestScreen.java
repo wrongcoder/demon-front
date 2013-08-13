@@ -186,8 +186,8 @@ public class SpriteTestScreen extends Screen {
 
         for (int i=0;i<numberToSpawn;i++) {
 	        final double enemyType = Math.random() * 4;
-	        final int spawnX = tileX + (int)Math.floor(Math.random() * 2);
-	        final int spawnY = tileY + (int)Math.floor(Math.random() * 2);
+	        final int spawnX = tileX;
+	        final int spawnY = tileY;
 
 	        if (enemyType < 1) {
 		        toSpawn.add(new MosquitoUnit(spritesAtlas, spawnX, spawnY));
@@ -250,7 +250,7 @@ public class SpriteTestScreen extends Screen {
 			musicMan.requestMusic(MusicMan.Mood.Calm, delta);
 		}
 
-		if (!hero.isAlive() /* || gates are down */) {
+		if (!hero.isAlive() /* || "gates are down" checked elsewhere */) {
 			game().setScreen(new LoseEndSplashScreen(game()));
 		}
 		if (demonGatesLeft == 0) {

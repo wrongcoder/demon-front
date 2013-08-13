@@ -61,40 +61,25 @@ public class DemonGate extends Unit {
     @Override
     public void drawSprite(final SpriteBatch batch, final Viewport viewport, final float delta, final float alpha) {
 
-        HeroUnit hero = ((SpriteTestScreen) screen).hero;
-
-        float targetX = hero.getX();
-        float targetY = hero.getY();
-        double tileDist = ((Math.abs(
-                Math.sqrt(
-                        (double) (
-                                (x - targetX) * (x - targetX) +
-                                        (y - targetY) * (y - targetY)
-                        )
-                )
-        )) / 32);
-
-        if (tileDist < 12) {
-            if (this.getHp() <= 0) {
-                if (this.getAnimation().isAnimationFinished(this.stateTime)) {
-                    die();
-                    Game.instance().getSoundMan().playSealing();
-                }
+        if (this.getHp() <= 0) {
+            if (this.getAnimation().isAnimationFinished(this.stateTime)) {
+                die();
+                Game.instance().getSoundMan().playSealing();
             }
+        }
 
-            super.drawSprite(batch, viewport, delta, alpha);
-            if (swordSlashTimer > delta) {
-                swordSlashTimer -= delta;
-                batch.draw(swordSlash, getDrawX() - viewport.viewportX + 8, getDrawY() - viewport.viewportY);
-                Game.instance().getSoundMan().playHumanAttack();
-            }
+        super.drawSprite(batch, viewport, delta, alpha);
+        if (swordSlashTimer > delta) {
+            swordSlashTimer -= delta;
+            batch.draw(swordSlash, getDrawX() - viewport.viewportX + 8, getDrawY() - viewport.viewportY);
+            Game.instance().getSoundMan().playHumanAttack();
         }
     }
 
 	@Override
 	public void drawOverlay(final ShapeRenderer shape, final Viewport viewport, final float delta, final float alpha) {
 
-        HeroUnit hero = ((SpriteTestScreen) screen).hero;
+        final HeroUnit hero = screen.hero;
 
         float targetX = hero.getX();
         float targetY = hero.getY();
@@ -116,13 +101,13 @@ public class DemonGate extends Unit {
 
             shape.begin(ShapeRenderer.ShapeType.Filled);
 
-            shape.setColor(0.65f, 0, 0, 1);
+            shape.setColor(0.65f, 0, 0, 1f);
             shape.rect(barX, barY, barWidth, barHeight);
 
-            shape.setColor(0.33f, 0, 0, 1);
+            shape.setColor(0.33f, 0, 0, 1f);
             shape.rect(barX + 1, barY + 1, barWidth - 2, barHeight - 2);
 
-            shape.setColor(1, 0, 0, 1);
+            shape.setColor(1, 0, 0, 1f);
             shape.rect(barX + 1, barY + 1, (barWidth - 2) * getHitPointsFraction(), barHeight - 2);
 
             shape.end();
