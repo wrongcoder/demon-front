@@ -25,8 +25,10 @@ import com.vdxp.demon_front.core.units.WaspUnit;
 public class SpriteTestScreen extends Screen {
 
 	public HeroUnit hero;
+    public int demonGatesLeft = 0;
 
-	private BitmapFont debugFont;
+
+    private BitmapFont debugFont;
 	private BitmapFont shoutFont;
 
 	private SpriteBatch batch;
@@ -85,6 +87,8 @@ public class SpriteTestScreen extends Screen {
         hero = new HeroUnit(spritesAtlas);
 		activeCollidables.add(hero);
 
+        demonGatesLeft = countGates(activeCollidables);
+
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
 		viewport = new Viewport(hero);
@@ -126,8 +130,8 @@ public class SpriteTestScreen extends Screen {
 	}
 
 	private void graphics(final float delta, final float alpha) {
-		Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		//Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 0);
+		//Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
 		for (int ix = 0; ix < background.size; ix++) {
@@ -141,12 +145,12 @@ public class SpriteTestScreen extends Screen {
 		}
 		batch.end();
 
-		for (int ix = 0; ix < background.size; ix++) {
+		/*for (int ix = 0; ix < background.size; ix++) {
 			background.get(ix).drawOverlay(shape, viewport, delta, alpha);
 		}
 		for (int ix = 0; ix < inactiveCollidables.size; ix++) {
 			inactiveCollidables.get(ix).drawOverlay(shape, viewport, delta, alpha);
-		}
+		}*/
 		for (int ix = 0; ix < activeCollidables.size; ix++) {
 			activeCollidables.get(ix).drawOverlay(shape, viewport, delta, alpha);
 		}
@@ -236,7 +240,6 @@ public class SpriteTestScreen extends Screen {
 
 		final MusicMan musicMan = game().getMusicMan();
 		final int units = activeCollidables.size;
-		final int demonGatesLeft = countGates(activeCollidables);
 
 		if (demonGatesLeft == 1) {
 			musicMan.requestMusic(MusicMan.Mood.Cliffhanger, delta);

@@ -36,8 +36,8 @@ public abstract class FriendlyUnit extends Unit {
 
         final HeroUnit hero = screen.hero;
 
-        float targetX = hero.getX();
-        float targetY = hero.getY();
+        float targetX = hero.x;
+        float targetY = hero.y;
         double tileDist = ((Math.abs(
                 Math.sqrt(
                         (double) (
@@ -72,11 +72,11 @@ public abstract class FriendlyUnit extends Unit {
 	@Override
 	public void combat(final float delta, final Array<Unit> activeCollidables) {
 		if (Math.random() < delta) {
-			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
+			Rectangle.tmp.set(this.x - 8, this.y - 8, getWidth() + 16, getHeight() + 16);
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
 				if (!isOnMySide(unit) && unit.getClass() != DemonGate.class) {
-					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
+					Rectangle.tmp2.set(unit.x, unit.y, unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(10, this);
 						return;

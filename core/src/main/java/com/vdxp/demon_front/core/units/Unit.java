@@ -68,8 +68,8 @@ public abstract class Unit extends Drawable implements Collidable {
 
         HeroUnit hero = screen.hero;
 
-        float targetX = hero.getX();
-        float targetY = hero.getY();
+        float targetX = hero.x;
+        float targetY = hero.y;
         double tileDist = ((Math.abs(
                 Math.sqrt(
                         (double) (

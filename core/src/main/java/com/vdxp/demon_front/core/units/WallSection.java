@@ -45,10 +45,10 @@ public class WallSection extends Unit {
                      final float delta,
                      final float alpha) {
 
-        HeroUnit hero = ((SpriteTestScreen) screen).hero;
+        HeroUnit hero = screen.hero;
 
-        float targetX = hero.getX();
-        float targetY = hero.getY();
+        float targetX = hero.x;
+        float targetY = hero.y;
         double tileDist = ((Math.abs(
                 Math.sqrt(
                         (double) (
@@ -89,8 +89,8 @@ public class WallSection extends Unit {
 
             if (toDraw != null) {
                 batch.draw(toDraw,
-                        this.getX()  - viewport.viewportX - drawOffsetX,
-                        this.getY() - viewport.viewportY - drawOffsetY);
+                        this.x  - viewport.viewportX - drawOffsetX,
+                        this.y - viewport.viewportY - drawOffsetY);
             }
 
             if (clawSlashTimer > delta) {

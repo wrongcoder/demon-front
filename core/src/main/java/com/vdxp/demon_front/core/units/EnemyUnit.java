@@ -51,8 +51,8 @@ public abstract class EnemyUnit extends Unit {
             Game.instance().setScreen(new LoseEndSplashScreen(Game.instance()));
         }
 
-        final int tileX = Map.getDistInTile(this.getX());
-        final int tileY = Map.getDistInTile(this.getY());
+        final int tileX = Map.getDistInTile(this.x);
+        final int tileY = Map.getDistInTile(this.y);
 
         aggressivenessTimer += delta;
         final float aggressivenessLevel = aggressivenessTimer / 180f;
@@ -108,8 +108,8 @@ public abstract class EnemyUnit extends Unit {
 
         HeroUnit hero = screen.hero;
 
-        float targetX = hero.getX();
-        float targetY = hero.getY();
+        float targetX = hero.x;
+        float targetY = hero.y;
         double tileDist = ((Math.abs(
                 Math.sqrt(
                         (double) (
@@ -145,11 +145,11 @@ public abstract class EnemyUnit extends Unit {
 	@Override
 	public void combat(final float delta, final Array<Unit> activeCollidables) {
 		if (Math.random() < delta / 1.5) {
-			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
+			Rectangle.tmp.set(this.x - 8, this.y - 8, getWidth() + 16, getHeight() + 16);
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
 				if (!isOnMySide(unit)) {
-					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
+					Rectangle.tmp2.set(unit.x, unit.y, unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(20, this);
 						return;

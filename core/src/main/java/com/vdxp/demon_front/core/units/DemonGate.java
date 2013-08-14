@@ -64,6 +64,7 @@ public class DemonGate extends Unit {
         if (this.getHp() <= 0) {
             if (this.getAnimation().isAnimationFinished(this.stateTime)) {
                 die();
+                screen.demonGatesLeft--;
                 Game.instance().getSoundMan().playSealing();
             }
         }
@@ -81,8 +82,8 @@ public class DemonGate extends Unit {
 
         final HeroUnit hero = screen.hero;
 
-        float targetX = hero.getX();
-        float targetY = hero.getY();
+        float targetX = hero.x;
+        float targetY = hero.y;
         double tileDist = ((Math.abs(
                 Math.sqrt(
                         (double) (
@@ -131,7 +132,7 @@ public class DemonGate extends Unit {
 		        return;
 	        }
 	        ((SpriteTestScreen) screen).
-                    scheduleEnemySpawn(4, Map.getDistInTile(this.getX()), Map.getDistInTile(this.getY()));
+                    scheduleEnemySpawn(4, Map.getDistInTile(this.x), Map.getDistInTile(this.y));
             demonSpawnBucket1 = 0f;
         }
     }

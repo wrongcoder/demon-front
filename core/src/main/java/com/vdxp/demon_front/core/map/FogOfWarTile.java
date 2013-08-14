@@ -12,7 +12,7 @@ import com.vdxp.demon_front.core.units.HeroUnit;
 public class FogOfWarTile extends MapTile {
 
     protected TextureAtlas.AtlasRegion fogOfWar1;
-    private Screen screen = null;
+    private SpriteTestScreen screen = null;
 
     public FogOfWarTile(final TextureAtlas spritesAtlas,
                         int mapX,
@@ -25,7 +25,7 @@ public class FogOfWarTile extends MapTile {
         x = mapX * width;
         y = mapY * height;
 
-        screen = Game.instance().getScreen();
+        screen = (SpriteTestScreen) Game.instance().getScreen();
     }
 
     public void drawSprite(final SpriteBatch batch,
@@ -35,7 +35,7 @@ public class FogOfWarTile extends MapTile {
 
         spriteToDraw = fogOfWar1;
 
-        final HeroUnit hero = ((SpriteTestScreen) screen).hero;
+        final HeroUnit hero = screen.hero;
 
         final float tileDist = this.getTileDistFrom(hero.getX(), hero.getY());
 

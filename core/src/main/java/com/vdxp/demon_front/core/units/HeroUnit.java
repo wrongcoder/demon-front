@@ -33,8 +33,8 @@ public class HeroUnit extends YourSideUnit {
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
 				if (unit != this && unit instanceof YourSideUnit) {
-					final float unitDX = unit.getX() - getX();
-					final float unitDY = unit.getY() - getY();
+					final float unitDX = unit.x - x;
+					final float unitDY = unit.y - y;
 					final float distance = (float) Math.sqrt(unitDX*unitDX + unitDY*unitDY);
 					if (distance <= (32*4)) {
 						((YourSideUnit) unit).setShoutCommand(shoutCommand);
@@ -50,11 +50,11 @@ public class HeroUnit extends YourSideUnit {
 		setHp(Math.min(getMaxHp(), getHp() + 3 * delta));
 
 		if (Math.random() < delta) {
-			Rectangle.tmp.set(getX() - 8, getY() - 8, getWidth() + 16, getHeight() + 16);
+			Rectangle.tmp.set(this.x - 8, this.y - 8, getWidth() + 16, getHeight() + 16);
 			for (int ix = 0; ix < activeCollidables.size; ix++) {
 				final Unit unit = activeCollidables.get(ix);
 				if (!isOnMySide(unit)) {
-					Rectangle.tmp2.set(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
+					Rectangle.tmp2.set(unit.x, unit.y, unit.getWidth(), unit.getHeight());
 					if (Rectangle.tmp.overlaps(Rectangle.tmp2)) {
 						unit.receiveHit(18, this);
 						return;
