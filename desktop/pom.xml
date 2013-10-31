@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.vdxp.demon_front</groupId>
+		<artifactId>demon_front</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>demon_front-desktop</artifactId>
+	<packaging>jar</packaging>
+	<name>Demon Front Desktop</name>
+
+	<properties>
+		<mainClass>com.vdxp.demon_front.desktop.DesktopLauncher</mainClass>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vdxp.demon_front</groupId>
+			<artifactId>demon_front-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-backend-lwjgl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-platform</artifactId>
+			<classifier>natives-desktop</classifier>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>../core/target/gdx/assets</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>rebel.xml</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>${mainClass}</mainClass>
+									<addClasspath>true</addClasspath>
+									<classpathPrefix>lib/</classpathPrefix>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<options>
+						<!-- Input/Output Options -->
+						<option>-dontskipnonpubliclibraryclasses</option>
+						<option>-dontskipnonpubliclibraryclassmembers</option>
+						<option>-target ${project.build.java.target}</option>
+						<!-- Keep Options -->
+						<option>-keep</option>
+						<option>    class com.vdxp.demon_front.desktop.DesktopLauncher {</option>
+						<option>        public static void main(java.lang.String[]);</option>
+						<option>    }</option>
+						<option>-keep</option>
+						<option>    class com.vdxp.demon_front.desktop.DesktopDriver {</option>
+						<option>        public static void main(java.lang.String[]);</option>
+						<option>    }</option>
+						<!-- Optimization Options -->
+						<option>-optimizationpasses 10</option>
+						<option>-allowaccessmodification</option>
+						<option>-mergeinterfacesaggressively</option>
+						<!-- Obfuscation Options -->
+						<option>-printmapping ${project.basedir}/src/main/build/proguard_map.txt</option>
+						<option>-applymapping ${project.basedir}/src/main/build/proguard_map.txt</option>
+						<option>-overloadaggressively</option>
+						<option>-repackageclasses ''</option>
+						<option>-keepattributes SourceFile,LineNumberTable,Signature</option>
+						<option>-renamesourcefileattribute SourceFile</option>
+					</options>
+					<libs>
+						<lib>${java.home}/lib/rt.jar</lib>
+					</libs>
+					<assembly>
+						<inclusions>
+							<inclusion>
+								<groupId>com.vdxp.demon_front</groupId>
+								<artifactId>demon_front-core</artifactId>
+							</inclusion>
+						</inclusions>
+					</assembly>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>distribution</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/distribution.xml</descriptor>
+							</descriptors>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.akathist.maven.plugins.launch4j</groupId>
+				<artifactId>launch4j-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>launch4j</goal>
+						</goals>
+						<configuration>
+							<headerType>gui</headerType>
+							<outfile>${project.build.directory}/${project.build.finalName}.exe</outfile>
+							<dontWrapJar>true</dontWrapJar>
+							<chdir>.</chdir>
+							<jar>${project.parent.artifactId}.jar</jar>
+							<icon>../core/src/main/assets/icons/favicon.ico</icon>
+							<cmdLine>production</cmdLine>
+							<classPath>
+								<mainClass>com.vdxp.demon_front.desktop.DesktopDriver</mainClass>
+							</classPath>
+							<jre>
+								<minVersion>${project.build.java.target}.0</minVersion>
+								<initialHeapSize>512</initialHeapSize>
+								<maxHeapSize>512</maxHeapSize>
+							</jre>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
