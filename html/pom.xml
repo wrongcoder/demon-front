@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.vdxp.demon_front</groupId>
 		<artifactId>demon_front</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>demon_front-html</artifactId>
@@ -48,12 +48,6 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.vdxp.maven.com.google.code.java-universal-tween-engine</groupId>
-			<artifactId>tween-engine-api</artifactId>
-			<classifier>sources</classifier>
 		</dependency>
 	</dependencies>
 

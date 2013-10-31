@@ -33,6 +33,12 @@
 			<destName>version.txt</destName>
 			<lineEnding>crlf</lineEnding>
 		</file>
+		<file>
+			<source>${project.basedir}/../core/src/main/assets/Attributions.txt</source>
+			<outputDirectory>/</outputDirectory>
+			<destName>Attributions.txt</destName>
+			<lineEnding>crlf</lineEnding>
+		</file>
 	</files>
 	<fileSets>
 		<fileSet>

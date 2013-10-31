@@ -1,0 +1,45 @@
+// This has the design for which song to play and when
+
+Songs are arranged into folders indicating moods.
+
+Currently the moods are:
+Calm, Agitation, Conflict, Impasse, Cliffhanger, Climax, and
+End of Battle (good or bad)
+
+There is a special folder called UI, which are UI tracks:
+- Title Screen
+- Stage Intro: play during the narrated story / tutorial
+before the stage starts
+- Town Management: if we ever get to that
+
+Mood shift logic:
+- Every time the mood of the game is shifted, a random song is
+played from the folder of that mood.
+
+- All battle starts at Calm. Calm lasts while the number of
+active engagements on the map are from 0 to 3.
+
+- Agitation: 3 to 10 active engagements on map.
+
+- Conflict: a) more than 10 engagements on map. Play this for 5
+minutes then automatically switch to Impasses. b) also switch
+to this playlist when a command is issued that affects a large
+number of troops ("large" is a constant that we tune later)
+
+- Impasse: alternate with Conflict. Play this for 10 minutes
+then return to Conflict.
+
+- Cliff Hanger: play this during the sealing spell. Volume
+slowly rising while the spell is in effect, and ebbs when the
+hero is distracted. The volume rises to a maximum after the
+spell is in effect for 30 seconds, and ebbs at the same rate.
+After this song plays to completion, there is a 5 second long
+musical silence, then back to Calm, Agitation, or Conflict
+depending on the number of active engagements.
+
+- Climax: play this after the last portal is sealed. This is
+an optional event in the game if we code to that point. After
+the last portal is sealed, a gigantic wave of enemy will enter
+from the very top of the map in a slow, dramatic fashion.
+
+- Battle End: there is a song for win and lose.

@@ -1,0 +1,42 @@
+Hero:
+
+Sprite: guy in yellow shirt
+Speed: 80
+HP: 270
+ATK: 36 (can do +- 5 later but no need for now)
+Spawn time: N/A
+Heuristics: N/A (until we get to the multiple hero giant maps gameplay)
+Special: the hero is the only unit that recovers HP. Rate of recovery is 3 per sec.
+Recovery starts only after the hero stands still for 10 secs.
+Tuning: It should take 10-12 consecutive battles without rest against grunt units or
+being swarmed by 5-6 grunts to kill the hero. The hero should win 3 consecutive
+battles against the strongest enemy unit and barely survives being swarmed by 2
+at a time.
+
+Basic infantry:
+
+Sprite: Recolor the ork sprites so that they look human or perhaps make the hero
+an ork (a human looking greenskin) instead and write the orks into a cultured race
+of peaceful fun-loving people who gets victimized by demons. It is, after all, a
+lot easier to do good-sounding and yet funny voice acting for orks.
+Speed: 40
+HP: 60
+ATK: 10
+Spawn time: once every 8 sec
+Tuning: tune the spawn time and reduce enemy spawn time or slower the enemy advances
+by changing AI accordingly. The spawn time should be sufficiently fast to keep the
+pace of the game high and to ensure that battle ends with a massive number of units
+on screen, but should be also not too high, so that heroes have an incentive to not
+roam too much and finish the stage early by killing the small numbers of enemies
+at the start. Heroes who don't roam too much has the ability to command larger
+blocks of troops.
+
+Wall 1, 2, 3, 4, 5: These are actually just various crumbling stages of your wall
+Sprites: Wall 1, 2, 3, 4, 5 all placed on top of each other so that Wall 1 (intact)
+shows first. Walls are basically just static friendly units.
+Speed: N/A (skip calculating position for all the wall sprites)
+HP: Wall 1: 60, Wall 2 is double wall 1, wall 3 is triple wall 1, so on. This way,
+each wall tile will actually have a durability score of 300.
+ATK: 4 (since there are 5 wall tiles on top of each other in each position, the
+actual attack power of the wall is 20 per tile, reducing as the tiles get damaged.
+The wall attack with a fire animation)

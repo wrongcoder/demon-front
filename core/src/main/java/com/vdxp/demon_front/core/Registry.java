@@ -2,6 +2,7 @@ package com.vdxp.demon_front.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.utils.Logger;
 
 /** Registry and initializer of global resources */

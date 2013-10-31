@@ -1,14 +1,13 @@
 package com.vdxp.demon_front.core;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class LoadingScreen extends Screen {
 
@@ -50,12 +49,6 @@ public class LoadingScreen extends Screen {
 	public void hide() {
 		batch.dispose();
 		loadingBarRenderer.dispose();
-
-		// Hacks around libGDX issue 1640
-		final Skin skin = r.assetManager.get(AssetManager.ui);
-		final TextButton.TextButtonStyle style = skin.get(TextButton.TextButtonStyle.class);
-		style.pressedOffsetX = r.platformSupport.fixFloat(style.pressedOffsetX);
-		style.pressedOffsetY = r.platformSupport.fixFloat(style.pressedOffsetY);
 	}
 
 	@Override

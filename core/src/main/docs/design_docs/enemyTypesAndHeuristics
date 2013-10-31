@@ -1,0 +1,86 @@
+Cheap and Dirty Pathing for Enemy Units:
+
+Pathing normally involves a node map, and an algorithm for finding the best
+path from one node to another. Since this game only involves enemies coming
+down the map, the only real issue with pathing is to avoid units getting stuck
+on the terrain.
+
+So we just have a node map, each node having a score of how "close" it is to the
+base south of the map, and this "closeness" is human determined beforehand, so
+that there are always one or more path that will eventually lead to the human
+base from each and every node. For each stage, there are nodes directly behind
+each of the wall tiles, so that the enemies will eventually be led directly to
+one of the wall tiles. If even one enemy manage to reach one of the nodes behind
+a wall tile, your side lost. However, since enemy sprites are all as wide as 2
+to 3 wall tiles, you are only at risk of losing if big holes are poked in your
+defense.
+
+This couples with the heuristics in each unit that determine how likely will the
+closer node get chosen each time, and other heuristics like speed change around
+adjacent units and clumping (units copy adjacent units next node), and the circular,
+terrain ignoring motion of fliers, and you will get a rather organic looking swarm.
+
+Your own units are commanded entirely by you. If hitting an obstacle, the unit will
+stop. Do they need pathing?
+
+Roamer:
+
+Sprite: invader 1
+Speed: 70 (just a bit slower than the hero)
+HP: 40
+ATK: 20
+Spawn time: 1 on the map every 30 seconds, from a random portal
+Heuristics: roam around the map with no fixed directions, will tend to gravitate
+toward other Roamers, so that over time roamer packs who still fly randomly around
+the map will emerge. Roamers have a very small tendency to slowly go south toward
+your castle, but this tendency should be very subtle, so that you won't ever see
+a roamer pack attacking your castle in the first 10 minutes of a typical scenario.
+Roamers also only engages in battle for 2 seconds then break off (even if it takes
+an extra hit), so that it can't be swarmed except by overwhelming numbers. This
+unit is a flier and so will ignore terrain. The "flying" logic is implemented by
+keeping an "focal position" of the unit, which follow the same cheap pathing logic
+as every other units, but the "actual position" of the flier is calculated as
+"maintain a radius around the next node that it is flying to, but this radius
+changes randomly (say, from 30-300 pixels) every 5-15 seconds of flying"
+
+Choker:
+
+Sprite: invader 2
+Speed: 40
+HP: 60
+ATK: 12
+Spawn time: 4 every 60 sec from every portal. Spawn in groups of 4 so that they
+are not easily swarmed.
+Heuristics: clump into units when adjacent to each other, inexorably advance slowly
+toward the human castle. Larger clumps will move slower (if there are adjacent units
+speed, reduces by 5 for each surrounding units). This slows down large clumps but
+if not dealt with they will eventually form mega-clumps when units from more portals
+join.
+
+Weakness: despite the sheer numbers of them, they are individually about as strong
+as a soldier from your side, while having a big sprite and can be swarmed easier.
+
+Crusher
+Sprite: invader 3
+Speed: 30
+HP: 150
+ATK: 23
+Spawn time: 1 on the map every 1 minute, from a random portal
+Heuristics: same as the Choker logic. The Crusher is a close combat monster, who
+will need the hero to deal with effectively or by setting up choke points so that
+2 to 3 human sprites can swarm them.
+
+Stalker:
+
+Sprite: invader 4
+Speed: 60
+HP: 120
+ATK: 30
+Spawn time: 1 on the map every 5 minutes, from a random portal
+Heuristics: these are solitary (only because they are much rarer than the roamer)
+random roamers, and follow the same roamer logic, except if it sees the hero, it
+will home toward the hero with unflinching precision and will not let go. It will
+not engage in combat with other units, when touching other units, it will engage
+for only 2 seconds (the minimum). This unit is a flyer and will ignore terrain, so
+that it can do the flying motion.
+

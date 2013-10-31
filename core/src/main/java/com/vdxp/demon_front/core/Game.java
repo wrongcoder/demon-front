@@ -15,6 +15,9 @@ public class Game extends com.badlogic.gdx.Game {
 	private String shortVersion;
 	private String versionId;
 
+    private Sounds soundMan = null;
+    private MusicMan musicMan = null;
+
 	public Game(final Registry r) {
 		this.r = r;
 	}
@@ -23,9 +26,13 @@ public class Game extends com.badlogic.gdx.Game {
 	public void create() {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		loadVersion();
-		r.assetManager.queueAssets();
+		Asset.queueAssets(r.assetManager);
 		r.platformSupport.initializePlatform();
-		setScreen(new LoadingScreen(r).setNextScreen(new MainMenuScreen(r)));
+		setScreen(new LoadingScreen(r).setNextScreen(new TitleSplashScreen(r)));
+
+        // init sound and music
+        soundMan = new Sounds(r);
+        musicMan = new MusicMan(r);
 	}
 
 	public String getFullVersion() {
@@ -56,4 +63,11 @@ public class Game extends com.badlogic.gdx.Game {
 		}
 	}
 
+    public MusicMan getMusicMan() {
+        return musicMan;
+    }
+
+    public Sounds getSoundMan() {
+        return soundMan;
+    }
 }
